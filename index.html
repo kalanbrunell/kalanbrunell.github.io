@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kalan Brunell — Engineering Portfolio</title>
+  <style>
+    :root { --bg:#0f1115; --fg:#e7e9ee; --muted:#9aa3b2; --acc:#6ea8fe; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color:var(--fg); background:linear-gradient(180deg,#0f1115 0%, #121521 100%); }
+    header { padding:48px 20px 24px; max-width:1000px; margin:0 auto; }
+    nav { display:flex; gap:20px; justify-content:flex-end; font-size:14px; }
+    nav a { color:var(--muted); text-decoration:none; }
+    nav a:hover { color:var(--fg); }
+    .hero { display:grid; gap:16px; padding:32px 20px; max-width:1000px; margin:0 auto; }
+    .title { font-size: clamp(28px, 4vw, 48px); font-weight:700; line-height:1.1; }
+    .subtitle { color:var(--muted); max-width:60ch; }
+    .cta a { display:inline-block; padding:10px 16px; border:1px solid #2a2f3a; border-radius:12px; text-decoration:none; color:var(--fg); margin-right:12px; }
+    .cta a.primary { background:var(--acc); color:#0b0e14; border-color:transparent; }
+    section { padding:28px 20px; max-width:1000px; margin:0 auto; }
+    h2 { font-size: clamp(20px, 2.5vw, 28px); margin:12px 0 8px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; }
+    .card { background:#121624; border:1px solid #1b2030; border-radius:16px; padding:16px; }
+    .card h3 { margin:0 0 6px; font-size:18px; }
+    .card p { color:var(--muted); margin:0; }
+    footer { color:var(--muted); text-align:center; padding:32px 12px 48px; }
+    code { background:#0c0f16; padding:2px 6px; border-radius:6px; border:1px solid #1b2030; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="/resume.pdf">Resume</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="title">Hi, I’m <span style="color:var(--acc)">Kalan Brunell</span> — I build engineering projects.</div>
+      <p class="subtitle">
+        Embedded systems • Robotics • FSAE • Vision systems. This is a living portfolio of the hardware,
+        firmware, and automation projects I’ve shipped, broken, and improved.
+      </p>
+      <div class="cta">
+        <a class="primary" href="#projects">See Projects</a>
+        <a href="mailto:hello@kalanbrunell.site">Email me</a>
+      </div>
+    </div>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>FSAE Accumulator & AMS</h3>
+          <p>STM32-based thermistor/celltap distribution, I²C muxing → CAN; HV interlock + isolation design.</p>
+        </article>
+        <article class="card">
+          <h3>2D Vision Inspection System</h3>
+          <p>Python + OpenCV → industrial camera offsets → robot/PLC comms; custom fixtures and controls.</p>
+        </article>
+        <article class="card">
+          <h3>OBD-II RPM Shift Light</h3>
+          <p>STM32L432 + shift register LED bar; smoothing & PWM brightness; Freematics OBD-II → UART.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>I’m an engineer who likes building real things—PCBs, firmware, robotics cells, and fast prototypes.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:hello@kalanbrunell.site">hello@kalanbrunell.site</a> • GitHub: <a href="https://github.com/YOURUSERNAME">YOURUSERNAME</a></p>
+    </section>
+  </main>
+
+  <footer>© <span id="y"></span> Kalan Brunell</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
