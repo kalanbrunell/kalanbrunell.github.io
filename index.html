@@ -1,95 +1,333 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Kalan Brunell — Engineering Portfolio</title>
-<meta name="description" content="Embedded systems, robotics, FSAE, vision systems." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Modal Projects</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0f1117;--card:#121826;--text:#e5e7eb;--muted:#98a2b3;--accent:#60a5fa;--line:#1f2937}
-  *{box-sizing:border-box} body{margin:0;font:16px/1.6 system-ui,Segoe UI,Inter,Arial;color:var(--text);background:linear-gradient(180deg,#0f1117,#0b1220)}
-  header{max-width:1000px;margin:auto;padding:28px 18px 0} nav{display:flex;gap:16px;justify-content:flex-end}
-  nav a{color:var(--muted);text-decoration:none} nav a:hover{color:var(--text)}
-  .hero{max-width:1000px;margin:auto;padding:52px 18px 18px}
-  h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px} .sub{color:var(--muted);max-width:60ch}
-  .cta a{display:inline-block;margin:14px 12px 0 0;padding:10px 14px;border-radius:12px;text-decoration:none;border:1px solid var(--line)}
-  .cta .primary{background:var(--accent);color:#081125;border-color:transparent}
-  section{max-width:1000px;margin:auto;padding:28px 18px} h2{font-size:clamp(20px,2.6vw,28px);margin:0 0 12px}
-  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
-  .card h3{margin:0 0 6px} .meta{font-size:12px;color:var(--muted);margin-bottom:6px}
-  .tag{display:inline-block;font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:999px;margin:6px 6px 0 0;color:var(--muted)}
-  footer{color:var(--muted);text-align:center;padding:36px 12px 60px}
-  img.cover{width:100%;height:140px;object-fit:cover;border-radius:10px;border:1px solid var(--line);margin:6px 0 10px}
+  :root{
+    --bg: linear-gradient(135deg,#f4f1ed 0%, #e9e6e2 100%);
+    --text:#2d2d2d;
+    --muted:#6b6b6b;
+    --card:#fdfdfc;
+    --accent:#3a5a82; /* change for different accent palettes */
+  }
+  /* Base */
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font:16px/1.6 'Inter', system-ui, sans-serif;
+    color:var(--text);
+    background:var(--bg);
+  }
+  h1,h2,h3{
+    font-family:"Playfair Display", serif;
+    margin-top:0;
+    color:var(--accent);
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  .container{max-width:1100px; margin:0 auto; padding:32px 20px;}
+
+  /* Nav */
+  .nav{display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; font-family:"Playfair Display", serif;}
+  .brand{font-weight:800; font-size:24px; color:var(--accent);}
+  .nav a{margin-left:16px; color:var(--muted);}
+  .nav a:hover{color:var(--accent);}
+
+  /* Cards */
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:24px;
+    box-shadow:0 4px 12px #00000015;
+    border-top:4px solid var(--accent);
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 6px 16px #00000025; }
+
+  /* Layouts */
+  .hero{display:grid; grid-template-columns:1.4fr 1fr; gap:24px; align-items:start;}
+  .section{margin-top:48px;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;}
+
+  /* Skills pills */
+  .pill{display:inline-block; padding:6px 12px; border-radius:999px; font-size:14px; margin:6px 8px 0 0;}
+  .skills .pill{background:transparent; border:1px solid color-mix(in oklab, var(--accent) 60%, #ffffff 40%); color:color-mix(in oklab, var(--accent) 85%, #000 15%);}
+
+  /* Project tiles clickable */
+  .project-card{ cursor:pointer; user-select:none; }
+  .project-card h3{ margin-bottom:8px; }
+
+  /* MODAL (overlay) */
+  .modal{
+    position:fixed; inset:0;
+    display:none; /* hidden by default */
+    align-items:center; justify-content:center;
+    background:color-mix(in oklab, #000 60%, transparent);
+    padding:24px;
+    z-index:1000;
+  }
+  .modal[open]{ display:flex; }
+
+  .modal__panel{
+    background:#fff;
+    color:#1f2937;
+    width:min(1100px, 96vw);
+    max-height:90vh;
+    border-radius:16px;
+    overflow:auto;
+    box-shadow:0 20px 60px #00000055;
+    border-top:6px solid var(--accent);
+  }
+  .modal__head{
+    position:sticky; top:0;
+    background:linear-gradient(#ffffff, #ffffffee);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 20px; border-bottom:1px solid #e5e7eb; z-index:1;
+  }
+  .modal__title{
+    margin:0; font-family:"Playfair Display", serif; font-size:24px; color:var(--accent);
+  }
+  .modal__close{
+    border:none; background:#f3f4f6; padding:8px 12px; border-radius:10px; cursor:pointer;
+  }
+  .modal__body{
+    padding:20px;
+    display:grid; grid-template-columns: 1fr; gap:16px;
+  }
+  .modal__meta{
+    color:#475569; font-size:14px;
+  }
+  .figure{
+    background:#fafafa; border:1px solid #eee; border-radius:12px; padding:10px;
+  }
+  .figure img{ width:100%; height:auto; display:block; border-radius:8px; }
+  .figure figcaption{ font-size:13px; color:#64748b; margin-top:8px; }
+
+  pre{
+    background:#0b1020; color:#e5e7eb; padding:12px; border-radius:10px; overflow:auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px){
+    .hero{ grid-template-columns:1fr; }
+    .two-col{ grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <nav>
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-    <a href="/resume.pdf">Resume</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main>
-  <section class="hero">
-    <h1>Hi, I’m <span style="color:var(--accent)">Kalan Brunell</span>.</h1>
-    <p class="sub">I build embedded systems, robotics, and manufacturing automation. This portfolio showcases selected projects, writeups, and hardware I’ve shipped (or broken and fixed).</p>
-    <div class="cta">
-      <a class="primary" href="#projects">See Projects</a>
-      <a href="mailto:hello@kalanbrunell.site">Email me</a>
+  <div class="container">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">Your Name</div>
+      <div>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-  </section>
 
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="grid">
-      <article class="card">
-        <img class="cover" src="images/accumulator.jpg" alt="Accumulator CAD render (placeholder)" />
-        <h3>FSAE Accumulator & AMS</h3>
-        <div class="meta">Role: Lead EE • 2025</div>
-        <p>STM32-based thermistor/celltap distribution, I²C mux → CAN; HV interlock, isolation monitoring, removable pack design.</p>
-        <div>
-          <span class="tag">STM32</span><span class="tag">CAN</span><span class="tag">I²C</span><span class="tag">HV Safety</span>
-        </div>
-      </article>
+    <!-- HERO -->
+    <section id="about" class="hero">
+      <div class="card">
+        <h1>Hello, I’m an Engineer</h1>
+        <p>I design embedded and robotic systems, bridging hardware and software. Currently leading the design of an FSAE EV accumulator and building real-time instrumentation systems.</p>
+      </div>
+      <div class="card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:you@example.com">you@example.com</a><br>
+        GitHub · LinkedIn</p>
+      </div>
+    </section>
 
-      <article class="card">
-        <img class="cover" src="images/vision.jpg" alt="Vision cell (placeholder)" />
-        <h3>2D Vision Inspection</h3>
-        <div class="meta">Gentex • 2024</div>
-        <p>Python/OpenCV + industrial camera → offsets to robot/PLC; fixture design; microcontroller I/O for cell control.</p>
-        <div>
-          <span class="tag">OpenCV</span><span class="tag">Fanuc</span><span class="tag">PLC</span>
+    <!-- Engineering Experience -->
+    <section id="experience" class="section">
+      <h2>Engineering Experience</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Manufacturing Eng. Intern — Gentex</h3>
+          <p>Designed and deployed a 2D vision inspection cell for production:</p>
+          <ul>
+            <li>Raspberry Pi + OpenCV feature detection and metrology.</li>
+            <li>Industrial sensor I/O; custom interface to PLC & robot.</li>
+            <li>Fixture design, test plans, and documentation.</li>
+          </ul>
         </div>
-      </article>
+        <aside class="card">
+          <h3>At a Glance</h3>
+          <ul>
+            <li><strong>FSAE Hybrid Electric — Accumulator Lead</strong><br>
+              Thermistor/celltap PCBs, I²C mux → STM32, CAN telemetry, HV interlocks.</li>
+            <li><strong>FIRST Robotics — Captain</strong><br>
+              Autonomous targeting, field-relative drive, driver/operator leadership.</li>
+            <li><strong>Embedded & Test</strong><br>
+              STM32, C/C++, Python, FPGA (VGA HSYNC/VSYNC), Fanuc robot offsets.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
-      <article class="card">
-        <img class="cover" src="images/shiftlight.jpg" alt="Shift light LED bar (placeholder)" />
-        <h3>OBD-II RPM Shift Light</h3>
-        <div class="meta">Personal • 2025</div>
-        <p>Freematics OBD-II → UART on STM32L432; smoothing + PWM brightness; 8-LED bar via shift register.</p>
-        <div>
-          <span class="tag">UART</span><span class="tag">PWM</span><span class="tag">74HC595</span>
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="grid">
+        <!-- Tile 1 -->
+        <div class="card project-card" data-open-modal="proj-obd">
+          <h3>OBD-II Shift Bar</h3>
+          <p>STM32 + 74HC595 driving an 8-LED bar with PWM brightness control.</p>
         </div>
-      </article>
+        <!-- Tile 2 -->
+        <div class="card project-card" data-open-modal="proj-2048">
+          <h3>2048 in VHDL</h3>
+          <p>iCE40 FPGA, VGA timing (HSYNC/VSYNC), NES controller input.</p>
+        </div>
+        <!-- Tile 3 -->
+        <div class="card project-card" data-open-modal="proj-fanuc">
+          <h3>Fanuc Robot Vision</h3>
+          <p>ifm O2D502 offsets, two’s-complement conversion, 0.222 mm/px scaling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills">
+        <span class="pill">STM32</span>
+        <span class="pill">C/C++</span>
+        <span class="pill">Python</span>
+        <span class="pill">CAN</span>
+        <span class="pill">I²C</span>
+        <span class="pill">FPGA / VHDL</span>
+        <span class="pill">OpenCV</span>
+        <span class="pill">PLC / Robot I/O</span>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Get in Touch</h2>
+      <p>Email: <a href="mailto:you@example.com">you@example.com</a><br>
+      GitHub · LinkedIn</p>
+    </section>
+  </div>
+
+  <!-- MODAL (one shared overlay; content is injected) -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__panel" role="document">
+      <div class="modal__head">
+        <h3 class="modal__title" id="modal-title">Project</h3>
+        <button class="modal__close" id="modal-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal__body" id="modal-body">
+        <!-- Injected content goes here -->
+      </div>
     </div>
-  </section>
+  </div>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>Third-year Computer/Electrical Engineering at Tufts. I like tight feedback loops, solid documentation, and shipping real systems.</p>
-  </section>
+  <!-- TEMPLATES (write rich content once, JS copies it into the modal) -->
+  <template id="tmpl-proj-obd">
+    <div class="modal__meta">STM32L432KC · 74HC595 · OBD-II UART · PWM · 2025</div>
+    <p>Prototype shift-light bar that reads engine RPM via OBD-II and drives an 8-LED bar through a shift register. Includes a physical dimmer dial read by the MCU for on-the-fly brightness control.</p>
+    <figure class="figure">
+      <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop" alt="Prototype on perfboard">
+      <figcaption>Early prototype with perfboard and jumper wiring (placeholder image—replace with your own).</figcaption>
+    </figure>
+    <h4>Notes</h4>
+    <ul>
+      <li>OBD-II → UART adapter; polling PID 0x0C (RPM) at ~10–20 Hz.</li>
+      <li>LED bar driven via 74HC595; PWM dimming using timer channel.</li>
+      <li>Simple exponential smoothing to stabilize visual jitter.</li>
+    </ul>
+    <h4>Example snippet</h4>
+    <pre><code>// Pseudocode
+rpm = read_obd_rpm();
+smoothed = alpha * rpm + (1 - alpha) * smoothed;
+leds = map(smoothed, idle, redline, 0, 8);
+shiftOut(leds);
+</code></pre>
+  </template>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:hello@kalanbrunell.site">hello@kalanbrunell.site</a> • GitHub: <a href="https://github.com/YOURUSERNAME">YOURUSERNAME</a></p>
-  </section>
-</main>
+  <template id="tmpl-proj-2048">
+    <div class="modal__meta">iCE40 · VHDL · VGA · NES Controller · 2024</div>
+    <p>Hardware implementation of the 2048 game. Generates VGA sync signals, renders tiles, and reads a NES controller for input—all in VHDL.</p>
+    <figure class="figure">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="FPGA board on desk">
+      <figcaption>FPGA dev board and VGA output (placeholder—swap with your screenshot/photo).</figcaption>
+    </figure>
+    <h4>Highlights</h4>
+    <ul>
+      <li>HSYNC/VSYNC timing verified with logic analyzer.</li>
+      <li>Tile merge logic and score accumulator in separate modules.</li>
+      <li>Sprites cached in BRAM; simple palette for clarity.</li>
+    </ul>
+  </template>
 
-<footer>© <span id="y"></span> Kalan Brunell</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <template id="tmpl-proj-fanuc">
+    <div class="modal__meta">Fanuc · ifm O2D502 · Python · PLC/Robot I/O · 2025</div>
+    <p>Vision-guided positioning: the camera produces X/Y offsets that are converted from two’s-complement and scaled to mm to drive a Fanuc program frame.</p>
+    <figure class="figure">
+      <img src="https://images.unsplash.com/photo-1581091870622-7b1c9dba2aab?q=80&w=1600&auto=format&fit=crop" alt="Industrial robot cell">
+      <figcaption>Robot workcell example (placeholder image—replace with your system photo).</figcaption>
+    </figure>
+    <h4>Pipeline</h4>
+    <ol>
+      <li>Acquire offsets → convert 8-bit two’s-complement → float (mm).</li>
+      <li>Scale using 0.222 mm/px; clamp outliers; apply low-pass filter.</li>
+      <li>Publish to robot registers; apply in UFRAME for motion.</li>
+    </ol>
+  </template>
+
+<script>
+  // Minimal modal logic with content injection + accessibility niceties
+  const modal = document.getElementById('modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalTitle = document.getElementById('modal-title');
+  const closeBtn = document.getElementById('modal-close');
+  let lastFocused = null;
+
+  function openModal(templateId, titleText){
+    const tmpl = document.getElementById('tmpl-' + templateId);
+    if(!tmpl) return;
+    lastFocused = document.activeElement;
+    modalBody.innerHTML = tmpl.innerHTML;
+    modalTitle.textContent = titleText || 'Project';
+    modal.setAttribute('open','');
+    modal.setAttribute('aria-hidden','false');
+    closeBtn.focus();
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  function closeModal(){
+    modal.removeAttribute('open');
+    modal.setAttribute('aria-hidden','true');
+    modalBody.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  // Open handlers: read data-open-modal="proj-obd" etc.
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.getAttribute('data-open-modal');
+      const title = card.querySelector('h3')?.textContent || 'Project';
+      openModal(key, title);
+    });
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    // click on backdrop (outside the panel) closes
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.hasAttribute('open')) closeModal();
+  });
+</script>
 </body>
 </html>
