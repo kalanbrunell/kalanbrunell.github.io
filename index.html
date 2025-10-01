@@ -5,31 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kalan Brunell — Engineering Portfolio</title>
 
+<!-- Meta / SEO -->
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Kalan Brunell — Engineering Portfolio">
+<meta property="og:title" content="Kalan Brunell — Engineering Portfolio">
+<meta property="og:description" content="Kalan Brunell's engineering portfolio showcasing projects in embedded systems and robotics.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kalanbrunell.site/">
+<meta property="og:image" content="https://kalanbrunell.site/og-card.jpg">
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B1149WE8N1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-B1149WE8N1');
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Stronger palette application */
     --bg: linear-gradient(135deg,#f2f3f4 0%, #eaeaea 100%);
     --text:#212121;
     --muted:#5e6770;
     --card:#ffffff;
-    --accent:#00447c;    /* navy (primary) */
+    --accent:#00447c;       /* navy (primary) */
     --accent-hover:#002756; /* deep navy (hover) */
     --accent-alt:#035b7a;   /* teal (secondary) */
     --neutral:#c6c3b6;      /* divider/beige */
   }
 
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth;}
+  :target{scroll-margin-top:80px;}
+
   body{
     margin:0;
     font:16px/1.6 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -46,25 +56,54 @@
   .container{max-width:1100px; margin:0 auto; padding:32px 20px;}
 
   /* Nav */
-  .nav{display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; font-family:"Playfair Display", serif;}
+  .nav{
+    position:sticky; top:0; z-index:10;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"Playfair Display", serif;
+    padding:16px 20px; margin-bottom:28px;
+    background:linear-gradient(135deg,#f2f3f4 0%, #eaeaea 100%);
+    border-bottom:1px solid var(--neutral);
+  }
   .brand{font-weight:800; font-size:24px; color:var(--accent);}
-  .nav a{margin-left:16px; color:var(--muted);}
-  .nav a:hover{color:var(--accent-hover);}
+  .nav a{margin-left:16px; color:var(--muted); padding:6px 8px; border-radius:8px;}
+  .nav a:hover{color:#fff; background:var(--accent);}
+  .nav a.active{color:#fff; background:var(--accent-alt);}
 
   /* Cards */
   .card{
     background:var(--card);
     border-radius:14px;
     padding:24px;
-    box-shadow:0 3px 10px rgba(0,0,0,.10);
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
     border-top:4px solid var(--accent);
     transition:box-shadow .18s ease, border-color .18s ease;
+    /* make cards use flex layout so content flows naturally when height is constrained */
+    display:flex;
+    flex-direction:column;
   }
-  .card:hover{ box-shadow:0 6px 16px rgba(0,0,0,.18); border-top-color:var(--accent-alt); }
+  .card:hover{ box-shadow:0 8px 22px rgba(0,0,0,.16); border-top-color:var(--accent-alt); }
 
   /* Layouts */
-  .hero{display:grid; grid-template-columns:1.4fr 1fr; gap:24px; align-items:start;}
-  .section{margin-top:44px; border-top:2px solid var(--neutral); padding-top:32px;}
+  .hero{
+    display:grid;
+    /* fixed right column provides consistent sizing for contact + resume */
+    grid-template-columns: 1.4fr 360px;
+    gap:24px;
+    /* let the two right-column cards split the height evenly */
+    grid-auto-rows: 1fr;
+    align-items:stretch;
+  }
+  .hero-main{
+    grid-row: span 2; /* left card spans two rows */
+    height:100%;
+    align-self:stretch;
+  }
+  .hero-side{
+    grid-column: 2;   /* right column stack */
+    height:100%;
+    align-self:stretch;
+  }
+  .section{margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px;}
   .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;}
 
@@ -80,13 +119,41 @@
   .pill{
     display:inline-block; padding:6px 12px; border-radius:999px; font-size:14px; margin:6px 8px 0 0;
     background:transparent;
-    border:1px solid var(--neutral);
-    color:var(--accent-hover);
+    border:1px solid #a7a59a; /* stronger border for contrast */
+    color:#0f2a45;            /* deeper text color */
+  }
+  .skills h4{
+    margin:12px 0 4px; color:var(--muted); font-weight:600; letter-spacing:.02em; font-size:14px;
   }
 
-  /* Project tiles clickable */
-  .project-card{ cursor:pointer; user-select:none; }
-  .project-card h3{ margin-bottom:6px; }
+  /* Buttons */
+  .btn{
+    display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600;
+    background:var(--accent); color:#fff; text-decoration:none; transition:transform .05s ease, background .2s ease;
+  }
+  .btn:hover{ background:var(--accent-alt); }
+  .btn:active{ transform:translateY(1px); }
+
+  .btn--ghost{
+    display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600;
+    border:1px solid var(--neutral); color:var(--accent); background:transparent; text-decoration:none;
+  }
+  .btn--ghost:hover{ border-color:var(--accent); color:var(--accent-hover); }
+
+  /* Slightly smaller resume card variant */
+  .resume-card{
+    padding:16px;            /* reduced padding */
+    border-radius:12px;
+    border-top-width:3px;    /* thinner top accent */
+    font-size:0.98rem;       /* slightly smaller text */
+  }
+
+  .resume-cta{ display:flex; flex-direction:column; gap:12px; }
+  .resume-cta__row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .resume-cta small{ color:var(--muted); }
+
+  /* Clickable cards (projects/expandables) */
+  .openable{ cursor:pointer; user-select:none; }
 
   /* Modal */
   .modal{
@@ -126,41 +193,56 @@
 
   @media (max-width: 900px){
     .hero{ grid-template-columns:1fr; }
+    .hero-main{ grid-row:auto; }
+    .hero-side{ grid-column:auto; }
     .two-col{ grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <!-- NAV -->
-    <div class="nav">
-      <div class="brand">Engineering Portfolio</div>
-      <div>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
+  <div class="nav">
+    <div class="brand">Kalan Brunell</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
     </div>
+  </div>
 
+  <div class="container">
     <!-- HERO -->
     <section id="about" class="hero">
-      <div class="card">
+      <!-- Left column (spans two rows) -->
+      <div class="card hero-main">
         <div style="display: flex; align-items: center; gap: 20px; min-height: 160px;">
-          <img src="headshot.jpg" alt="Your Name headshot" class="headshot" style="margin-left: 12px;">
+          <img src="headshot.jpg" alt="Headshot of Kalan Brunell" class="headshot" style="margin-left: 12px;">
           <span style="font-size: 2.2rem; font-weight: 700; color: var(--accent); font-family: 'Playfair Display', serif; margin-left: 48px;">Kalan Brunell</span>
         </div>
-  <h2>About Me</h2>
-  <p>I'm a third-year Computer Engineering student at Tufts University with a focus on embedded systems and robotics. 
-    My work centers on projects that connect hardware and software, including writing and debugging C/C++ for microcontrollers and VHDL for FPGAs. 
-    From vision systems to real-time monitoring, I enjoy developing complete solutions that integrate code with physical electronics.</p>
+        <p style="margin-top:6px; color:var(--muted); font-weight:600;">
+          Computer Engineering | Robotics and Embedded Systems
+        </p>
+        <h2>About Me</h2>
+        <p>I'm a third-year Computer Engineering student at Tufts University, concentrating on embedded systems and digital design. 
+          My work has included building safety-critical circuits for electric vehicles, writing STM32 firmware for real-time monitoring, 
+          and developing vision pipelines for industrial robotics. I enjoy tackling complex problems that require both hardware and 
+          software expertise, and I aim to create solutions that are reliable, efficient, and practical.</p>
       </div>
-      <div class="card">
-  <h2>Contact</h2>
-   <p>Email: <a href="mailto:kbrune06@gmail.com">kbrune06@gmail.com</a></p>
-   <p>LinkedIn: <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener">kalan-brunell-50b65b286</a></p>
-   <p>Resume: <a href="resume.pdf" download>Download (PDF)</a></p>
+
+      <!-- Right column (row 1) -->
+      <div class="card hero-side" id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:kbrune06@gmail.com">kbrune06@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener">kalan-brunell-50b65b286</a></p>
+      </div>
+
+    <!-- Right column (row 2) — Resume card stacked under Contact -->
+    <div class="card hero-side resume-card">
+        <h2>Resume</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a class="btn" href="/assets/resume.pdf" download>Download Resume (PDF)</a>
+        </div>
       </div>
     </section>
 
@@ -168,7 +250,8 @@
     <section id="experience" class="section">
       <h2>Engineering Experience</h2>
       <div class="two-col">
-        <div class="card">
+        <!-- Make this card expandable via modal -->
+        <div class="card openable" data-open-modal="exp-gentex" tabindex="0" role="button" aria-label="Open Gentex internship details">
           <h3>Manufacturing Engineering Intern — Gentex Corporation</h3>
           <p>Designed and deployed a 2D vision inspection cell for production:</p>
           <ul>
@@ -176,14 +259,14 @@
             <li>Industrial sensor I/O; custom interface to PLC & robot.</li>
             <li>Fixture design, test plans, and documentation.</li>
           </ul>
+          <p style="color:var(--muted); font-size:14px; margin-top:8px;">View more details →</p>
         </div>
+
         <aside class="card">
-          <h3>At a Glance - Engineering Extracurriculars</h3>
+          <h3>At a Glance — Engineering Extracurriculars</h3>
           <ul>
-            <li><strong>Formula SAE - Accumulator Project Manager - Tufts Electric Racing </strong><br>
-              2024 - Current</li>
-            <li><strong>FIRST Robotics — Captain - Lakerbots 8046</strong><br>
-              2022 - 2023</li>
+            <li><strong>Formula Hybrid-Electric (FSAE) — Tufts Electric Racing</strong><br>2024 – Current</li>
+            <li><strong>FIRST Robotics — Lakerbots 8046</strong><br>2022 – 2023</li>
           </ul>
         </aside>
       </div>
@@ -193,17 +276,20 @@
     <section id="projects" class="section">
       <h2>Projects</h2>
       <div class="grid">
-        <div class="card project-card" data-open-modal="proj-obd">
+        <div class="card openable" data-open-modal="proj-obd">
           <h3>OBD-II Shift Bar</h3>
           <p>STM32 + 74HC595 driving an 8-LED bar with PWM brightness control.</p>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
-        <div class="card project-card" data-open-modal="proj-2048">
+        <div class="card openable" data-open-modal="proj-2048">
           <h3>2048 in VHDL</h3>
           <p>iCE40 FPGA, VGA timing (HSYNC/VSYNC), NES controller input.</p>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
-        <div class="card project-card" data-open-modal="proj-fanuc">
+        <div class="card openable" data-open-modal="proj-fanuc">
           <h3>Fanuc Robot Vision</h3>
           <p>ifm O2D502 offsets, two’s-complement conversion, 0.222 mm/px scaling.</p>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
       </div>
     </section>
@@ -212,31 +298,32 @@
     <section id="skills" class="section">
       <h2>Skills</h2>
       <div class="skills">
+        <h4>Firmware</h4>
         <span class="pill">STM32</span>
         <span class="pill">C/C++</span>
-        <span class="pill">Python</span>
+        <span class="pill">FreeRTOS</span>
+        <span class="pill">CMSIS</span>
+
+        <h4>Electronics</h4>
         <span class="pill">CAN</span>
         <span class="pill">I²C</span>
         <span class="pill">FPGA / VHDL</span>
-        <span class="pill">OpenCV</span>
-        <span class="pill">PLC / Robot I/O</span>
-      </div>
-    </section>
+        <span class="pill">Benchtop Tools</span>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <h2>Get in Touch</h2>
-      <p>Email: <a href="mailto:you@example.com">you@example.com</a><br>
-      GitHub · LinkedIn</p>
-      
+        <h4>Tools</h4>
+        <span class="pill">Python</span>
+        <span class="pill">OpenCV</span>
+        <span class="pill">Altium / KiCad</span>
+        <span class="pill">LTspice</span>
+      </div>
     </section>
   </div>
 
   <!-- MODAL -->
-  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
     <div class="modal__panel" role="document">
       <div class="modal__head">
-        <h3 class="modal__title" id="modal-title">Project</h3>
+        <h3 class="modal__title" id="modal-title">Details</h3>
         <button class="modal__close" id="modal-close" aria-label="Close">✕</button>
       </div>
       <div class="modal__body" id="modal-body"></div>
@@ -244,22 +331,45 @@
   </div>
 
   <!-- TEMPLATES -->
+  <template id="tmpl-exp-gentex">
+    <div class="modal__meta">Manufacturing Engineering Intern · 2025 · Gentex Corporation</div>
+    <p><strong>Goal:</strong> Stand up a reliable 2D vision inspection cell for production use.</p>
+    <p><strong>Contributions:</strong></p>
+    <ul>
+      <li>Developed OpenCV pipelines on Raspberry Pi for feature detection and metrology.</li>
+      <li>Implemented robust I/O to PLC and robot controller; designed custom interface hardware.</li>
+      <li>Created fixture concepts, test plans, and operator documentation for handoff.</li>
+    </ul>
+    <p><strong>Technical Notes:</strong> Python, OpenCV, GPIO/industrial I/O, Ethernet/field I/O, image thresholding, morphology, and calibration.</p>
+    <!-- <figure class="figure">
+      <img src="images/gentex-cell.jpg" alt="Gentex vision inspection cell">
+      <figcaption>Vision cell prototype prior to deployment.</figcaption>
+    </figure> -->
+  </template>
+
   <template id="tmpl-proj-obd">
     <div class="modal__meta">STM32L432KC · 74HC595 · OBD-II UART · PWM · 2025</div>
-    <p>Prototype shift-light bar that reads engine RPM via OBD-II and drives an 8-LED bar through a shift register.</p>
+    <p><strong>Goal:</strong> Read engine RPM via OBD-II and drive an 8-LED shift bar through a 74HC595 with adjustable brightness.</p>
+    <p><strong>Role:</strong> Firmware + hardware integration (OBD-II adapter, UART parsing, LED driver).</p>
+    <p><strong>Stack:</strong> C on STM32, UART, timer PWM, shift-register bit-banging/SPI, simple EMA smoothing.</p>
+    <p><strong>Notes:</strong> Designed for minimal wiring; brightness via potentiometer to ADC → PWM duty.</p>
   </template>
 
   <template id="tmpl-proj-2048">
     <div class="modal__meta">iCE40 · VHDL · VGA · NES Controller · 2024</div>
-    <p>Hardware implementation of the 2048 game. Generates VGA sync signals, renders tiles, and reads a NES controller for input—all in VHDL.</p>
+    <p><strong>Goal:</strong> Implement the 2048 game entirely in hardware.</p>
+    <p><strong>Highlights:</strong> VGA timing generator (HSYNC/VSYNC), tile renderer, NES controller input, finite-state game logic.</p>
+    <p><strong>Challenges:</strong> Clock domain crossing for input; resource budgeting on iCE40.</p>
   </template>
 
   <template id="tmpl-proj-fanuc">
     <div class="modal__meta">Fanuc · ifm O2D502 · Python · PLC/Robot I/O · 2025</div>
-    <p>Vision-guided positioning using offsets from camera to robot frame.</p>
+    <p><strong>Goal:</strong> Vision-guided positioning using camera-to-robot frame offsets.</p>
+    <p><strong>Details:</strong> Two’s-complement conversion, scaling 0.222 mm/px, Ethernet/IO to PLC, error handling and retries.</p>
   </template>
 
 <script>
+  // Modal logic + focus management
   const modal = document.getElementById('modal');
   const modalBody = document.getElementById('modal-body');
   const modalTitle = document.getElementById('modal-title');
@@ -271,7 +381,7 @@
     if(!tmpl) return;
     lastFocused = document.activeElement;
     modalBody.innerHTML = tmpl.innerHTML;
-    modalTitle.textContent = titleText || 'Project';
+    modalTitle.textContent = titleText || 'Details';
     modal.setAttribute('open','');
     modal.setAttribute('aria-hidden','false');
     closeBtn.focus();
@@ -284,18 +394,59 @@
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
   }
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const key = card.getAttribute('data-open-modal');
-      const title = card.querySelector('h3')?.textContent || 'Project';
-      openModal(key, title);
+
+  // Click/keyboard open for any card with data-open-modal
+  function attachOpenHandlers(){
+    document.querySelectorAll('.card[data-open-modal]').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-open-modal');
+        const title = card.querySelector('h3')?.textContent || 'Details';
+        openModal(key, title);
+      });
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); card.click(); }
+      });
     });
-  });
+  }
+  attachOpenHandlers();
+
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && modal.hasAttribute('open')) closeModal();
   });
+
+  // Light focus trap inside modal
+  function trapFocus(e){
+    if(!modal.hasAttribute('open')) return;
+    const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if(!focusables.length) return;
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if(e.key === 'Tab'){
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  document.addEventListener('keydown', trapFocus);
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = Array.from(document.querySelectorAll('.nav a'));
+  const linkFor = id => navLinks.find(a => a.getAttribute('href') === '#'+id);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const link = linkFor(id);
+      if(!link) return;
+      if(entry.isIntersecting){
+        navLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, {rootMargin: "-40% 0px -50% 0px", threshold: 0});
+
+  sections.forEach(s => io.observe(s));
 </script>
 </body>
 </html>
