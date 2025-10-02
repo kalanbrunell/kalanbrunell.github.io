@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kalan Brunell — Engineering Portfolio</title>
 
 <!-- Meta / SEO -->
-<link rel="icon" href="/favicon.ico">
-<meta name="description" content="Kalan Brunell — Engineering Portfolio">
-<meta property="og:title" content="Kalan Brunell — Engineering Portfolio">
-<meta property="og:description" content="Kalan Brunell's engineering portfolio showcasing projects in embedded systems and robotics.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://kalanbrunell.site/">
-<meta property="og:image" content="https://kalanbrunell.site/og-card.jpg">
+<link rel="icon" href="/favicon.ico" />
+<meta name="description" content="Kalan Brunell — Engineering Portfolio" />
+<meta property="og:title" content="Kalan Brunell — Engineering Portfolio" />
+<meta property="og:description" content="Kalan Brunell's engineering portfolio showcasing projects in embedded systems and robotics." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kalanbrunell.site/" />
+<meta property="og:image" content="https://kalanbrunell.site/og-card.jpg" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B1149WE8N1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
   gtag('config', 'G-B1149WE8N1');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
     --bg: linear-gradient(135deg,#f2f3f4 0%, #eaeaea 100%);
@@ -36,9 +36,9 @@
     --neutral:#c6c3b6;      /* divider/beige */
   }
 
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth;}
-  :target{scroll-margin-top:80px;}
+  *{ box-sizing:border-box }
+  html{ scroll-behavior:smooth; }
+  :target{ scroll-margin-top:80px; }
 
   body{
     margin:0;
@@ -46,14 +46,10 @@
     color:var(--text);
     background:var(--bg);
   }
-  h1,h2,h3{
-    font-family:"Playfair Display", serif;
-    margin:0 0 10px;
-    color:var(--accent);
-  }
+  h1,h2,h3{ font-family:"Playfair Display", serif; margin:0 0 10px; color:var(--accent); }
   a{ color:var(--accent); text-decoration:none; transition:color .2s ease; }
   a:hover{ color:var(--accent-alt); }
-  .container{max-width:1100px; margin:0 auto; padding:32px 20px;}
+  .container{ max-width:1100px; margin:0 auto; padding:32px 20px; }
 
   /* Nav */
   .nav{
@@ -64,10 +60,10 @@
     background:linear-gradient(135deg,#f2f3f4 0%, #eaeaea 100%);
     border-bottom:1px solid var(--neutral);
   }
-  .brand{font-weight:800; font-size:24px; color:var(--accent);}
-  .nav a{margin-left:16px; color:var(--muted); padding:6px 8px; border-radius:8px;}
-  .nav a:hover{color:#fff; background:var(--accent);}
-  .nav a.active{color:#fff; background:var(--accent-alt);}
+  .brand{ font-weight:800; font-size:24px; color:var(--accent); }
+  .nav a{ margin-left:16px; color:var(--muted); padding:6px 8px; border-radius:8px; }
+  .nav a:hover{ color:#fff; background:var(--accent); }
+  .nav a.active{ color:#fff; background:var(--accent-alt); }
 
   /* Cards */
   .card{
@@ -77,109 +73,46 @@
     box-shadow:0 2px 8px rgba(0,0,0,.08);
     border-top:4px solid var(--accent);
     transition:box-shadow .18s ease, border-color .18s ease;
-    /* make cards use flex layout so content flows naturally when height is constrained */
-    display:flex;
-    flex-direction:column;
+    display:flex; flex-direction:column;
   }
   .card:hover{ box-shadow:0 8px 22px rgba(0,0,0,.16); border-top-color:var(--accent-alt); }
 
   /* Layouts */
-  .hero{
-    display:grid;
-    /* fixed right column provides consistent sizing for contact + resume */
-    grid-template-columns: 1.4fr 360px;
-    gap:24px;
-    /* let the two right-column cards split the height evenly */
-    grid-auto-rows: 1fr;
-    align-items:stretch;
-  }
-  .hero-main{
-    grid-row: span 2; /* left card spans two rows */
-    height:100%;
-    align-self:stretch;
-  }
-  .hero-side{
-    grid-column: 2;   /* right column stack */
-    height:100%;
-    align-self:stretch;
-  }
-  .section{margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px;}
-  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;}
+  .hero{ display:grid; grid-template-columns: 1.4fr 360px; gap:24px; grid-auto-rows: 1fr; align-items:stretch; }
+  .hero-main{ grid-row: span 2; height:100%; align-self:stretch; }
+  .hero-side{ grid-column: 2; height:100%; align-self:stretch; }
+  .section{ margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
 
   /* Headshot */
-  .headshot{
-    width:160px; height:160px;
-    border-radius:50%; object-fit:cover;
-    margin-bottom:14px;
-    box-shadow:0 2px 8px rgba(0,0,0,.14);
-  }
+  .headshot{ width:160px; height:160px; border-radius:50%; object-fit:cover; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,.14); }
 
   /* Skills pills */
-  .pill{
-    display:inline-block; padding:6px 12px; border-radius:999px; font-size:14px; margin:6px 8px 0 0;
-    background:transparent;
-    border:1px solid #a7a59a; /* stronger border for contrast */
-    color:#0f2a45;            /* deeper text color */
-  }
-  .skills h4{
-    margin:12px 0 4px; color:var(--muted); font-weight:600; letter-spacing:.02em; font-size:14px;
-  }
+  .pill{ display:inline-block; padding:6px 12px; border-radius:999px; font-size:14px; margin:6px 8px 0 0; background:transparent; border:1px solid #a7a59a; color:#0f2a45; }
+  .skills h4{ margin:12px 0 4px; color:var(--muted); font-weight:600; letter-spacing:.02em; font-size:14px; }
 
   /* Buttons */
-  .btn{
-    display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600;
-    background:var(--accent); color:#fff; text-decoration:none; transition:transform .05s ease, background .2s ease;
-  }
+  .btn{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; background:var(--accent); color:#fff; text-decoration:none; transition:transform .05s ease, background .2s ease; }
   .btn:hover{ background:var(--accent-alt); }
   .btn:active{ transform:translateY(1px); }
-
-  .btn--ghost{
-    display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600;
-    border:1px solid var(--neutral); color:var(--accent); background:transparent; text-decoration:none;
-  }
+  .btn--ghost{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid var(--neutral); color:var(--accent); background:transparent; text-decoration:none; }
   .btn--ghost:hover{ border-color:var(--accent); color:var(--accent-hover); }
 
   /* Slightly smaller resume card variant */
-  .resume-card{
-    padding:16px;            /* reduced padding */
-    border-radius:12px;
-    border-top-width:3px;    /* thinner top accent */
-    font-size:0.98rem;       /* slightly smaller text */
-  }
-
+  .resume-card{ padding:16px; border-radius:12px; border-top-width:3px; font-size:0.98rem; }
   .resume-cta{ display:flex; flex-direction:column; gap:12px; }
   .resume-cta__row{ display:flex; gap:14px; flex-wrap:wrap; }
   .resume-cta small{ color:var(--muted); }
 
-  /* Clickable cards (projects/expandables) */
+  /* Clickable cards */
   .openable{ cursor:pointer; user-select:none; }
 
   /* Modal */
-  .modal{
-    position:fixed; inset:0;
-    display:none;
-    align-items:center; justify-content:center;
-    background:rgba(0,0,0,.60);
-    padding:24px; z-index:1000;
-  }
+  .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.60); padding:24px; z-index:1000; }
   .modal[open]{ display:flex; }
-  .modal__panel{
-    background:#fff;
-    color:#1f2937;
-    width:min(1100px, 96vw);
-    max-height:90vh;
-    border-radius:16px;
-    overflow:auto;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
-    border-top:6px solid var(--accent);
-  }
-  .modal__head{
-    position:sticky; top:0;
-    background:linear-gradient(#ffffff, #ffffffee);
-    display:flex; justify-content:space-between; align-items:center;
-    padding:16px 20px; border-bottom:1px solid var(--neutral); z-index:1;
-  }
+  .modal__panel{ background:#fff; color:#1f2937; width:min(1100px, 96vw); max-height:90vh; border-radius:16px; overflow:auto; box-shadow:0 20px 60px rgba(0,0,0,.35); border-top:6px solid var(--accent); }
+  .modal__head{ position:sticky; top:0; background:linear-gradient(#ffffff, #ffffffee); display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--neutral); z-index:1; }
   .modal__title{ margin:0; font-family:"Playfair Display", serif; font-size:22px; color:var(--accent); }
   .modal__close{ border:none; background:#f3f4f6; padding:8px 12px; border-radius:10px; cursor:pointer; }
   .modal__close:hover{ background:var(--accent-alt); color:#fff; }
@@ -216,18 +149,18 @@
     <section id="about" class="hero">
       <!-- Left column (spans two rows) -->
       <div class="card hero-main">
-        <div style="display: flex; align-items: center; gap: 20px; min-height: 160px;">
-          <img src="headshot.jpg" alt="Headshot of Kalan Brunell" class="headshot" style="margin-left: 12px;">
-          <span style="font-size: 2.2rem; font-weight: 700; color: var(--accent); font-family: 'Playfair Display', serif; margin-left: 48px;">Kalan Brunell</span>
+        <div style="display:flex; align-items:center; gap:20px; min-height:160px;">
+          <img src="headshot.jpg" alt="Headshot of Kalan Brunell" class="headshot" style="margin-left:12px;" />
+          <span style="font-size:2.2rem; font-weight:700; color:var(--accent); font-family:'Playfair Display', serif; margin-left:48px;">Kalan Brunell</span>
         </div>
-        <p style="margin-top:6px; color:var(--muted); font-weight:600;">
-          Computer Engineering | Robotics and Embedded Systems
-        </p>
+        <p style="margin-top:6px; color:var(--muted); font-weight:600;">Computer Engineering | Robotics and Embedded Systems</p>
         <h2>About Me</h2>
-        <p>I'm a third-year Computer Engineering student at Tufts University, concentrating on embedded systems and digital design. 
-          My work has included building safety-critical circuits for electric vehicles, writing STM32 firmware for real-time monitoring, 
-          and developing vision pipelines for industrial robotics. I enjoy tackling complex problems that require both hardware and 
-          software expertise, and I aim to create solutions that are reliable, efficient, and practical.</p>
+        <p>
+          I'm a third-year Computer Engineering student at Tufts University, concentrating on embedded systems and digital design.
+          My work has included building safety-critical circuits for electric vehicles, writing STM32 firmware for real-time monitoring,
+          and developing vision pipelines for industrial robotics. I enjoy tackling complex problems that require both hardware and
+          software expertise, and I aim to create solutions that are reliable, efficient, and practical.
+        </p>
       </div>
 
       <!-- Right column (row 1) -->
@@ -237,11 +170,11 @@
         <p>LinkedIn: <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener">kalan-brunell-50b65b286</a></p>
       </div>
 
-    <!-- Right column (row 2) — Resume card stacked under Contact -->
-    <div class="card hero-side resume-card">
+      <!-- Right column (row 2) — Resume card stacked under Contact -->
+      <div class="card hero-side resume-card">
         <h2>Resume</h2>
         <div style="display:flex; gap:14px; flex-wrap:wrap;">
-      <a class="btn" href="/assets/resume.pdf" download>Download Resume (PDF)</a>
+          <a class="btn" href="resume.pdf" download>Download Resume (PDF)</a>
         </div>
       </div>
     </section>
@@ -250,9 +183,11 @@
     <section id="experience" class="section">
       <h2>Engineering Experience</h2>
       <div class="two-col">
-        <!-- Make this card expandable via modal -->
+        <!-- Expandable card: key matches template id below (tmpl-exp-gentex) -->
         <div class="card openable" data-open-modal="exp-gentex" tabindex="0" role="button" aria-label="Open Gentex internship details">
           <h3>Manufacturing Engineering Intern — Gentex Corporation</h3>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <ul>
             <li>Increased manufacturing inspection accuracy by developing a machine vision system using Python and OpenCV to replace a manual inspection process.</li>
             <li>Enabled real-time object locating and defect detection on production-line Fanuc robotic arms by programming vision system pipelines for industrial solution integration.</li>
             <li>Designed prototype fixtures for in-development products optimized for use with the new vision systems.</li>
@@ -264,8 +199,8 @@
         <aside class="card">
           <h3>At a Glance — Engineering Extracurriculars</h3>
           <ul>
-            <li><strong>Formula Hybrid-Electric (FSAE) — Tufts Electric Racing</strong><br>2024 – Current</li>
-            <li><strong>FIRST Robotics — Lakerbots 8046</strong><br>2022 – 2023</li>
+            <li><strong>Formula Hybrid-Electric (FSAE) — Tufts Electric Racing</strong><br />2024 – Current</li>
+            <li><strong>FIRST Robotics — Lakerbots 8046</strong><br />2022 – 2023</li>
           </ul>
         </aside>
       </div>
@@ -275,36 +210,54 @@
     <section id="projects" class="section">
       <h2>Projects</h2>
       <div class="grid">
-        <div class="card openable" data-open-modal="proj-accumulator">
+        <!-- Keys have NO spaces and match template ids (tmpl-proj-*) -->
+
+        <div class="card openable" data-open-modal="proj-accumulator" tabindex="0" role="button" aria-label="Open EV Accumulator details">
           <h3>FSAE Electric Racecar EV Accumulator</h3>
-          <li>Designing cell contact PCBs, integrated fusing, and interlocks while prioritizing high-voltage insulation and safety.</li>
-          <li>Developing CAN-enabled PCBs for battery management and thermistor monitoring using Altium Designer.</li>
-          <li>Optimized lithium-ion cell configuration for motor specifications, thermal management, and serviceability.</li>
-          <li>Assembled and tested battery packs, ensuring compliance with FSAE regulations.</li>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <ul>
+            
+          </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
-        <div class="card openable" data-open-modal="proj-LV PCBs">
+
+        <div class="card openable" data-open-modal="proj-lv-pcbs" tabindex="0" role="button" aria-label="Open Safety System PCBs details">
           <h3>FSAE Electric Racecar Safety System PCBs</h3>
-          <li>Engineered PCBs for the vehicle's safety system, including a BMS/Motor Controller fault latch and emergency shutdown circuits.</li>
-          <li>Designed power distribution PCB with integrated fusing and visual indicators.</li>
+          <!-- PREVIEW CONTENT -->
+          <ul>
+            <li>Engineered PCBs for the vehicle's safety system, including a BMS/Motor Controller fault latch and emergency shutdown circuits.</li>
+            <li>Designed power distribution PCB with integrated fusing and visual indicators.</li>
+          </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
-        <div class="card openable" data-open-modal="proj-OBDII shift indicator">
+
+        <div class="card openable" data-open-modal="proj-obd" tabindex="0" role="button" aria-label="Open OBD-II Shift Indicator details">
           <h3>Digital Tachometer and Shift Indicator</h3>
-          <li>Developed a digital tachometer and shift indicator for a modern car using an STM32 to poll data from the ECU via OBDII and I2C, outputting to visual indicators.</li>
+          <!-- PREVIEW CONTENT -->
+          <ul>
+            <li>STM32 polls RPM via OBD-II → drives 8-LED shift bar through 74HC595; adjustable brightness via PWM.</li>
+          </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
-        <div class="card openable" data-open-modal="proj-ARM Processor">
+
+        <div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open 5-Stage ARM Processor details">
           <h3>5-Stage ARM Processor</h3>
-          <li>Engineering a 5-stage pipelined processor in VHDL.</li>
-          <li>Built adders, multiplexers, and control units from the ground up.</li>
-          <li>Verified functionality through testbenches and simulations in GTKWave.</li>>
+          <!-- PREVIEW CONTENT -->
+          <ul>
+            <li>Engineering a 5-stage pipelined processor in VHDL.</li>
+            <li>Built adders, multiplexers, and control units from the ground up.</li>
+            <li>Verified functionality through testbenches and simulations in GTKWave.</li>
+          </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
-        <div class="card openable" data-open-modal="proj-VHDL arcade game">
+
+        <div class="card openable" data-open-modal="proj-arcade" tabindex="0" role="button" aria-label="Open VHDL Arcade Game details">
           <h3>VHDL Arcade Game</h3>
-          <li>Designed a 2048-style game on an UPduino iCE40 FPGA entirely in VHDL.</li>
-          <li>Implemented complex logic, custom RAM and ROM modules, with gamepad input and VGA display output.</li>
+          <!-- PREVIEW CONTENT -->
+          <ul>
+            <li>Designed a 2048-style game on an UPduino iCE40 FPGA entirely in VHDL.</li>
+            <li>Implemented custom RAM/ROM, gamepad input, and VGA output timing.</li>
+          </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
       </div>
@@ -322,7 +275,7 @@
         <span class="pill">ARM Assembly</span>
         <span class="pill">Object-Oriented Programming</span>
 
-        <h4>Embedded & Electronics</h4>
+        <h4>Embedded &amp; Electronics</h4>
         <span class="pill">FPGA</span>
         <span class="pill">VHDL</span>
         <span class="pill">Digital Logic Design</span>
@@ -331,13 +284,13 @@
         <span class="pill">CAN</span>
         <span class="pill">I²C</span>
 
-        <h4>PCB & Circuit Design</h4>
+        <h4>PCB &amp; Circuit Design</h4>
         <span class="pill">Altium Designer</span>
         <span class="pill">KiCad</span>
         <span class="pill">LTspice</span>
         <span class="pill">Benchtop Tools</span>
 
-        <h4> Robotics & Automation</h4>
+        <h4>Robotics &amp; Automation</h4>
         <span class="pill">OpenCV</span>
         <span class="pill">Limelight</span>
         <span class="pill">Robotic Control</span>
@@ -355,7 +308,7 @@
     </section>
   </div>
 
-  <!-- MODAL -->
+  <!-- MODAL DIALOG -->
   <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
     <div class="modal__panel" role="document">
       <div class="modal__head">
@@ -366,8 +319,14 @@
     </div>
   </div>
 
-  <!-- TEMPLATES -->
+  <!-- ========================= -->
+  <!-- CONTENT TEMPLATES (OPENED) -->
+  <!-- Add/edit the content that shows INSIDE the modal after a card is opened. -->
+  <!-- ========================= -->
+
+  <!-- Engineering Experience → Gentex -->
   <template id="tmpl-exp-gentex">
+    <!-- OPENED CONTENT (shows inside the modal) -->
     <div class="modal__meta">Manufacturing Engineering Intern · 2025 · Gentex Corporation</div>
     <p><strong>Goal:</strong> Stand up a reliable 2D vision inspection cell for production use.</p>
     <p><strong>Contributions:</strong></p>
@@ -376,33 +335,76 @@
       <li>Implemented robust I/O to PLC and robot controller; designed custom interface hardware.</li>
       <li>Created fixture concepts, test plans, and operator documentation for handoff.</li>
     </ul>
-    <p><strong>Technical Notes:</strong> Python, OpenCV, GPIO/industrial I/O, Ethernet/field I/O, image thresholding, morphology, and calibration.</p>
-    <!-- <figure class="figure">
-      <img src="images/gentex-cell.jpg" alt="Gentex vision inspection cell">
+    <p><strong>Technical Notes:</strong> Python, OpenCV, GPIO/industrial I/O, Ethernet/field I/O, image thresholding, morphology, calibration.</p>
+    <!-- Optional image example
+    <figure class="figure">
+      <img src="images/gentex-cell.jpg" alt="Gentex vision inspection cell" />
       <figcaption>Vision cell prototype prior to deployment.</figcaption>
     </figure> -->
   </template>
 
+  <!-- Projects → EV Accumulator -->
+  <template id="tmpl-proj-accumulator">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">Accumulator · High Voltage · CAN · 2024–2025</div>
+    <p><strong>Goal:</strong> Design a compliant, serviceable, high-reliability EV accumulator for FSAE.</p>
+    <ul>
+      <li>Designing cell contact PCBs, integrated fusing, and interlocks while prioritizing high-voltage insulation and safety.</li>
+      <li>Developing CAN-enabled PCBs for battery management and thermistor monitoring using Altium Designer.</li>
+      <li>Optimized lithium-ion cell configuration for motor specifications, thermal management, and serviceability.</li>
+      <li>Assembled and tested battery packs, ensuring compliance with FSAE regulations.</li>
+    </ul>
+  </template>
+
+  <!-- Projects → LV/Safety PCBs -->
+  <template id="tmpl-proj-lv-pcbs">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">Safety Latch · E-Stop · Power Distribution · 2025</div>
+    <p><strong>Goal:</strong> Implement vehicle low-voltage safety logic with clear operator feedback.</p>
+    <ul>
+      <li>Fault-latch logic (BMS/MCU faults) → shutdown path; HV interlock monitoring.</li>
+      <li>Power distribution PCB with fusing, TVS, LED indicators, and serviceable connectors.</li>
+    </ul>
+  </template>
+
+  <!-- Projects → OBD-II Shift Indicator -->
   <template id="tmpl-proj-obd">
+    <!-- OPENED CONTENT (shows inside the modal) -->
     <div class="modal__meta">STM32L432KC · 74HC595 · OBD-II UART · PWM · 2025</div>
-    <p><strong>Goal:</strong> Read engine RPM via OBD-II and drive an 8-LED shift bar through a 74HC595 with adjustable brightness.</p>
-    <p><strong>Role:</strong> Firmware + hardware integration (OBD-II adapter, UART parsing, LED driver).</p>
-    <p><strong>Stack:</strong> C on STM32, UART, timer PWM, shift-register bit-banging/SPI, simple EMA smoothing.</p>
-    <p><strong>Notes:</strong> Designed for minimal wiring; brightness via potentiometer to ADC → PWM duty.</p>
+    <p><strong>Goal:</strong> Read engine RPM via OBD-II and drive an 8-LED shift bar; knob controls brightness.</p>
+    <ul>
+      <li>UART polling + simple EMA smoothing; ADC → PWM duty for LED brightness.</li>
+      <li>SPI/bit-bang to 74HC595 to minimize wiring; update rate tuned for responsiveness.</li>
+    </ul>
   </template>
 
-  <template id="tmpl-proj-2048">
-    <div class="modal__meta">iCE40 · VHDL · VGA · NES Controller · 2024</div>
-    <p><strong>Goal:</strong> Implement the 2048 game entirely in hardware.</p>
-    <p><strong>Highlights:</strong> VGA timing generator (HSYNC/VSYNC), tile renderer, NES controller input, finite-state game logic.</p>
-    <p><strong>Challenges:</strong> Clock domain crossing for input; resource budgeting on iCE40.</p>
+  <!-- Projects → 5-Stage ARM Processor -->
+  <template id="tmpl-proj-arm">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">VHDL · Pipelining · Hazards · 2024</div>
+    <p><strong>Goal:</strong> Implement a 5-stage pipelined ARM-like core.</p>
+    <ul>
+      <li>IF/ID/EX/MEM/WB with hazard detection and simple forwarding.</li>
+      <li>Self-checking testbenches; wave inspection in GTKWave.</li>
+    </ul>
   </template>
 
-  <template id="tmpl-proj-fanuc">
-    <div class="modal__meta">Fanuc · ifm O2D502 · Python · PLC/Robot I/O · 2025</div>
-    <p><strong>Goal:</strong> Vision-guided positioning using camera-to-robot frame offsets.</p>
-    <p><strong>Details:</strong> Two’s-complement conversion, scaling 0.222 mm/px, Ethernet/IO to PLC, error handling and retries.</p>
+  <!-- Projects → VHDL Arcade Game (2048) -->
+  <template id="tmpl-proj-arcade">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">iCE40 · VGA · NES Controller · 2024</div>
+    <p><strong>Goal:</strong> Implement 2048 entirely in VHDL with VGA output.</p>
+    <ul>
+      <li>VGA timing gen (HSYNC/VSYNC), tile renderer, finite-state game logic.</li>
+      <li>Debounced controller input, resource budgeting on iCE40.</li>
+    </ul>
   </template>
+
+  <!-- ========================= -->
+  <!-- OPTIONAL: On-card PREVIEW -->
+  <!-- The bullet lists inside each .card are the PREVIEW content (what users see BEFORE opening). -->
+  <!-- Update those bullets directly in the card markup above. -->
+  <!-- ========================= -->
 
 <script>
   // Modal logic + focus management
@@ -412,9 +414,9 @@
   const closeBtn = document.getElementById('modal-close');
   let lastFocused = null;
 
-  function openModal(templateId, titleText){
-    const tmpl = document.getElementById('tmpl-' + templateId);
-    if(!tmpl) return;
+  function openModal(templateKey, titleText){
+    const tmpl = document.getElementById('tmpl-' + templateKey);
+    if(!tmpl){ return; }
     lastFocused = document.activeElement;
     modalBody.innerHTML = tmpl.innerHTML;
     modalTitle.textContent = titleText || 'Details';
@@ -448,9 +450,7 @@
 
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && modal.hasAttribute('open')) closeModal();
-  });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.hasAttribute('open')) closeModal(); });
 
   // Light focus trap inside modal
   function trapFocus(e){
@@ -468,7 +468,7 @@
   // Active nav highlight on scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = Array.from(document.querySelectorAll('.nav a'));
-  const linkFor = id => navLinks.find(a => a.getAttribute('href') === '#'+id);
+  const linkFor = id => navLinks.find(a => a.getAttribute('href') === '#' + id);
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -480,7 +480,7 @@
         link.classList.add('active');
       }
     });
-  }, {rootMargin: "-40% 0px -50% 0px", threshold: 0});
+  }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
 
   sections.forEach(s => io.observe(s));
 </script>
