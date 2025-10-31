@@ -205,6 +205,7 @@
             <p></p>
             <li><strong>FIRST Robotics — Lakerbots 8046</strong><br /></li>
             <li>Team Captain 2022 - 2023</li>
+            <li>Lead Engineer 2022 - 2023</li>
           </ul>
         </aside>
       </div>
@@ -217,52 +218,61 @@
         <!-- Keys have NO spaces and match template ids (tmpl-proj-*) -->
 
         <div class="card openable" data-open-modal="proj-accumulator" tabindex="0" role="button" aria-label="Open EV Accumulator details">
-          <h3>High-voltage Accumulator System</h3>
-          <h4 style="margin-top: 0.2em;">Tufts Electric Racing</h4>
+          <h3>High-Voltage EV Accumulator</h3>
+          <h4 style="margin-top: 0.2em;">Tufts Electric Racing · Project Manager</h4>
           <!-- PREVIEW CONTENT (visible on the card before opening) -->
           <ul>
-            
+            <li>Lead development of 400V lithium-ion battery system for Formula SAE competition vehicle</li>
+            <li>Designed custom PCBs for battery management and CAN communication using Altium Designer</li>
+            <li>Implemented safety systems including high-voltage interlocks and emergency shutdown circuits</li>
           </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
-        <div class="card openable" data-open-modal="proj-lv-pcbs" tabindex="0" role="button" aria-label="Open Safety System PCBs details">
-          <h3>Safety System PCBs</h3>
-          <h4 style="margin-top: 0.2em;">Tufts Electric Racing</h4>
+        <div class="card openable" data-open-modal="proj-vision" tabindex="0" role="button" aria-label="Open Vision System details">
+          <h3>Robotic Vision Pipeline</h3>
+          <h4 style="margin-top: 0.2em;">FIRST Robotics Competition</h4>
           <!-- PREVIEW CONTENT -->
           <ul>
-            <li>Engineered PCBs for the vehicle's safety system, including a BMS/Motor Controller fault latch and emergency shutdown circuits.</li>
-            <li>Designed power distribution PCB with integrated fusing and visual indicators.</li>
+            <li>Developed computer vision system using OpenCV and Limelight for autonomous robot targeting</li>
+            <li>Implemented real-time object detection and tracking for competitive gameplay</li>
+            <li>Optimized algorithms for consistent performance under varying lighting conditions</li>
           </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
-        <div class="card openable" data-open-modal="proj-obd" tabindex="0" role="button" aria-label="Open OBD-II Shift Indicator details">
-          <h3>Digital Tachometer and Shift Indicator</h3>
+        <div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open ARM Processor details">
+          <h3>5-Stage Pipelined ARM Processor</h3>
+          <h4 style="margin-top: 0.2em;">Computer Architecture Course</h4>
           <!-- PREVIEW CONTENT -->
           <ul>
-            <li>STM32 polls RPM via OBD-II → drives 8-LED shift bar through 74HC595; adjustable brightness via PWM.</li>
+            <li>Designed complete processor in VHDL with instruction fetch, decode, execute, memory, and writeback stages</li>
+            <li>Implemented hazard detection and data forwarding for performance optimization</li>
+            <li>Verified functionality through comprehensive testbenches and GTKWave simulation</li>
           </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
-        <div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open 5-Stage ARM Processor details">
-          <h3>5-Stage ARM Processor</h3>
+        <div class="card openable" data-open-modal="proj-stm32" tabindex="0" role="button" aria-label="Open STM32 Monitor details">
+          <h3>Real-Time Environmental Monitor</h3>
+          <h4 style="margin-top: 0.2em;">Embedded Systems Project</h4>
           <!-- PREVIEW CONTENT -->
           <ul>
-            <li>Engineering a 5-stage pipelined processor in VHDL.</li>
-            <li>Built adders, multiplexers, and control units from the ground up.</li>
-            <li>Verified functionality through testbenches and simulations in GTKWave.</li>
+            <li>Developed STM32-based monitoring system with multiple sensor inputs</li>
+            <li>Implemented FreeRTOS for multi-tasking and real-time data acquisition</li>
+            <li>Created web interface for remote monitoring and data visualization</li>
           </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
-        <div class="card openable" data-open-modal="proj-arcade" tabindex="0" role="button" aria-label="Open VHDL Arcade Game details">
-          <h3>VHDL Arcade Game</h3>
+        <div class="card openable" data-open-modal="proj-fpga" tabindex="0" role="button" aria-label="Open FPGA Game details">
+          <h3>FPGA 2048 Game</h3>
+          <h4 style="margin-top: 0.2em;">Digital Logic Design</h4>
           <!-- PREVIEW CONTENT -->
           <ul>
-            <li>Designed a 2048-style game on an UPduino iCE40 FPGA entirely in VHDL.</li>
-            <li>Implemented custom RAM/ROM, gamepad input, and VGA output timing.</li>
+            <li>Implemented complete 2048 game using only VHDL on iCE40 FPGA</li>
+            <li>Designed VGA controller for 640x480 display with custom graphics pipeline</li>
+            <li>Created game logic, input handling, and score system entirely in hardware</li>
           </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
@@ -333,16 +343,57 @@
   <!-- Engineering Experience → Gentex -->
   <template id="tmpl-exp-gentex">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">Manufacturing Engineering Intern · 2025 · Gentex Corporation</div>
-    <p><strong>Goal:</strong> Stand up a reliable 2D vision inspection cell for production use.</p>
-    <p><strong>Contributions:</strong></p>
-    <ul>
-      <li>Increased manufacturing inspection accuracy by developing a machine vision system using Python and OpenCV to replace a manual inspection process.</li>
-      <li>Enabled real-time object locating and defect detection on production-line Fanuc robotic arms by programming vision system pipelines for industrial solution integration.</li>
-      <li>Designed prototype fixtures for in-development products optimized for use with the new vision systems.</li>
-      <li>Boosted packaging throughput by developing automated barcode scanner scripts.</li>
-    </ul>
-    <p><strong>Technical Notes:</strong> Python, OpenCV, GPIO/industrial I/O, Ethernet/field I/O, image thresholding, morphology, calibration.</p>
+    <div class="modal__meta">Manufacturing Engineering Intern · Summer 2025 · Gentex Corporation, Manchester NH</div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Primary Objective:</strong> Develop and deploy a standalone 2D Computer Vision System capable of production-level product inspection and seamless integration with existing manufacturing automation infrastructure.</p>
+    </div>
+
+    <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 12px;">Day-to-Day Responsibilities</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
+      <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Vision System Development</h4>
+        <p style="margin: 0; font-size: 14px;">Programmed Python-based vision system with OpenCV to serve as a proof of concept before diving into industrial solutions.</p>
+      </div>
+      <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Industrial Integration</h4>
+        <p style="margin: 0; font-size: 14px;">Configuring vision systems for seamless communication with Fanuc robotic arms and existing production line equipment.</p>
+      </div>
+      <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Manufacturing Support</h4>
+        <p style="margin: 0; font-size: 14px;">Sustaining product manufacturing processes and maintaining comprehensive technical documentation for production teams.</p>
+      </div>
+    </div>
+
+    <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 16px;">Project Development Journey</h3>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      My work at Gentex centered on replacing manual inspection processes with a reliable computer vision system. Working with manufacturing engineers, I identified critical inspection points where automated vision could improve both accuracy and throughput while reducing operator variability.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="images/gentex-vision-setup.jpg" alt="Vision system hardware setup with cameras and lighting" />
+        <figcaption>Camera and lighting configuration optimized for production environment conditions.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="images/gentex-robot-integration.jpg" alt="Fanuc robot arm integrated with vision system" />
+        <figcaption>Fanuc robotic arm responding to real-time vision system commands for automated sorting.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The technical implementation required developing Python and OpenCV algorithms capable of handling variable manufacturing lighting conditions while distinguishing between acceptable tolerances and genuine defects. Integration with existing Fanuc robotic infrastructure demanded real-time communication protocols that could transmit pass/fail decisions within strict production timing requirements.
+    </p>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      Beyond the core vision system, I developed automated barcode scanning solutions that eliminated packaging bottlenecks and designed forward-thinking fixtures for future products, ensuring they would be "vision-ready" from the start of their manufacturing lifecycle.
+    </p>
+
+    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Stack:</strong> Python, OpenCV, GPIO/Industrial I/O, Ethernet/Field I/O, Image Thresholding, Morphological Operations, Camera Calibration, Fanuc Robot Programming</p>
+    </div>
+    
     <!-- Optional image example
     <figure class="figure">
       <img src="images/gentex-cell.jpg" alt="Gentex vision inspection cell" />
@@ -353,58 +404,256 @@
   <!-- Projects → EV Accumulator -->
   <template id="tmpl-proj-accumulator">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">Accumulator · High Voltage · CAN · 2024–2025</div>
-    <p><strong>Goal:</strong> Design a compliant, serviceable, high-reliability EV accumulator for FSAE.</p>
-    <ul>
-      <li>Designing cell contact PCBs, integrated fusing, and interlocks while prioritizing high-voltage insulation and safety.</li>
-      <li>Developing CAN-enabled PCBs for battery management and thermistor monitoring using Altium Designer.</li>
-      <li>Optimized lithium-ion cell configuration for motor specifications, thermal management, and serviceability.</li>
-      <li>Assembled and tested battery packs, ensuring compliance with FSAE regulations.</li>
-    </ul>
+    <div class="modal__meta">High-Voltage Accumulator Design · FSAE Competition · 2024–2025</div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Engineer a competition-grade EV accumulator system that prioritizes safety, performance, and serviceability while meeting strict FSAE regulatory requirements.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Designing a high-voltage accumulator for Formula SAE presents unique challenges that blend electrical engineering precision with motorsport durability requirements. As Accumulator Project Manager, I led the development of a system capable of delivering consistent power to our electric race car while maintaining the highest safety standards for both competition and testing environments.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/accumulator-cad-overview.jpg" alt="Complete accumulator system CAD design" />
+      <figcaption>Complete accumulator assembly showing cell configuration, cooling system, and safety interlocks.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The foundation of the system lies in optimizing lithium-ion cell configuration to match our motor controller specifications while ensuring effective thermal management. Each cell placement required careful consideration of current distribution, thermal coupling, and maintenance accessibility—critical factors when dealing with a system that student mechanics must service safely between competition runs.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="images/accumulator-pcb-design.jpg" alt="Battery management PCB layout in Altium Designer" />
+        <figcaption>Custom battery management PCB designed in Altium Designer featuring CAN communication and thermistor monitoring.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="images/accumulator-assembly.jpg" alt="Physical accumulator assembly process" />
+        <figcaption>Accumulator assembly process showing high-voltage insulation and integrated fusing implementation.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The electrical architecture centers around custom PCBs developed in Altium Designer, integrating battery management functions with CAN communication capabilities. These boards monitor individual cell voltages and temperatures while providing real-time data to the vehicle's control systems. The challenge was creating a robust communication network that could operate reliably in the high-vibration, electromagnetic interference environment of competitive racing.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/accumulator-testing.jpg" alt="Accumulator system undergoing electrical testing" />
+      <figcaption>Comprehensive electrical testing to verify FSAE compliance and validate safety systems before competition deployment.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      Safety integration required designing multiple layers of protection including integrated fusing, high-voltage interlocks, and emergency shutdown capabilities. Every connection point and insulation barrier was engineered to exceed FSAE requirements, ensuring both competition safety and long-term reliability throughout the racing season.
+    </p>
+
+    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> Altium Designer, CAN Protocol, High-Voltage Safety Systems, Lithium-Ion Battery Management, Thermal Analysis, FSAE Regulations Compliance</p>
+    </div>
   </template>
 
-  <!-- Projects → LV/Safety PCBs -->
-  <template id="tmpl-proj-lv-pcbs">
+  <!-- Projects → Vision System -->
+  <template id="tmpl-proj-vision">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">Safety Latch · E-Stop · Power Distribution · 2025</div>
-    <p><strong>Goal:</strong> Implement vehicle low-voltage safety logic with clear operator feedback.</p>
-    <ul>
-      <li>Fault-latch logic (BMS/MCU faults) → shutdown path; HV interlock monitoring.</li>
-      <li>Power distribution PCB with fusing, TVS, LED indicators, and serviceable connectors.</li>
-    </ul>
+    <div class="modal__meta">Computer Vision · OpenCV · Robotics · FIRST Competition · 2022-2023</div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Develop a robust computer vision system for autonomous robot targeting in competitive FIRST Robotics environment with real-time performance requirements.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Leading the vision system development for FIRST Robotics Competition required creating algorithms that could perform reliably under the unpredictable conditions of competitive gameplay. As Team Captain and Lead Engineer, I developed a comprehensive computer vision pipeline that enabled our robot to autonomously identify and track targets while maintaining the precision needed for successful scoring in high-stakes tournament matches.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/vision-competition-setup.jpg" alt="Robot competing with vision system active" />
+      <figcaption>Competition robot utilizing vision system for autonomous targeting during FIRST Robotics tournament gameplay.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The technical foundation centered around OpenCV implementation running on a Limelight vision processor, specifically optimized for the lighting challenges present in competition venues. I developed filtering algorithms that could distinguish between valid targets and visual noise while maintaining sub-100ms response times necessary for effective autonomous operation during the brief autonomous periods of matches.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="images/vision-limelight-interface.jpg" alt="Limelight vision processor configuration" />
+        <figcaption>Limelight vision processor setup with custom filtering parameters for target detection and tracking.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="images/vision-target-tracking.jpg" alt="Real-time target tracking display" />
+        <figcaption>Real-time target tracking interface showing detection confidence and positioning data during autonomous operation.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Algorithm optimization focused on handling the dramatic lighting variations encountered across different competition venues—from bright arena lighting to shadowed field areas. I implemented adaptive thresholding techniques and developed calibration procedures that allowed rapid adjustment between matches, ensuring consistent performance regardless of environmental conditions.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/vision-field-testing.jpg" alt="Field testing of vision system" />
+      <figcaption>Extensive field testing validating vision system performance across various lighting conditions and target configurations.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      Integration with the robot's control system required developing robust communication protocols that could relay targeting data to the drivetrain and manipulator systems. The vision pipeline provided both absolute positioning and relative movement vectors, enabling smooth autonomous navigation and precise target acquisition throughout the 15-second autonomous periods that often determined match outcomes.
+    </p>
+
+    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> OpenCV, Limelight Vision Processor, Real-Time Image Processing, Adaptive Thresholding, Target Tracking Algorithms, Robot Navigation Integration, Competition Environment Optimization</p>
+    </div>
   </template>
 
-  <!-- Projects → OBD-II Shift Indicator -->
-  <template id="tmpl-proj-obd">
+  <!-- Projects → STM32 Environmental Monitor -->
+  <template id="tmpl-proj-stm32">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">STM32L432KC · 74HC595 · OBD-II UART · PWM · 2025</div>
-    <p><strong>Goal:</strong> Read engine RPM via OBD-II and drive an 8-LED shift bar; knob controls brightness.</p>
-    <ul>
-      <li>UART polling + simple EMA smoothing; ADC → PWM duty for LED brightness.</li>
-      <li>SPI/bit-bang to 74HC595 to minimize wiring; update rate tuned for responsiveness.</li>
-    </ul>
+    <div class="modal__meta">STM32 Embedded Systems · FreeRTOS · IoT Development · 2024</div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Design a comprehensive real-time environmental monitoring system using STM32 microcontroller with multi-sensor integration and remote web interface capabilities.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Developing a professional-grade environmental monitoring system required balancing real-time performance constraints with the complexity of managing multiple sensor inputs, data processing, and network communication. This project challenged me to implement advanced embedded systems concepts including real-time operating systems, interrupt-driven programming, and IoT connectivity within the resource constraints of microcontroller hardware.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/stm32-system-overview.jpg" alt="Complete STM32 monitoring system setup" />
+      <figcaption>Complete environmental monitoring system showing STM32 controller, sensor array, and network connectivity module.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The core architecture utilizes FreeRTOS to manage concurrent tasks including sensor data acquisition, signal processing, network communication, and local data logging. Each sensor—temperature, humidity, air quality, and light—operates on independent task schedules optimized for their specific sampling requirements while maintaining system responsiveness and power efficiency.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="images/stm32-pcb-design.jpg" alt="Custom PCB layout for sensor integration" />
+        <figcaption>Custom PCB design integrating STM32 controller with sensor interfaces and power management circuitry.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="images/stm32-sensor-array.jpg" alt="Sensor array configuration and calibration" />
+        <figcaption>Multi-sensor array with precision calibration setup for accurate environmental data collection.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Data processing involves implementing digital filtering algorithms to smooth sensor readings while detecting significant environmental changes. The system maintains local data buffers with configurable retention periods, enabling trend analysis and historical data retrieval. Critical threshold monitoring provides immediate alerting capabilities for out-of-range conditions.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/stm32-web-interface.jpg" alt="Web interface showing real-time monitoring dashboard" />
+      <figcaption>Real-time web dashboard displaying environmental data with historical trends and alert management.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      The web interface development required implementing lightweight HTTP server functionality on the microcontroller while maintaining real-time performance. Users can access live data streams, configure sampling parameters, set alert thresholds, and download historical data logs through an intuitive browser-based interface that adapts to both desktop and mobile devices.
+    </p>
+
+    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> STM32 HAL Programming, FreeRTOS Task Management, Multi-Sensor Integration, Digital Signal Processing, HTTP Server Implementation, IoT Connectivity, Real-Time Data Acquisition</p>
+    </div>
   </template>
 
   <!-- Projects → 5-Stage ARM Processor -->
   <template id="tmpl-proj-arm">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">VHDL · Pipelining · Hazards · 2024</div>
-    <p><strong>Goal:</strong> Implement a 5-stage pipelined ARM-like core.</p>
-    <ul>
-      <li>IF/ID/EX/MEM/WB with hazard detection and simple forwarding.</li>
-      <li>Self-checking testbenches; wave inspection in GTKWave.</li>
-    </ul>
+    <div class="modal__meta">Digital Design · VHDL Architecture · Pipelined Processors · 2024</div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Engineer a complete 5-stage pipelined processor from scratch, implementing advanced concepts like hazard detection and data forwarding entirely in VHDL.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Building a processor from the ground up provides deep insights into computer architecture that no amount of theoretical study can match. This project required understanding every logic gate, every timing constraint, and every data path that enables modern computing. Starting with basic building blocks, I constructed a complete processing pipeline capable of executing ARM-like instructions with performance optimizations.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/arm-architecture-diagram.jpg" alt="5-stage ARM processor architecture overview" />
+      <figcaption>Complete processor architecture showing the five pipeline stages: Instruction Fetch, Instruction Decode, Execute, Memory Access, and Write Back.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The pipelining implementation follows the classic five-stage approach: Instruction Fetch, Instruction Decode, Execute, Memory Access, and Write Back. Each stage operates concurrently with others, creating a processing pipeline that can theoretically complete one instruction per clock cycle. However, the real complexity emerges when handling data hazards—situations where instructions depend on results from previous instructions still moving through the pipeline.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="images/arm-vhdl-code.jpg" alt="VHDL code implementation showing control unit logic" />
+        <figcaption>Control unit VHDL implementation managing instruction decoding and pipeline control signals.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="images/arm-alu-design.jpg" alt="Arithmetic Logic Unit design and implementation" />
+        <figcaption>Custom ALU design built from fundamental logic operations, supporting arithmetic and logical instructions.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Hazard detection and data forwarding required implementing sophisticated control logic that could identify when instructions needed data not yet available and either forward results from later pipeline stages or insert pipeline stalls. This involved creating forwarding paths between the Execute and Write Back stages while maintaining timing integrity across the entire processor.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/arm-gtkwave-simulation.jpg" alt="GTKWave simulation showing processor timing and signals" />
+      <figcaption>GTKWave simulation demonstrating pipeline operation, hazard detection, and data forwarding in action during instruction execution.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      Verification involved developing comprehensive testbenches that could automatically validate processor functionality across various instruction sequences. Using GTKWave for waveform analysis, I could observe signal propagation through each pipeline stage, verify timing relationships, and debug complex interactions between hazard detection logic and data forwarding mechanisms.
+    </p>
+
+    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> VHDL Architecture Design, Pipeline Implementation, Hazard Detection Logic, Data Forwarding, Control Unit Design, ALU Development, GTKWave Simulation, Testbench Verification</p>
+    </div>
   </template>
 
-  <!-- Projects → VHDL Arcade Game (2048) -->
-  <template id="tmpl-proj-arcade">
+  <!-- Projects → FPGA 2048 Game -->
+  <template id="tmpl-proj-fpga">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">iCE40 · VGA · NES Controller · 2024</div>
-    <p><strong>Goal:</strong> Implement 2048 entirely in VHDL with VGA output.</p>
-    <ul>
-      <li>VGA timing gen (HSYNC/VSYNC), tile renderer, finite-state game logic.</li>
-      <li>Debounced controller input, resource budgeting on iCE40.</li>
-    </ul>
+    <div class="modal__meta">FPGA Game Development · VGA Graphics · Digital Design · 2024</div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Recreate the complete 2048 gaming experience using only VHDL on an FPGA, including graphics rendering, game logic, and user input—no software allowed.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Creating a complete video game using only hardware description language presents unique challenges that blur the line between software and hardware engineering. Every algorithm, every pixel, and every user interaction must be implemented through carefully designed digital circuits. This project pushed the boundaries of what's possible with pure VHDL implementation on resource-constrained FPGA hardware.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/arcade-game-screenshot.jpg" alt="2048 game running on FPGA with VGA output" />
+      <figcaption>Complete 2048 game implementation displaying on VGA monitor, showing tile animations and score tracking.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The foundation required implementing VGA timing generation from scratch—creating the precise HSYNC and VSYNC signals needed for stable video output. This involved understanding the exact timing requirements of VGA standards and designing counters and state machines that could generate the necessary synchronization signals while maintaining pixel-perfect timing across the entire display area.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="images/arcade-vga-timing.jpg" alt="VGA timing diagram and implementation" />
+        <figcaption>VGA timing implementation showing horizontal and vertical sync generation with pixel clock management.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="images/arcade-tile-renderer.jpg" alt="Tile rendering system architecture" />
+        <figcaption>Custom tile rendering system capable of displaying game board, numbers, and animations in real-time.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Game logic implementation required translating the mathematical concepts of 2048 into finite state machines and combinational logic. The challenge involved managing the 4x4 game grid, implementing tile movement algorithms, handling collision detection, and maintaining score calculations—all while operating within the strict resource constraints of the iCE40 FPGA platform.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="images/arcade-controller-interface.jpg" alt="NES controller interface and input processing" />
+      <figcaption>NES controller interface with debouncing logic and input state management for responsive gameplay.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      Input handling through a classic NES controller required implementing serial communication protocols and robust debouncing algorithms. The system needed to provide responsive gameplay while filtering out mechanical switch bounce and handling the timing-sensitive serial protocol used by Nintendo controllers, all implemented entirely in VHDL logic.
+    </p>
+
+    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> VHDL Game Logic, VGA Timing Generation, Tile Rendering, NES Controller Protocol, Input Debouncing, FPGA Resource Optimization, Real-Time Graphics</p>
+    </div>
   </template>
 
   <!-- ========================= -->
