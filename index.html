@@ -124,6 +124,49 @@
 
   pre{ background:#0b1020; color:#e5e7eb; padding:12px; border-radius:10px; overflow:auto; }
 
+  /* Image Credits */
+  .image-credits{ 
+    background:#f8f9fa; 
+    border:1px solid var(--neutral); 
+    border-radius:8px; 
+    padding:12px; 
+    margin-top:24px; 
+    font-size:12px; 
+    color:var(--muted); 
+  }
+  .image-credits h4{ 
+    margin:0 0 8px; 
+    font-size:13px; 
+    color:var(--accent); 
+    font-weight:600; 
+  }
+  .image-credits ul{ 
+    margin:0; 
+    padding-left:16px; 
+    list-style:none; 
+  }
+  .image-credits li{ 
+    margin:4px 0; 
+    position:relative; 
+  }
+  .credits-btn{ 
+    display:inline-block; 
+    padding:6px 10px; 
+    font-size:12px; 
+    color:var(--muted); 
+    background:#f3f4f6; 
+    border:1px solid var(--neutral); 
+    border-radius:6px; 
+    cursor:pointer; 
+    text-decoration:none; 
+    margin-top:16px; 
+  }
+  .credits-btn:hover{ 
+    background:var(--accent); 
+    color:#fff; 
+    border-color:var(--accent); 
+  }
+
   @media (max-width: 900px){
     .hero{ grid-template-columns:1fr; }
     .hero-main{ grid-row:auto; }
@@ -368,12 +411,17 @@
     <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 16px;">Project Development Journey</h3>
     
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      My work at Gentex centered on replacing manual inspection processes with a reliable computer vision system. Working with manufacturing engineers, I identified critical inspection points where automated vision could improve both accuracy and throughput while reducing operator variability.
+      My work at Gentex centered on supplementing manual inspection processes with a reliable, automated inspection system. 
+      Working with manufacturing engineers, I identified critical inspection points where automated vision could improve both accuracy and throughput.
+      The prototype system was developed using Python and OpenCV, running on a Raspberry Pi 5. This was designed to create a proof of concept that could be tested in a controlled environment and 
+      continually refined to work towards a production-ready solution.
+      The vision system was designed to operate under the variable lighting conditions of a manufacturing environment, using contour detection and blob analysis to compare captured images against defined tolerances for product quality. 
+
     </p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
       <figure class="figure">
-        <img src="images/gentex-vision-setup.jpg" alt="Vision system hardware setup with cameras and lighting" />
+        <img src="contourExample.jpg" alt="Contour Example" />
         <figcaption>Camera and lighting configuration optimized for production environment conditions.</figcaption>
       </figure>
       <figure class="figure">
@@ -392,6 +440,15 @@
 
     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
       <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Stack:</strong> Python, OpenCV, GPIO/Industrial I/O, Ethernet/Field I/O, Image Thresholding, Morphological Operations, Camera Calibration, Fanuc Robot Programming</p>
+    </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Contour Example:</strong> Image credit: PyImageSearch – “Finding extreme points in contours with OpenCV” (April 11 2016).</li>
+        <li><strong>Robot Integration:</strong> Custom photography - Fanuc robotic arm integration during production testing</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original work created during internship project development and testing phases. Images used with permission for portfolio demonstration purposes.</p>
     </div>
     
     <!-- Optional image example
@@ -450,6 +507,17 @@
     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
       <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> Altium Designer, CAN Protocol, High-Voltage Safety Systems, Lithium-Ion Battery Management, Thermal Analysis, FSAE Regulations Compliance</p>
     </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>CAD Overview:</strong> SolidWorks rendering - Custom accumulator assembly design</li>
+        <li><strong>PCB Design:</strong> Altium Designer screenshot - Battery management PCB layout</li>
+        <li><strong>Assembly Process:</strong> Tufts Electric Racing team photography - Assembly documentation</li>
+        <li><strong>Testing Setup:</strong> Custom photography - Electrical validation and compliance testing</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images courtesy of Tufts Electric Racing team project documentation. CAD renders and PCB layouts are original design work.</p>
+    </div>
   </template>
 
   <!-- Projects → Vision System -->
@@ -500,6 +568,17 @@
 
     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
       <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> OpenCV, Limelight Vision Processor, Real-Time Image Processing, Adaptive Thresholding, Target Tracking Algorithms, Robot Navigation Integration, Competition Environment Optimization</p>
+    </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Competition Setup:</strong> FIRST Robotics team photography - Competition robot in action</li>
+        <li><strong>Limelight Interface:</strong> Custom screenshot - Vision processor configuration interface</li>
+        <li><strong>Target Tracking:</strong> Custom screenshot - Real-time detection and tracking display</li>
+        <li><strong>Field Testing:</strong> Lakerbots 8046 team photography - Pre-competition validation testing</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Competition and testing images courtesy of Lakerbots 8046 FRC Team. Interface screenshots are original development work.</p>
     </div>
   </template>
 
@@ -552,6 +631,17 @@
     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
       <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> STM32 HAL Programming, FreeRTOS Task Management, Multi-Sensor Integration, Digital Signal Processing, HTTP Server Implementation, IoT Connectivity, Real-Time Data Acquisition</p>
     </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>System Overview:</strong> Custom photography - Complete monitoring system hardware setup</li>
+        <li><strong>PCB Design:</strong> KiCad/Altium screenshot - Custom sensor integration PCB layout</li>
+        <li><strong>Sensor Array:</strong> Custom photography - Multi-sensor calibration and configuration</li>
+        <li><strong>Web Interface:</strong> Custom screenshot - Real-time monitoring dashboard interface</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original work from independent embedded systems project. Hardware photography and software interface screenshots are personal development work.</p>
+    </div>
   </template>
 
   <!-- Projects → 5-Stage ARM Processor -->
@@ -603,6 +693,17 @@
     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
       <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> VHDL Architecture Design, Pipeline Implementation, Hazard Detection Logic, Data Forwarding, Control Unit Design, ALU Development, GTKWave Simulation, Testbench Verification</p>
     </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Architecture Diagram:</strong> Custom design - Processor pipeline architecture visualization</li>
+        <li><strong>VHDL Code:</strong> Custom screenshot - Control unit implementation in development environment</li>
+        <li><strong>ALU Design:</strong> Custom screenshot - Arithmetic logic unit VHDL implementation</li>
+        <li><strong>GTKWave Simulation:</strong> Custom screenshot - Processor timing analysis and waveform verification</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original academic work from Computer Architecture coursework. Code screenshots and simulations are personal development work.</p>
+    </div>
   </template>
 
   <!-- Projects → FPGA 2048 Game -->
@@ -653,6 +754,17 @@
 
     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
       <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> VHDL Game Logic, VGA Timing Generation, Tile Rendering, NES Controller Protocol, Input Debouncing, FPGA Resource Optimization, Real-Time Graphics</p>
+    </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Game Screenshot:</strong> Custom photography - 2048 game running on VGA display via FPGA</li>
+        <li><strong>VGA Timing:</strong> Custom screenshot - VGA timing diagram and VHDL implementation</li>
+        <li><strong>Tile Renderer:</strong> Custom design - Graphics pipeline architecture visualization</li>
+        <li><strong>Controller Interface:</strong> Custom photography - NES controller hardware interface setup</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original academic work from Digital Logic Design coursework. Game screenshots and hardware photography are personal development work.</p>
     </div>
   </template>
 
