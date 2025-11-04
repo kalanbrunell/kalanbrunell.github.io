@@ -83,7 +83,12 @@
   .hero-side{ grid-column: 2; height:100%; align-self:stretch; }
   .section{ margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px; }
   .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  .grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
+  .grid{ 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 24px; 
+    align-items: start;
+  }
 
   /* Headshot */
   .headshot{ width:160px; height:160px; border-radius:50%; object-fit:cover; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,.14); }
@@ -285,7 +290,7 @@
         </div>
         <p>
           I'm a third-year Computer Engineering student at Tufts University, concentrating on embedded systems and digital design. 
-          My work has included developing vision pipelines for both competitive and industrial robotics, writing STM32 firmware for real-time monitoring, 
+          My work has included developing vision pipelines for both competitive and industrial robotics, writing microcontroller firmware for real-time monitoring, 
           and engineering all-electric automotive systems from the ground up. I enjoy tackling complex problems that require expertise in both 
           hardware and software, and I aim to create solutions that are reliable, efficient, and practical.
         </p>
@@ -356,28 +361,34 @@
         <!-- Keys have NO spaces and match template ids (tmpl-proj-*) -->
 
         <div class="card openable" data-open-modal="proj-accumulator" tabindex="0" role="button" aria-label="Open details">
-          <div style="text-align: center; margin-bottom: 16px;">
-            <img src="TERLogo.png" alt="Tufts Electric Racing" style="height: 48px; width: auto; opacity: 1;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Electric Vehicle Accumulator</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Tufts Electric Racing - Formula-Hybrid Electric</h4>
+            </div>
+            <img src="TERLogo.png" alt="Tufts Electric Racing" style="height: 32px; width: auto; opacity: 1; flex-shrink: 0; margin-left: 12px;">
           </div>
-          <h4 style="margin: 0;">Project Manager</h4>
           <!-- PREVIEW CONTENT (visible on the card before opening) -->
-          <ul>
-            <li>Leading design of a 450V accumulator system for a Formula-Hybrid electric racecar, balancing safety, energy, and performance.</li>
-            <li>Developed custom PCBs for cell management, power disribution, and safety circuits. </li>
-            <li>Integrated tractive system current path with isolation relays, connector interlocks,and precharge/discharge circuits.</li>
-          </ul>
+          <div style="margin: 12px 0;">
+            <img src="firstChargeCar.JPG" alt="EV Accumulator System" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">450V lithium-ion accumulator system with custom PCBs, safety circuits, and high-voltage integration for Formula-Hybrid electric racing.</p>
+          </div>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
         <div class="card openable" data-open-modal="proj-vision" tabindex="0" role="button" aria-label="Open Vision System details">
-          <h3>Robotic Vision Pipeline</h3>
-          <h4 style="margin-top: 0.2em;">FIRST Robotics Competition</h4>
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Competitive Robotics Vision and Control</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Lakerbots 8046 - FIRST Robotics Competition</h4>
+            </div>
+            <img src="lakerbotsLogo.png" alt="Lakerbots 8046" style="height: 58px; width: auto; opacity: 1; flex-shrink: 0; margin-left: 12px;">
+          </div>
           <!-- PREVIEW CONTENT -->
-          <ul>
-            <li>Developed computer vision system using OpenCV and Limelight for autonomous robot targeting</li>
-            <li>Implemented real-time object detection and tracking for competitive gameplay</li>
-            <li>Optimized algorithms for consistent performance under varying lighting conditions</li>
-          </ul>
+          <div style="margin: 12px 0;">
+            <img src="chargedUpRobot.png" alt="Robotics Vision System" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Real-time 3D target localization system with swerve drive integration and autonomous control for competitive robotics.</p>
+          </div>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
@@ -385,11 +396,10 @@
           <h3>5-Stage Pipelined ARM Processor</h3>
           <h4 style="margin-top: 0.2em;">Computer Architecture Course</h4>
           <!-- PREVIEW CONTENT -->
-          <ul>
-            <li>Designed complete processor in VHDL with instruction fetch, decode, execute, memory, and writeback stages</li>
-            <li>Implemented hazard detection and data forwarding for performance optimization</li>
-            <li>Verified functionality through comprehensive testbenches and GTKWave simulation</li>
-          </ul>
+          <div style="margin: 12px 0;">
+            <img src="arm-processor-preview.jpg" alt="ARM Processor Architecture" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 5-stage pipelined ARM processor designed in VHDL with hazard detection, data forwarding, and comprehensive simulation testing.</p>
+          </div>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
@@ -397,11 +407,10 @@
           <h3>Real-Time Environmental Monitor</h3>
           <h4 style="margin-top: 0.2em;">Embedded Systems Project</h4>
           <!-- PREVIEW CONTENT -->
-          <ul>
-            <li>Developed STM32-based monitoring system with multiple sensor inputs</li>
-            <li>Implemented FreeRTOS for multi-tasking and real-time data acquisition</li>
-            <li>Created web interface for remote monitoring and data visualization</li>
-          </ul>
+          <div style="margin: 12px 0;">
+            <img src="stm32-monitor-preview.jpg" alt="STM32 Environmental Monitor" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Multi-sensor environmental monitoring system with FreeRTOS, real-time data acquisition, and web-based visualization interface.</p>
+          </div>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
@@ -409,11 +418,10 @@
           <h3>FPGA 2048 Game</h3>
           <h4 style="margin-top: 0.2em;">Digital Logic Design</h4>
           <!-- PREVIEW CONTENT -->
-          <ul>
-            <li>Implemented complete 2048 game using only VHDL on iCE40 FPGA</li>
-            <li>Designed VGA controller for 640x480 display with custom graphics pipeline</li>
-            <li>Created game logic, input handling, and score system entirely in hardware</li>
-          </ul>
+          <div style="margin: 12px 0;">
+            <img src="fpga-2048-preview.jpg" alt="FPGA 2048 Game" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 2048 game implemented in pure VHDL with custom VGA controller, graphics pipeline, and hardware-based game logic.</p>
+          </div>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
       </div>
@@ -951,6 +959,50 @@
   }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
 
   sections.forEach(s => io.observe(s));
+
+  // Simple masonry layout for project cards
+  function masonryLayout() {
+    const grid = document.querySelector('.grid');
+    if (!grid) return;
+    
+    const cards = Array.from(grid.children);
+    const gap = 24;
+    
+    // Reset positioning
+    grid.style.position = 'relative';
+    cards.forEach(card => {
+      card.style.position = 'absolute';
+      card.style.width = `calc(50% - ${gap/2}px)`;
+    });
+    
+    // Simple two-column heights tracking
+    let leftHeight = 0;
+    let rightHeight = 0;
+    
+    cards.forEach((card, index) => {
+      const cardHeight = card.offsetHeight;
+      
+      // Place in shorter column
+      if (leftHeight <= rightHeight) {
+        // Left column
+        card.style.left = '0';
+        card.style.top = `${leftHeight}px`;
+        leftHeight += cardHeight + gap;
+      } else {
+        // Right column  
+        card.style.left = `calc(50% + ${gap/2}px)`;
+        card.style.top = `${rightHeight}px`;
+        rightHeight += cardHeight + gap;
+      }
+    });
+    
+    // Set container height
+    grid.style.height = `${Math.max(leftHeight, rightHeight)}px`;
+  }
+  
+  // Run masonry on load and resize
+  window.addEventListener('load', masonryLayout);
+  window.addEventListener('resize', masonryLayout);
 </script>
 </body>
 </html>
