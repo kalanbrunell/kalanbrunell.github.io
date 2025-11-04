@@ -83,7 +83,7 @@
   .hero-side{ grid-column: 2; height:100%; align-self:stretch; }
   .section{ margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px; }
   .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+  .grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
 
   /* Headshot */
   .headshot{ width:160px; height:160px; border-radius:50%; object-fit:cover; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,.14); }
@@ -173,11 +173,98 @@
     .hero-side{ grid-column:auto; }
     .two-col{ grid-template-columns:1fr; }
   }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .nav { padding: 12px 16px; font-size: 14px; }
+    .nav > div:last-child { gap: 16px; }
+    
+    .hero { gap: 16px; }
+    .hero-main, .hero-side { padding: 16px; }
+    
+    .card { padding: 16px; }
+    .grid { gap: 16px; grid-template-columns: 1fr; }
+    .two-col { gap: 16px; }
+    
+    /* Force all inline grid layouts to single column on mobile */
+    div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+    
+    /* Adjust figure sizing for mobile */
+    .figure { margin: 0 auto 16px; max-width: 100%; }
+    .figure img { width: 100%; }
+    
+    /* Modal adjustments */
+    .modal__body { padding: 16px; }
+    .modal__meta { font-size: 13px; }
+    
+    /* Typography adjustments */
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    p { font-size: 14px; line-height: 1.6 !important; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 12px; }
+    .nav { flex-direction: column; gap: 12px; text-align: center; padding: 12px; }
+    .nav > div:last-child { 
+      justify-content: center; 
+      flex-wrap: wrap;
+      display: flex;
+    }
+    .nav a { 
+      margin: 4px 8px; 
+      padding: 8px 12px; 
+      min-height: 44px; /* Touch target size */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand { font-size: 20px; }
+    
+    .hero-main, .hero-side, .card { padding: 12px; }
+    
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 18px; }
+    p { font-size: 13px; }
+    
+    /* Stack all content vertically */
+    .hero { grid-template-columns: 1fr; gap: 12px; }
+    .grid { grid-template-columns: 1fr; gap: 12px; }
+    
+    /* Ensure buttons are touch-friendly */
+    .btn { 
+      padding: 12px 20px; 
+      font-size: 14px; 
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Make modals more mobile-friendly */
+    .modal {
+      padding: 8px;
+    }
+    .modal__content {
+      max-height: 90vh;
+      width: 95%;
+      margin: 5vh auto;
+    }
+  }
 </style>
 </head>
 <body>
   <div class="nav">
-    <div class="brand">Kalan Brunell</div>
+    <div class="brand">
+      <div>Kalan Brunell</div>
+      <div style="font-size: 14px; font-weight: 400; color: var(--muted);">Computer Engineer</div>
+    </div>
     <div>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
@@ -196,13 +283,13 @@
           <img src="headshot.jpg" alt="Headshot of Kalan Brunell" class="headshot" style="margin-left:12px;" />
           <span style="font-size:2.2rem; font-weight:700; color:var(--accent); font-family:'Playfair Display', serif; margin-left:48px;">Kalan Brunell</span>
         </div>
-        <p style="margin-top:6px; color:var(--muted); font-weight:600;">Computer Engineering | Robotics and Embedded Systems</p>
-        <h2>About Me</h2>
         <p>
           I'm a third-year Computer Engineering student at Tufts University, concentrating on embedded systems and digital design. 
           My work has included developing vision pipelines for both competitive and industrial robotics, writing STM32 firmware for real-time monitoring, 
           and engineering all-electric automotive systems from the ground up. I enjoy tackling complex problems that require expertise in both 
           hardware and software, and I aim to create solutions that are reliable, efficient, and practical.
+        </p>
+        <p style="margin-top:16px; color:var(--muted); font-weight:600;">Tufts University | Bachelor of Science in Computer Engineering | Class of 2027</p>
       </div>
 
       <!-- Right column (row 1) -->
@@ -227,13 +314,16 @@
       <div class="two-col">
         <!-- Expandable card: key matches template id below (tmpl-exp-gentex) -->
         <div class="card openable" data-open-modal="exp-gentex" tabindex="0" role="button" aria-label="Open Gentex internship details">
-          <h3>Manufacturing Engineering Intern</h3>
-          <h4 style="margin-top: 0.2em;">Gentex Corporation · Manchester, NH</h4>
+          <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 8px;">
+            <h3 style="margin: 0;">Manufacturing Engineering Intern</h3>
+            <img src="gentexlogo.png" alt="Gentex Logo" style="height: 24px; width: auto; opacity: 0.8; flex-shrink: 0;">
+          </div>
+          <h4 style="margin: 0.2em 0 0 0;">Gentex Corporation · Manchester, NH</h4>
           <!-- PREVIEW CONTENT (visible on the card before opening) -->
           -Summer 2025-
           <ul>
-            <li>Tasked with developing a 2D Computer Vision System capable of standalone product 
-              inspection and manufacturing automation integration.</li>
+            <li>Tasked with developing a 2D Computer Vision System capable of standalone product inspection and manufacturing automation integration.</li>
+            <li>Collaborated with the manufacturing engineering team to develop prototype automation cells for future deployment.</li>
             <li>Responsible for product manufacturing and documentation sustainment.</li>
           </ul>
           <p style="color:var(--muted); font-size:14px; margin-top:8px;">View more details →</p>
@@ -250,6 +340,11 @@
             <li>Team Captain 2022 - 2023</li>
             <li>Lead Engineer 2022 - 2023</li>
           </ul>
+          
+          <div style="display: flex; justify-content: center; align-items: center; gap: 32px; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+            <img src="TERLogo.png" alt="Tufts Electric Racing Logo" style="height: 80px; width: auto; opacity: 0.8;">
+            <img src="lakerbotsLogo.png" alt="Lakerbots 8046 Logo" style="height: 80px; width: auto; opacity: 0.8; margin-left: 20px;">
+          </div>
         </aside>
       </div>
     </section>
@@ -260,14 +355,16 @@
       <div class="grid">
         <!-- Keys have NO spaces and match template ids (tmpl-proj-*) -->
 
-        <div class="card openable" data-open-modal="proj-accumulator" tabindex="0" role="button" aria-label="Open EV Accumulator details">
-          <h3>High-Voltage EV Accumulator</h3>
-          <h4 style="margin-top: 0.2em;">Tufts Electric Racing · Project Manager</h4>
+        <div class="card openable" data-open-modal="proj-accumulator" tabindex="0" role="button" aria-label="Open details">
+          <div style="text-align: center; margin-bottom: 16px;">
+            <img src="TERLogo.png" alt="Tufts Electric Racing" style="height: 48px; width: auto; opacity: 1;">
+          </div>
+          <h4 style="margin: 0;">Project Manager</h4>
           <!-- PREVIEW CONTENT (visible on the card before opening) -->
           <ul>
-            <li>Lead development of 400V lithium-ion battery system for Formula SAE competition vehicle</li>
-            <li>Designed custom PCBs for battery management and CAN communication using Altium Designer</li>
-            <li>Implemented safety systems including high-voltage interlocks and emergency shutdown circuits</li>
+            <li>Leading design of a 450V accumulator system for a Formula-Hybrid electric racecar, balancing safety, energy, and performance.</li>
+            <li>Developed custom PCBs for cell management, power disribution, and safety circuits. </li>
+            <li>Integrated tractive system current path with isolation relays, connector interlocks,and precharge/discharge circuits.</li>
           </ul>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
@@ -386,7 +483,10 @@
   <!-- Engineering Experience → Gentex -->
   <template id="tmpl-exp-gentex">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">Manufacturing Engineering Intern · Summer 2025 · Gentex Corporation, Manchester NH</div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">Manufacturing Engineering Intern · Summer 2025 · Gentex Corporation, Manchester NH</div>
+      <img src="gentexlogo.png" alt="Gentex Logo" style="height: 32px; width: auto; opacity: 0.9;">
+    </div>
     
     <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
       <p><strong>Primary Objective:</strong> Develop and deploy a standalone 2D Computer Vision System capable of production-level product inspection and seamless integration with existing manufacturing automation infrastructure.</p>
@@ -395,60 +495,80 @@
     <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 12px;">Day-to-Day Responsibilities</h3>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
       <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
-        <h4 style="color: var(--accent-alt); margin-top: 0;">Vision System Development</h4>
-        <p style="margin: 0; font-size: 14px;">Programmed Python-based vision system with OpenCV to serve as a proof of concept before diving into industrial solutions.</p>
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Vision System Design</h4>
+        <p style="margin: 0; font-size: 14px;">Program Python-based vision system with OpenCV to serve as a proof of concept before diving into industrial solutions.</p>
       </div>
       <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
-        <h4 style="color: var(--accent-alt); margin-top: 0;">Industrial Integration</h4>
-        <p style="margin: 0; font-size: 14px;">Configuring vision systems for seamless communication with Fanuc robotic arms and existing production line equipment.</p>
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Automation Cell Development</h4>
+        <p style="margin: 0; font-size: 14px;">Develop necessary robot control sequences, design end-effectors and fixtures, and integrate vision systems into prototype automation cells.
       </div>
       <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
         <h4 style="color: var(--accent-alt); margin-top: 0;">Manufacturing Support</h4>
-        <p style="margin: 0; font-size: 14px;">Sustaining product manufacturing processes and maintaining comprehensive technical documentation for production teams.</p>
+        <p style="margin: 0; font-size: 14px;">Sustain product manufacturing processes and maintain comprehensive technical documentation for production teams.</p>
       </div>
     </div>
 
     <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 16px;">Project Development Journey</h3>
     
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      My work at Gentex centered on supplementing manual inspection processes with a reliable, automated inspection system. 
-      Working with manufacturing engineers, I identified critical inspection points where automated vision could improve both accuracy and throughput.
-      The prototype system was developed using Python and OpenCV, running on a Raspberry Pi 5. This was designed to create a proof of concept that could be tested in a controlled environment and 
-      continually refined to work towards a production-ready solution.
-      The vision system was designed to operate under the variable lighting conditions of a manufacturing environment, using contour detection and blob analysis to compare captured images against defined tolerances for product quality. 
-
+      At Gentex, I developed an automated vision inspection system to enhance existing manual inspection processes. 
+      Collaborating with manufacturing engineers, I identified key inspection points where computer vision could 
+      improve both accuracy and throughput. Designed for eventual integration into production, 
+      the system was engineered to operate robustly in a manufacturing environment with minimal human intervention. 
+      The prototype, built in Python using OpenCV and deployed on a Raspberry Pi 5, 
+      served as a proof of concept for evaluation in a controlled environment. Under the hood, it employed contour detection and template 
+      matching to compare captured images against predefined quality tolerances. The relevant outputs were displayed via a custom GUI which enabled 
+      real-time monitoring, logging of inspection results, and operator control. 
     </p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
       <figure class="figure">
         <img src="contourExample.jpg" alt="Contour Example" />
-        <figcaption>Camera and lighting configuration optimized for production environment conditions.</figcaption>
+        <figcaption>An example of the OpenCV contour creation functionality.</figcaption>
       </figure>
       <figure class="figure">
-        <img src="images/gentex-robot-integration.jpg" alt="Fanuc robot arm integrated with vision system" />
-        <figcaption>Fanuc robotic arm responding to real-time vision system commands for automated sorting.</figcaption>
+        <img src="templateMatchingImage.webp" alt="Template Matching Example" />
+        <figcaption>A conceptual example of template matching.</figcaption>
       </figure>
     </div>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      The technical implementation required developing Python and OpenCV algorithms capable of handling variable manufacturing lighting conditions while distinguishing between acceptable tolerances and genuine defects. Integration with existing Fanuc robotic infrastructure demanded real-time communication protocols that could transmit pass/fail decisions within strict production timing requirements.
+      Upon successful validation of the prototype, we planned to transition the system to an industrial-grade platform. This involved selecting hardware and software platform which balanced perforance, ease of integration,
+      and budget constraints which were ideal for Gentex's manufacturing environment. The vision system was designed to interface with existing PLCs and robotic controllers via Ethernet/IP and industrial I/O modules.
     </p>
 
-    <p style="line-height: 1.7; margin-bottom: 16px;">
-      Beyond the core vision system, I developed automated barcode scanning solutions that eliminated packaging bottlenecks and designed forward-thinking fixtures for future products, ensuring they would be "vision-ready" from the start of their manufacturing lifecycle.
-    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; align-items: start;">
+      <figure class="figure">
+        <img src="visionInspectionSystemExample.png" alt="Inspection System Example" />
+        <figcaption>Vision-Based Inspection Example</figcaption>
+      </figure>
+      
+      <div>
+        <p style="line-height: 1.7; margin: 0 0 16px 0;">
+          The chosen solution incorporated advanced image processing techniques such as adaptive thresholding and morphological operations to enhance feature detection accuracy. 
+          Camera calibration routines were implemented to correct for lens distortion and ensure precise measurements.
+        </p>
 
-    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
-      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Stack:</strong> Python, OpenCV, GPIO/Industrial I/O, Ethernet/Field I/O, Image Thresholding, Morphological Operations, Camera Calibration, Fanuc Robot Programming</p>
+        <p style="line-height: 1.7; margin: 0;">
+          With a standalone vision inspection system in place, I collaborated with the manufacturing engineering team to design and prototype automation cells.
+          This involved programming Fanuc robots to handle parts, integrating the vision system for real-time inspection, and designing custom end-effectors to facilitate reliable part manipulation.
+          The end result was a flexible automation cell prototype capable of performing complex inspection tasks with minimal human intervention, ready for future deployment on the production floor.
+          Due to project limitations, "plug and play" communication between the vision system and robot controller was not accessible during the internship period. However, to facilitate continuous development,
+          I created Python firmware for a microcontroller capable of translating Ethernet/IP data into discrete I/O signals compatible with the Fanuc robot controller. This enabled real-time inspection interaction and
+          object location feedback during cell testing and development.
+        </p>
+      </div>
     </div>
 
     <div class="image-credits">
       <h4>Image Credits</h4>
       <ul>
         <li><strong>Contour Example:</strong> Image credit: PyImageSearch – “Finding extreme points in contours with OpenCV” (April 11 2016).</li>
-        <li><strong>Robot Integration:</strong> Custom photography - Fanuc robotic arm integration during production testing</li>
+        <li><strong>Template Matching Example:</strong> Image credit: ren482, “Fast Shape-based Template Matching,” DEV Community (Dec 22 2024)</li>
+        <li><strong>Vision-Based Inspection System Example</strong> Image credit: ifm electronic gmbh, “Area calculator illustration” (accessed online at https://www.ifm.com/binaries/content/assets/html5animationen/bildfeldrechner/o2d/area.png
+, © ifm)</li>
       </ul>
-      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original work created during internship project development and testing phases. Images used with permission for portfolio demonstration purposes.</p>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images used for portfolio demonstration purposes only. Gentex logo used for identification purposes only. Gentex Corporation is not affiliated with this site.</p>
     </div>
     
     <!-- Optional image example
@@ -503,10 +623,6 @@
     <p style="line-height: 1.7; margin-bottom: 16px;">
       Safety integration required designing multiple layers of protection including integrated fusing, high-voltage interlocks, and emergency shutdown capabilities. Every connection point and insulation barrier was engineered to exceed FSAE requirements, ensuring both competition safety and long-term reliability throughout the racing season.
     </p>
-
-    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
-      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> Altium Designer, CAN Protocol, High-Voltage Safety Systems, Lithium-Ion Battery Management, Thermal Analysis, FSAE Regulations Compliance</p>
-    </div>
 
     <div class="image-credits">
       <h4>Image Credits</h4>
@@ -566,10 +682,6 @@
       Integration with the robot's control system required developing robust communication protocols that could relay targeting data to the drivetrain and manipulator systems. The vision pipeline provided both absolute positioning and relative movement vectors, enabling smooth autonomous navigation and precise target acquisition throughout the 15-second autonomous periods that often determined match outcomes.
     </p>
 
-    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
-      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> OpenCV, Limelight Vision Processor, Real-Time Image Processing, Adaptive Thresholding, Target Tracking Algorithms, Robot Navigation Integration, Competition Environment Optimization</p>
-    </div>
-
     <div class="image-credits">
       <h4>Image Credits</h4>
       <ul>
@@ -627,10 +739,6 @@
     <p style="line-height: 1.7; margin-bottom: 16px;">
       The web interface development required implementing lightweight HTTP server functionality on the microcontroller while maintaining real-time performance. Users can access live data streams, configure sampling parameters, set alert thresholds, and download historical data logs through an intuitive browser-based interface that adapts to both desktop and mobile devices.
     </p>
-
-    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
-      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> STM32 HAL Programming, FreeRTOS Task Management, Multi-Sensor Integration, Digital Signal Processing, HTTP Server Implementation, IoT Connectivity, Real-Time Data Acquisition</p>
-    </div>
 
     <div class="image-credits">
       <h4>Image Credits</h4>
@@ -690,10 +798,6 @@
       Verification involved developing comprehensive testbenches that could automatically validate processor functionality across various instruction sequences. Using GTKWave for waveform analysis, I could observe signal propagation through each pipeline stage, verify timing relationships, and debug complex interactions between hazard detection logic and data forwarding mechanisms.
     </p>
 
-    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
-      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> VHDL Architecture Design, Pipeline Implementation, Hazard Detection Logic, Data Forwarding, Control Unit Design, ALU Development, GTKWave Simulation, Testbench Verification</p>
-    </div>
-
     <div class="image-credits">
       <h4>Image Credits</h4>
       <ul>
@@ -751,10 +855,6 @@
     <p style="line-height: 1.7; margin-bottom: 16px;">
       Input handling through a classic NES controller required implementing serial communication protocols and robust debouncing algorithms. The system needed to provide responsive gameplay while filtering out mechanical switch bounce and handling the timing-sensitive serial protocol used by Nintendo controllers, all implemented entirely in VHDL logic.
     </p>
-
-    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-top: 20px;">
-      <p style="margin: 0; font-size: 14px;"><strong style="color: var(--accent);">Technical Implementation:</strong> VHDL Game Logic, VGA Timing Generation, Tile Rendering, NES Controller Protocol, Input Debouncing, FPGA Resource Optimization, Real-Time Graphics</p>
-    </div>
 
     <div class="image-credits">
       <h4>Image Credits</h4>
