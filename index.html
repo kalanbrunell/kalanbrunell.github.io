@@ -373,7 +373,10 @@
             <img src="firstChargeCar.JPG" alt="EV Accumulator System" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;">
             <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">450V lithium-ion accumulator system with custom PCBs, safety circuits, and high-voltage integration for Formula-Hybrid electric racing.</p>
           </div>
-          <p style="color:var(--muted); font-size:14px;">View details →</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="background: #fbbf24; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+            <p style="color:var(--muted); font-size:14px; margin: 0;">View details →</p>
+          </div>
         </div>
 
         <div class="card openable" data-open-modal="proj-vision" tabindex="0" role="button" aria-label="Open Vision System details">
@@ -392,10 +395,9 @@
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
-        <div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open ARM Processor details">
+        <!--<div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open ARM Processor details">
           <h3>5-Stage Pipelined ARM Processor</h3>
           <h4 style="margin-top: 0.2em;">Computer Architecture Course</h4>
-          <!-- PREVIEW CONTENT -->
           <div style="margin: 12px 0;">
             <img src="arm-processor-preview.jpg" alt="ARM Processor Architecture" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
             <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 5-stage pipelined ARM processor designed in VHDL with hazard detection, data forwarding, and comprehensive simulation testing.</p>
@@ -406,7 +408,6 @@
         <div class="card openable" data-open-modal="proj-stm32" tabindex="0" role="button" aria-label="Open STM32 Monitor details">
           <h3>Real-Time Environmental Monitor</h3>
           <h4 style="margin-top: 0.2em;">Embedded Systems Project</h4>
-          <!-- PREVIEW CONTENT -->
           <div style="margin: 12px 0;">
             <img src="stm32-monitor-preview.jpg" alt="STM32 Environmental Monitor" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
             <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Multi-sensor environmental monitoring system with FreeRTOS, real-time data acquisition, and web-based visualization interface.</p>
@@ -417,7 +418,6 @@
         <div class="card openable" data-open-modal="proj-fpga" tabindex="0" role="button" aria-label="Open FPGA Game details">
           <h3>FPGA 2048 Game</h3>
           <h4 style="margin-top: 0.2em;">Digital Logic Design</h4>
-          <!-- PREVIEW CONTENT -->
           <div style="margin: 12px 0;">
             <img src="fpga-2048-preview.jpg" alt="FPGA 2048 Game" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
             <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 2048 game implemented in pure VHDL with custom VGA controller, graphics pipeline, and hardware-based game logic.</p>
@@ -425,7 +425,7 @@
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Skills -->
     <section id="skills" class="section">
@@ -589,197 +589,266 @@
   <!-- Projects → EV Accumulator -->
   <template id="tmpl-proj-accumulator">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">High-Voltage Accumulator Design · FSAE Competition · 2024–2025</div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">High-Voltage Accumulator Design · FSAE Competition · 2024–Present</div>
+      <span style="background: #fbbf24; color: #92400e; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+    </div>
     
     <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
-      <p><strong>Project Mission:</strong> Engineer a competition-grade EV accumulator system that prioritizes safety, performance, and serviceability while meeting strict FSAE regulatory requirements.</p>
+      <p><strong>Project Mission:</strong> Engineer a competition-grade EV accumulator system that prioritizes safety, performance, 
+                                            and serviceability while meeting strict FSAE regulatory requirements.</p>
     </div>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      Designing a high-voltage accumulator for Formula SAE presents unique challenges that blend electrical engineering precision with motorsport durability requirements. As Accumulator Project Manager, I led the development of a system capable of delivering consistent power to our electric race car while maintaining the highest safety standards for both competition and testing environments.
+      Designing a high-voltage accumulator for the Formula-Hybrid Electric competition presents unique challenges that blend electrical engineering precision with 
+      motorsport durability requirements. As Accumulator Project Manager, I lead the development of a system capable of delivering 
+      consistent power to our electric race car while maintaining the highest safety standards for both competition and testing environments.
     </p>
 
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/accumulator-cad-overview.jpg" alt="Complete accumulator system CAD design" />
-      <figcaption>Complete accumulator assembly showing cell configuration, cooling system, and safety interlocks.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      The foundation of the system lies in optimizing lithium-ion cell configuration to match our motor controller specifications while ensuring effective thermal management. Each cell placement required careful consideration of current distribution, thermal coupling, and maintenance accessibility—critical factors when dealing with a system that student mechanics must service safely between competition runs.
-    </p>
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
-      <figure class="figure">
-        <img src="images/accumulator-pcb-design.jpg" alt="Battery management PCB layout in Altium Designer" />
-        <figcaption>Custom battery management PCB designed in Altium Designer featuring CAN communication and thermistor monitoring.</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="images/accumulator-assembly.jpg" alt="Physical accumulator assembly process" />
-        <figcaption>Accumulator assembly process showing high-voltage insulation and integrated fusing implementation.</figcaption>
-      </figure>
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 20px 0; align-items: start;">
+      <div>
+        <p style="line-height: 1.7; margin-bottom: 16px;">
+          Our designs integrate hundreds of lithium-ion cells into modular segments that can be easily serviced and monitored. 
+      Each segment includes custom-designed PCBs for thermistor and voltage sensing, along with a dedicated battery management system (BMS)
+      that interfaces with the vehicle's safety and shutdown systems. On last year's accumulator (right), I led the design of the low-voltage safety circuitry, 
+      fusebox layout, and high-current path, ensuring reliable isolation, fault detection, and compliance with FSAE electrical regulations.
+        </p>
+        <p style="line-height: 1.7; margin-bottom: 15px;">
+          The image to the right shows the first successful assembly of our accumulator module after months of design, assembly, and testing. 
+          This milestone validated our electrical architecture and safety systems, paving the way for further performance tuning and competition readiness.
+        </p>
+        <p style="line-height: 1.7; margin-bottom: 15px;">
+          The image below showcases the prototype deployment of a single accumulator module in our car's sidepod. This installation verified mechanical packaging, and 
+          high-voltage connectivity, allowing us to energize the system and perform charge and discharge tests under load conditions.
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <figure class="figure" style="margin: 0 auto; display: block; width: 60%;">
+          <img src="firstChargeAccumulator.JPG" alt="Accumulator Module Assembly" style="width: 100% !important; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Accumulator Module Assembly</figcaption>
+        </figure>
+        <figure class="figure" style="margin: 0;">
+          <img src="accumulator.jpg" alt="Prototype Accumulator Deployment" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Prototype Accumulator Deployment</figcaption>
+        </figure>
+      </div>
     </div>
 
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      The electrical architecture centers around custom PCBs developed in Altium Designer, integrating battery management functions with CAN communication capabilities. These boards monitor individual cell voltages and temperatures while providing real-time data to the vehicle's control systems. The challenge was creating a robust communication network that could operate reliably in the high-vibration, electromagnetic interference environment of competitive racing.
-    </p>
-
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/accumulator-testing.jpg" alt="Accumulator system undergoing electrical testing" />
-      <figcaption>Comprehensive electrical testing to verify FSAE compliance and validate safety systems before competition deployment.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 16px;">
-      Safety integration required designing multiple layers of protection including integrated fusing, high-voltage interlocks, and emergency shutdown capabilities. Every connection point and insulation barrier was engineered to exceed FSAE requirements, ensuring both competition safety and long-term reliability throughout the racing season.
-    </p>
-
-    <div class="image-credits">
-      <h4>Image Credits</h4>
-      <ul>
-        <li><strong>CAD Overview:</strong> SolidWorks rendering - Custom accumulator assembly design</li>
-        <li><strong>PCB Design:</strong> Altium Designer screenshot - Battery management PCB layout</li>
-        <li><strong>Assembly Process:</strong> Tufts Electric Racing team photography - Assembly documentation</li>
-        <li><strong>Testing Setup:</strong> Custom photography - Electrical validation and compliance testing</li>
-      </ul>
-      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images courtesy of Tufts Electric Racing team project documentation. CAD renders and PCB layouts are original design work.</p>
+    <div style="margin-top: -55px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+        <h3 style="color: var(--accent); margin: 0; font-size: 1.4rem;">New Accumulator Design</h3>
+        <span style="background: #fbbf24; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+      </div>
+      <p style="line-height: 1.6; margin: 0 0 16px 0; color: var(--muted); font-size: 0.95rem;">
+        Building on lessons learned from the previous system, our in-developement accumulator focuses on modularity, improved thermal management,
+        and enhanced reliability in a a form factor of 50% smaller than before.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0;">
+        <figure class="figure" style="margin: 0;">
+          <img src="newAccumulatorLayout.png" alt="New accumulator design layout" style="width: 100% !important; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Prototype Accumulator Arrangement</figcaption>
+        </figure>
+        <div>
+          <p style="line-height: 1.7; margin-bottom: 15px;">
+          This new design, built from the ground up with Molicel P42A cells is optimized to match the needs of our chosen motor/inverter 
+          during events like acceleration and autocross. The entire accumulator is designed to be removed from the car as a single unit.
+          </p>
+          <p style="line-height: 1.7; margin-bottom: 15px;">
+          I am developing flexible distribution PCBs to accommodate celltap and thermistor connections while minimizing wiring complexity.
+          Additionally, busbar design is in-progress with a focus on minimizing weight while ensuring low resistance and effective heat dissipation.
+          </p>
+        </div>
+      </div>
     </div>
   </template>
 
   <!-- Projects → Vision System -->
   <template id="tmpl-proj-vision">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">Computer Vision · OpenCV · Robotics · FIRST Competition · 2022-2023</div>
+    <div class="modal__meta">FIRST Robotics Competition · Team Captain & Lead Engineer · 2022-2023</div>
+
+    <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">FIRST Robotics Competition Context</h3>
+    <p style="line-height: 1.5; margin: 0 0 12px 0;">
+      FIRST Robotics Competition challenges high school teams to design, build, and program 120-pound robots within six weeks to compete in alliance-based matches. 
+      Teams must engineer solutions for complex game objectives while adhering to strict size, weight, and safety constraints. The competition demands expertise 
+      across mechanical design, electrical systems, software development, and real-time control.
+    </p>
+
+    <figure class="figure" style="margin: 12px auto; width: 70%; text-align: center;">
+      <img src="chargedUpRobot.png" alt="Charged-Up Robot" style="width: 100%; height: auto;" />
+      <figcaption>Our 2023 Charged-Up competition robot.</figcaption>
+    </figure> 
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Autonomous Vision System Development</h3>
+    </div>
     
-    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
-      <p><strong>Project Mission:</strong> Develop a robust computer vision system for autonomous robot targeting in competitive FIRST Robotics environment with real-time performance requirements.</p>
-    </div>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      Leading the vision system development for FIRST Robotics Competition required creating algorithms that could perform reliably under the unpredictable conditions of competitive gameplay. As Team Captain and Lead Engineer, I developed a comprehensive computer vision pipeline that enabled our robot to autonomously identify and track targets while maintaining the precision needed for successful scoring in high-stakes tournament matches.
-    </p>
-
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/vision-competition-setup.jpg" alt="Robot competing with vision system active" />
-      <figcaption>Competition robot utilizing vision system for autonomous targeting during FIRST Robotics tournament gameplay.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      The technical foundation centered around OpenCV implementation running on a Limelight vision processor, specifically optimized for the lighting challenges present in competition venues. I developed filtering algorithms that could distinguish between valid targets and visual noise while maintaining sub-100ms response times necessary for effective autonomous operation during the brief autonomous periods of matches.
-    </p>
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
-      <figure class="figure">
-        <img src="images/vision-limelight-interface.jpg" alt="Limelight vision processor configuration" />
-        <figcaption>Limelight vision processor setup with custom filtering parameters for target detection and tracking.</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="images/vision-target-tracking.jpg" alt="Real-time target tracking display" />
-        <figcaption>Real-time target tracking interface showing detection confidence and positioning data during autonomous operation.</figcaption>
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 12px 0;">
+      <p style="line-height: 1.5; margin: 0 0 12px 0;">
+        During the 2022 Season, the challenge included collecting and scoring inflated game pieces through an elevated hoop. To compete effectively, which
+        includes autonomous scoring during the first 15 seconds of each match, and precision manual control thereafter, accurate target acquisition was essential.
+        To aid in this task, and promote innovation, the field featured retroreflective tape around scoring targets.
+      </p>
+      <figure class="figure" style="margin: 0;">
+        <img src="rapidReactField.png" alt="Rapid React game field layout" style="width: 100%; height: auto; border-radius: 8px;" />
+        <figcaption style="margin-top: 8px; font-size: 12px;">2022 Rapid React field showing central scoring target.</figcaption>
       </figure>
     </div>
 
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      Algorithm optimization focused on handling the dramatic lighting variations encountered across different competition venues—from bright arena lighting to shadowed field areas. I implemented adaptive thresholding techniques and developed calibration procedures that allowed rapid adjustment between matches, ensuring consistent performance regardless of environmental conditions.
-    </p>
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
+    
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
+      <div>
+        <p style="line-height: 1.5; margin: 0 0 12px 0;">
+          For this engineering challenge, I led the development of a real-time vision system using a Limelight vision processor to detect 
+          retroreflective tape on scoring targets. Using the a COTS Limelight option, we optimized the camera's mounting angle to 
+          maximize target visibility, and programmed it to return the 2D pixel coordinates of detected targets.
+        </p>
+        <p style="line-height: 1.5; margin: 0 0 12px 0;">
+          With this data, we developed a custom algorithm to use the vertical dimension to estimate the distance to the target, and the
+          horizontal dimension to calculate the required robot rotation angle. This information was fed into our swerve drive's autonomous control system,
+          allowing the robot to align itself with the target and adjust launching parameters for efficient scoring.
+        </p>
+        
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+        <p style="line-height: 1.5; margin: 0 0 12px 0;">
+          This system enabled consistent autonomous scoring from up to 10 feet away, significantly improving our match performance.
+        </p>
+      </div>
+      <figure class="figure" style="margin: 0;">
+        <img src="limelightExample.png" alt="Limelight vision processor interface showing target detection" style="width: 100%; height: auto; border-radius: 8px;" />
+        <figcaption style="margin-top: 8px; font-size: 12px;">Limelight interface displaying real-time target detection with retroreflective tape highlighting.</figcaption>
+      </figure>
+    </div>
 
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/vision-field-testing.jpg" alt="Field testing of vision system" />
-      <figcaption>Extensive field testing validating vision system performance across various lighting conditions and target configurations.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 16px;">
-      Integration with the robot's control system required developing robust communication protocols that could relay targeting data to the drivetrain and manipulator systems. The vision pipeline provided both absolute positioning and relative movement vectors, enabling smooth autonomous navigation and precise target acquisition throughout the 15-second autonomous periods that often determined match outcomes.
+    <div style="display: flex; align-items: center; gap: 20px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Swerve Drive System Implementation</h3>
+    </div>
+    
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
+    <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+      Previous to the 2022 season, our tank drive system limited maneuverability and prevented simultaneous movement and rotation, reducing game piece collection efficiency. 
+      To address this, I spearheaded the integration of a swerve drive system, enabling omnidirectional movement and enhanced agility on the field.
     </p>
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
+      <div>
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+          Given our team's limited prior experience with swerve drives, we decided to purchase a COTS swerve module system for rapid deployment.
+          With this, we deployed a FIRST-robotics standard swerve kinematics library and dove into adjusting the control algorithms to suit our robot's dynamics.
+          More specifically, we implemented field-centric control using a gyroscope for orientation feedback, allowing intuitive driver control. This 
+          enabled each direction on the joystick to always correspond to the field's direction relative to the driver, regardless of the robot's heading.
+          Furthermore, we fine-tuned the PID control loops for each wheel module to ensure precise speed and angle adjustments, enhancing overall responsiveness.
+        </p>
+        
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <figure class="figure" style="margin: 0;">
+          <img src="swerveDriveExample.webp" alt="MK4 Swerve Drive Module" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: -10px; font-size: 12px;">MK4 swerve module showing independent steering and drive motor configuration.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Second row with swapped layout: prototype frame left, results text right -->
+    <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px; margin: 4px 0 12px 0; align-items: start;">
+      <div>
+        <figure class="figure" style="margin: 0;">
+          <img src="swerveDrivePrototypeFrame.png" alt="Swerve Drive Prototype Frame" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 0px; font-size: 12px;">Our team's prototype swerve drive frame during development and testing.</figcaption>
+        </figure>
+      </div>
+      
+      <div>
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+          The swerve drive system significantly improved our robot's maneuverability, allowing for complex movement patterns and rapid repositioning during matches. 
+          This upgrade contributed to a massive increase in team performance, culminating in our highest-ever regional placement at the time, and 
+          qualifying for the district championships.
+        </p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Dynamic Platform Balancing System</h3>
+    </div>
+    
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
+    <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+      The endgame of the 2023 challenge required balancing on a dynamic "Charge Station" platform for bonus points, but unpredictable motion caused most robots to fall off. 
+      I needed to develop an IMU-based control system for stable equilibrium while compensating for external disturbances from other robots.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
+      <div>
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+          As described above, a IMU provided orientation feedback for field-centric driving and was already integrated into the robot. 
+          With this, I collaborated on the development of a PID-based balancing algorithm that adjusted wheel speeds in real-time to maintain level orientation.
+          This enabled the programming of a completely autonomous balancing routine that could be activated during the endgame period.
+          Once balanced, the 2 of the 4 wheels would rotate 90 degrees to lock the robot in place, preventing the robot from rolling off due to external forces.
+        </p>
+        
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+          Achieved an estimated 95% success rate in autonomous balancing attempts during competition matches. 
+          Consistent performance made our team a valuable alliance partner for endgame strategies.
+        </p>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <figure class="figure" style="margin: 0;">
+          <img src="chargedUpBalance.png" alt="Charged Up Balancing Challenge" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Robot demonstrating autonomous balancing on the Charge Station during the 2023 Charged Up challenge.</figcaption>
+        </figure>
+      </div>
+    </div>
 
     <div class="image-credits">
       <h4>Image Credits</h4>
       <ul>
-        <li><strong>Competition Setup:</strong> FIRST Robotics team photography - Competition robot in action</li>
-        <li><strong>Limelight Interface:</strong> Custom screenshot - Vision processor configuration interface</li>
-        <li><strong>Target Tracking:</strong> Custom screenshot - Real-time detection and tracking display</li>
-        <li><strong>Field Testing:</strong> Lakerbots 8046 team photography - Pre-competition validation testing</li>
+        <li><strong>Rapid React Field Layout:</strong> AutomationDirect. "2022 FIRST Robotics Rapid React 3D Printed Field." AutomationDirect Library, accessed November 6, 2025, https://library.automationdirect.com/2022-first-robotics-rapid-react-3d-printed-field/</li>
+        <li><strong>MK4 Swerve Module:</strong> Swerve Drive Specialties. "MK4 Swerve Module." Swerve Drive Specialties Products, accessed November 6, 2025, https://www.swervedrivespecialties.com/products/mk4-swerve-module</li>
+        <li><strong>Limelight Example Interface:</strong> Limelight Vision. "Getting Started with Pipelines." Limelight Documentation, accessed November 6, 2025, https://docs.limelightvision.io/docs/docs-limelight/getting-started/pipelines</li>
       </ul>
-      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Competition and testing images courtesy of Lakerbots 8046 FRC Team. Interface screenshots are original development work.</p>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images courtesy of Lakerbots 8046 FRC Team. Field layout, swerve module, and Limelight documentation images used for educational demonstration purposes.</p>
     </div>
   </template>
 
-  <!-- Projects → STM32 Environmental Monitor -->
-  <template id="tmpl-proj-stm32">
-    <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">STM32 Embedded Systems · FreeRTOS · IoT Development · 2024</div>
-    
-    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
-      <p><strong>Project Mission:</strong> Design a comprehensive real-time environmental monitoring system using STM32 microcontroller with multi-sensor integration and remote web interface capabilities.</p>
-    </div>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      Developing a professional-grade environmental monitoring system required balancing real-time performance constraints with the complexity of managing multiple sensor inputs, data processing, and network communication. This project challenged me to implement advanced embedded systems concepts including real-time operating systems, interrupt-driven programming, and IoT connectivity within the resource constraints of microcontroller hardware.
-    </p>
-
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/stm32-system-overview.jpg" alt="Complete STM32 monitoring system setup" />
-      <figcaption>Complete environmental monitoring system showing STM32 controller, sensor array, and network connectivity module.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      The core architecture utilizes FreeRTOS to manage concurrent tasks including sensor data acquisition, signal processing, network communication, and local data logging. Each sensor—temperature, humidity, air quality, and light—operates on independent task schedules optimized for their specific sampling requirements while maintaining system responsiveness and power efficiency.
-    </p>
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
-      <figure class="figure">
-        <img src="images/stm32-pcb-design.jpg" alt="Custom PCB layout for sensor integration" />
-        <figcaption>Custom PCB design integrating STM32 controller with sensor interfaces and power management circuitry.</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="images/stm32-sensor-array.jpg" alt="Sensor array configuration and calibration" />
-        <figcaption>Multi-sensor array with precision calibration setup for accurate environmental data collection.</figcaption>
-      </figure>
-    </div>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      Data processing involves implementing digital filtering algorithms to smooth sensor readings while detecting significant environmental changes. The system maintains local data buffers with configurable retention periods, enabling trend analysis and historical data retrieval. Critical threshold monitoring provides immediate alerting capabilities for out-of-range conditions.
-    </p>
-
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/stm32-web-interface.jpg" alt="Web interface showing real-time monitoring dashboard" />
-      <figcaption>Real-time web dashboard displaying environmental data with historical trends and alert management.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 16px;">
-      The web interface development required implementing lightweight HTTP server functionality on the microcontroller while maintaining real-time performance. Users can access live data streams, configure sampling parameters, set alert thresholds, and download historical data logs through an intuitive browser-based interface that adapts to both desktop and mobile devices.
-    </p>
-
-    <div class="image-credits">
-      <h4>Image Credits</h4>
-      <ul>
-        <li><strong>System Overview:</strong> Custom photography - Complete monitoring system hardware setup</li>
-        <li><strong>PCB Design:</strong> KiCad/Altium screenshot - Custom sensor integration PCB layout</li>
-        <li><strong>Sensor Array:</strong> Custom photography - Multi-sensor calibration and configuration</li>
-        <li><strong>Web Interface:</strong> Custom screenshot - Real-time monitoring dashboard interface</li>
-      </ul>
-      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original work from independent embedded systems project. Hardware photography and software interface screenshots are personal development work.</p>
-    </div>
-  </template>
-
-  <!-- Projects → 5-Stage ARM Processor -->
+  
   <template id="tmpl-proj-arm">
-    <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">Digital Design · VHDL Architecture · Pipelined Processors · 2024</div>
-    
+    //opened content
     <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
-      <p><strong>Project Mission:</strong> Engineer a complete 5-stage pipelined processor from scratch, implementing advanced concepts like hazard detection and data forwarding entirely in VHDL.</p>
+      <p><strong>Project Mission:</strong> Engineer a complete 5-stage pipelined processor from scratch, implementing advanced concepts 
+        like hazard detection and data forwarding entirely in VHDL.</p>
     </div>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      Building a processor from the ground up provides deep insights into computer architecture that no amount of theoretical study can match. This project required understanding every logic gate, every timing constraint, and every data path that enables modern computing. Starting with basic building blocks, I constructed a complete processing pipeline capable of executing ARM-like instructions with performance optimizations.
+      As the term project for my Computer Architecture course, I designed and implemented a simplified ARM-like processor using VHDL.
+      The processor supports a subset of ARM instructions (specifically LEGv8), including arithmetic operations, memory access, and control flow.
+    </p>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The project began with designing foundational components like the PC, instruction and data memory, register file, and ALU.
+      I first wired it together into a single-cycle architecture to validate basic functionality before transitioning to a pipelined design.
+      This shift to pipelining introduced challenges around instruction dependencies and timing, which I addressed through hazard detection 
+      and data forwarding mechanisms.
     </p>
 
     <figure class="figure" style="margin: 20px 0;">
       <img src="images/arm-architecture-diagram.jpg" alt="5-stage ARM processor architecture overview" />
-      <figcaption>Complete processor architecture showing the five pipeline stages: Instruction Fetch, Instruction Decode, Execute, Memory Access, and Write Back.</figcaption>
+      <figcaption>Complete processor architecture showing the five pipeline stages: Instruction Fetch, Instruction Decode, 
+        Execute, Memory Access, and Write Back.</figcaption>
     </figure>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      The pipelining implementation follows the classic five-stage approach: Instruction Fetch, Instruction Decode, Execute, Memory Access, and Write Back. Each stage operates concurrently with others, creating a processing pipeline that can theoretically complete one instruction per clock cycle. However, the real complexity emerges when handling data hazards—situations where instructions depend on results from previous instructions still moving through the pipeline.
+      The pipelining implementation follows the classic five-stage approach: Instruction Fetch, Instruction Decode, 
+      Execute, Memory Access, and Write Back. Each stage operates concurrently with others, creating a processing pipeline that can 
+      theoretically complete one instruction per clock cycle. However, the real complexity emerges when handling data hazards—situations 
+      where instructions depend on results from previous instructions still moving through the pipeline.
     </p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
@@ -794,7 +863,9 @@
     </div>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      Hazard detection and data forwarding required implementing sophisticated control logic that could identify when instructions needed data not yet available and either forward results from later pipeline stages or insert pipeline stalls. This involved creating forwarding paths between the Execute and Write Back stages while maintaining timing integrity across the entire processor.
+      Hazard detection and data forwarding required implementing sophisticated control logic that could identify when instructions 
+      needed data not yet available and either forward results from later pipeline stages or insert pipeline stalls. 
+      This involved creating forwarding paths between the Execute and Write Back stages while maintaining timing integrity across the entire processor.
     </p>
 
     <figure class="figure" style="margin: 20px 0;">
@@ -803,7 +874,9 @@
     </figure>
 
     <p style="line-height: 1.7; margin-bottom: 16px;">
-      Verification involved developing comprehensive testbenches that could automatically validate processor functionality across various instruction sequences. Using GTKWave for waveform analysis, I could observe signal propagation through each pipeline stage, verify timing relationships, and debug complex interactions between hazard detection logic and data forwarding mechanisms.
+      Verification involved developing comprehensive testbenches that could automatically validate processor functionality across various 
+      instruction sequences. Using GTKWave for waveform analysis, I could observe signal propagation through each pipeline stage, verify 
+      timing relationships, and debug complex interactions between hazard detection logic and data forwarding mechanisms.
     </p>
 
     <div class="image-credits">
