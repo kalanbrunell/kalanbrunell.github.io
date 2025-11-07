@@ -93,9 +93,143 @@
   /* Headshot */
   .headshot{ width:160px; height:160px; border-radius:50%; object-fit:cover; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,.14); }
 
-  /* Skills pills */
-  .pill{ display:inline-block; padding:6px 12px; border-radius:999px; font-size:14px; margin:6px 8px 0 0; background:transparent; border:1px solid #a7a59a; color:#0f2a45; }
-  .skills h4{ margin:12px 0 4px; color:var(--muted); font-weight:600; letter-spacing:.02em; font-size:14px; }
+  /* Skills progress bars */
+  .skill-category { margin-bottom: 40px; }
+  .skill-category h4 { 
+    margin: 0 0 20px 0; 
+    color: var(--text); 
+    font-weight: 600; 
+    letter-spacing: 0.02em; 
+    font-size: 16px; 
+    text-transform: uppercase;
+  }
+  .skill-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-left: 220px; /* Align with progress bars */
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 20px;
+  }
+  .skill-name {
+    min-width: 200px;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .skill-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6b7280, #374151);
+    border-radius: 4px;
+    transition: width 1.2s ease-in-out;
+    width: 0 !important; /* Start at 0, will be animated by JS */
+  }
+  .skill-fill.animated {
+    width: var(--target-width) !important; /* Will be set by JS */
+  }
+
+  /* Project card animations */
+  .card {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Education & Awards */
+  .education-awards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .education-item, .awards-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid var(--accent);
+  }
+  @media (max-width: 768px) {
+    .education-awards {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  .education-header, .award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 16px;
+  }
+  .education-header h3, .award-header h4 {
+    margin: 0;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .education-date, .award-date {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .education-item h4 {
+    margin: 0;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .education-item h5 {
+    margin: 8px 0 12px 0;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .education-details {
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text);
+  }
+  .awards-section h3 {
+    margin: 0 0 20px 0;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .award-item {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .award-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .award-item p {
+    margin: 4px 0 0 0;
+    line-height: 1.5;
+    color: var(--muted);
+  }
 
   /* Buttons */
   .btn{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; background:var(--accent); color:#fff; text-decoration:none; transition:transform .05s ease, background .2s ease; }
@@ -109,6 +243,15 @@
   .resume-cta{ display:flex; flex-direction:column; gap:12px; }
   .resume-cta__row{ display:flex; gap:14px; flex-wrap:wrap; }
   .resume-cta small{ color:var(--muted); }
+  
+  /* Resume modal iframe styling */
+  .resume-iframe-container {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
 
   /* Clickable cards */
   .openable{ cursor:pointer; user-select:none; }
@@ -275,6 +418,7 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
+      <a href="#education">Education & Awards</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -307,8 +451,14 @@
       <!-- Right column (row 2) — Resume card stacked under Contact -->
       <div class="card hero-side resume-card">
         <h2>Resume</h2>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a class="btn" href="resume.pdf" download>Download Resume (PDF)</a>
+        <div class="resume-cta">
+          <div class="resume-cta__row">
+            <button class="btn openable" data-open-modal="resume-view" tabindex="0" role="button" aria-label="View Resume">View Resume</button>
+          </div>
+          <div class="resume-cta__row">
+            <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" download>Download PDF</a>
+          </div>
+          <small>Click to view online or download as PDF</small>
         </div>
       </div>
     </section>
@@ -395,79 +545,300 @@
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
-        <!--<div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open ARM Processor details">
-          <h3>5-Stage Pipelined ARM Processor</h3>
-          <h4 style="margin-top: 0.2em;">Computer Architecture Course</h4>
+        <div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open ARM Processor details">
+          <h3>5-Stage Pipelined Processor</h3>
           <div style="margin: 12px 0;">
-            <img src="arm-processor-preview.jpg" alt="ARM Processor Architecture" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <img src="scCPUEntity.png" alt="Single-cycle CPU Entity Declaration" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
             <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 5-stage pipelined ARM processor designed in VHDL with hazard detection, data forwarding, and comprehensive simulation testing.</p>
           </div>
-          <p style="color:var(--muted); font-size:14px;">View details →</p>
-        </div>
-
-        <div class="card openable" data-open-modal="proj-stm32" tabindex="0" role="button" aria-label="Open STM32 Monitor details">
-          <h3>Real-Time Environmental Monitor</h3>
-          <h4 style="margin-top: 0.2em;">Embedded Systems Project</h4>
-          <div style="margin: 12px 0;">
-            <img src="stm32-monitor-preview.jpg" alt="STM32 Environmental Monitor" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
-            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Multi-sensor environmental monitoring system with FreeRTOS, real-time data acquisition, and web-based visualization interface.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="background: #fbbf24; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+            <p style="color:var(--muted); font-size:14px; margin: 0;">View details →</p>
           </div>
-          <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
 
         <div class="card openable" data-open-modal="proj-fpga" tabindex="0" role="button" aria-label="Open FPGA Game details">
           <h3>FPGA 2048 Game</h3>
-          <h4 style="margin-top: 0.2em;">Digital Logic Design</h4>
           <div style="margin: 12px 0;">
-            <img src="fpga-2048-preview.jpg" alt="FPGA 2048 Game" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <img src="2048Game.jpeg" alt="FPGA 2048 Game Screenshot" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
             <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 2048 game implemented in pure VHDL with custom VGA controller, graphics pipeline, and hardware-based game logic.</p>
           </div>
           <p style="color:var(--muted); font-size:14px;">View details →</p>
         </div>
+
+        <div class="card openable" data-open-modal="proj-color-following" tabindex="0" role="button" aria-label="Open details">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Autonomous Color Following Vehicle</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Junior Design Project - Autonomous Systems</h4>
+            </div>
+          </div>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <div style="margin: 12px 0;">
+            <!-- <img src="color-following-vehicle.jpg" alt="Autonomous Color Following Vehicle" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;"> -->
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Junior design project developing an autonomous vehicle system using embedded ATMega MCU for color detection and navigation.</p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="background: #fbbf24; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+            <p style="color:var(--muted); font-size:14px; margin: 0;">View details →</p>
+          </div>
+        </div>
+
+        <div class="card openable" data-open-modal="proj-pcbs" tabindex="0" role="button" aria-label="Open details">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Electric Vehicle Safety PCB Design</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Tufts Electric Racing - Formula-Hybrid Electric</h4>
+            </div>
+            <img src="TERLogo.png" alt="Tufts Electric Racing" style="height: 32px; width: auto; opacity: 1; flex-shrink: 0; margin-left: 12px;">
+          </div>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <div style="margin: 12px 0; text-align: center;">
+            <img src="activeHighLatch.png" alt="Latch PCB" style="width: 65%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;"></p>
+          </div>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
+        </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- Skills -->
     <section id="skills" class="section">
-      <h2>Skills</h2>
+      <h2>Skillset</h2>
       <div class="skills">
-        <h4>Programming</h4>
-        <span class="pill">C/C++</span>
-        <span class="pill">Python</span>
-        <span class="pill">FreeRTOS</span>
-        <span class="pill">CMSIS</span>
-        <span class="pill">ARM Assembly</span>
-        <span class="pill">Object-Oriented Programming</span>
 
-        <h4>Embedded &amp; Electronics</h4>
-        <span class="pill">FPGA</span>
-        <span class="pill">VHDL</span>
-        <span class="pill">Digital Logic Design</span>
-        <span class="pill">GTKWave</span>
-        <span class="pill">UART</span>
-        <span class="pill">CAN</span>
-        <span class="pill">I²C</span>
+        <div class="skill-category">
+          <h4>Programming</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Expert</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">C/C++</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="80%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="80%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">ARM Assembly</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="50%"></div>
+            </div>
+          </div>
+          
+        </div>
 
-        <h4>PCB &amp; Circuit Design</h4>
-        <span class="pill">Altium Designer</span>
-        <span class="pill">KiCad</span>
-        <span class="pill">LTspice</span>
-        <span class="pill">Benchtop Tools</span>
+        <div class="skill-category">
+          <h4>Digital Design</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Expert</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">VHDL</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Digital Logic Design</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">FPGA Programming</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="50%"></div>
+            </div>
+          </div>
+        </div>
 
-        <h4>Robotics &amp; Automation</h4>
-        <span class="pill">OpenCV</span>
-        <span class="pill">Limelight</span>
-        <span class="pill">Robotic Control</span>
-        <span class="pill">PLC Programming</span>
+        <div class="skill-category">
+          <h4>Embedded</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Expert</span>
+          </div>
 
-        <h4>Tools</h4>
-        <span class="pill">Solidworks</span>
-        <span class="pill">Onshape</span>
-        <span class="pill">MATLAB</span>
-        <span class="pill">Git</span>
-        <span class="pill">LaTeX</span>
-        <span class="pill">ECOs</span>
-        <span class="pill">Microsoft Office</span>
+          <div class="skill-item">
+            <span class="skill-name">RTOS</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="45%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">CMSIS</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="45%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">HAL</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="45%"></div>
+            </div>
+          </div>
+  
+        </div>
+
+        <div class="skill-category">
+          <h4>PCB DESIGN & ELECTRONICS</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Expert</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Altium Designer</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="55%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">KiCad</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">LTspice</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="55%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Benchtop Electronics Equipment</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4>Other Engineering Tools</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Expert</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Solidworks</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Onshape</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="70%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">3D Printing</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="95%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Awards -->
+    <section id="education" class="section">
+      <h2>Education & Awards</h2>
+      
+      <div class="education-awards">
+        <div class="education-column">
+          <div class="education-item">
+            <h3 style="margin: 0 0 20px 0; color: var(--text); font-size: 18px; font-weight: 600;">Education</h3>
+            <div class="education-header">
+              <h4>Bachelor of Science in Computer Engineering</h4>
+              <span class="education-date">Expected May 2027</span>
+            </div>
+            <h5>Tufts University - School of Engineering</h5>
+            <p class="education-details">
+              GPA: 3.55/4.0 · Dean's List</p>
+              
+            <div style="margin: 16px 0;"></div>
+              
+            <p class="education-details">
+              Relevant Coursework: Computer Organization, Digital Logic, Real-Time Embedded Systems, General Embedded Systems, 
+                Data Structures, Circuits and Electronics 
+            </p>
+          </div>
+          
+          <div class="education-item" style="margin-top: 24px;">
+            <div class="education-header">
+              <h4>High School Diploma</h4>
+              <span class="education-date">Graduated June 2023</span>
+            </div>
+            <h5>Inter-Lakes High School</h5>
+            <p class="education-details">
+              GPA: 4.7/4.0</p>
+              
+            <div style="margin: 16px 0;"></div>
+              
+            <p class="education-details">
+              Relevant Activities: Robotics Team Captain, National Honor Society VP, 
+              AP Scholar with Distinction, Future Business Leaders of America, Varsity Soccer.
+            </p>
+          </div>
+        </div>
+
+        <div class="awards-column">
+          <div class="awards-section">
+            <h3>Awards & Recognition</h3>
+
+            <div class="award-item">
+              <div class="award-header">
+                <h4>Dean's List</h4>
+                <span class="award-date">2023, 2024, 2025</span>
+              </div>
+              <p>Awarded for maintaining a GPA above 3.2</p>
+            </div>
+
+            <div class="award-item">
+              <div class="award-header">
+                <h4>FIRST Robotics Competition - World Championship Qualifiers</h4>
+                <span class="award-date">2023</span>
+              </div>
+              <p>Led team to the World Championship as Team Captain and Lead Engineer</p>
+            </div>
+
+            <div class="award-item">
+              <div class="award-header">
+                <h4>Xerox Award for Innovation and Information Technology</h4>
+                <span class="award-date">2023</span>
+              </div>
+              <p>Recognized for outstanding contributions to technology and innovation in robotics</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -578,12 +949,7 @@
       </ul>
       <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images used for portfolio demonstration purposes only. Gentex logo used for identification purposes only. Gentex Corporation is not affiliated with this site.</p>
     </div>
-    
-    <!-- Optional image example
-    <figure class="figure">
-      <img src="images/gentex-cell.jpg" alt="Gentex vision inspection cell" />
-      <figcaption>Vision cell prototype prior to deployment.</figcaption>
-    </figure> -->
+  
   </template>
 
   <!-- Projects → EV Accumulator -->
@@ -663,6 +1029,166 @@
     </div>
   </template>
 
+  <!-- Projects → Safety System PCBs -->
+  <template id="tmpl-proj-safety-pcbs">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">Safety System PCB Design · Tufts Electric Racing · 2024–Present</div>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      As part of Tufts Electric Racing's commitment to safety and regulatory compliance, I designed and developed critical safety system PCBs 
+      that ensure safe operation of our high-voltage electric racing vehicle. These systems monitor, control, and protect both the vehicle 
+      and driver during competition and testing scenarios.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Shutdown Circuit PCB</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The shutdown circuit serves as the primary safety interlock system, monitoring critical vehicle parameters and providing immediate 
+      power disconnection capabilities. This PCB integrates multiple safety sensors and implements redundant shutdown pathways to ensure 
+      reliable operation under all conditions.
+    </p>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="shutdown-circuit-pcb.jpg" alt="Shutdown Circuit PCB Design" />
+      <figcaption>Shutdown circuit PCB showing safety interlock pathways and emergency disconnection capabilities.</figcaption>
+    </figure>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Voltage Monitor PCB</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      Real-time voltage monitoring across the high-voltage system is critical for both safety and performance optimization. 
+      This PCB continuously monitors battery pack voltage levels and provides alerts for undervoltage, overvoltage, and 
+      imbalance conditions that could indicate potential safety hazards.
+    </p>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="voltage-monitor-pcb.jpg" alt="Voltage Monitor PCB Design" />
+      <figcaption>Voltage monitoring PCB with precision measurement circuits and safety threshold detection.</figcaption>
+    </figure>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Emergency Isolation System</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The emergency isolation system provides rapid disconnection of high-voltage systems during emergency situations. 
+      This PCB controls high-power contactors and implements fail-safe logic to ensure the vehicle can be safely 
+      isolated from all power sources within milliseconds of an emergency signal.
+    </p>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="isolation-system-pcb.jpg" alt="Emergency Isolation PCB Design" />
+      <figcaption>Emergency isolation PCB with high-power contactor control and fail-safe logic implementation.</figcaption>
+    </figure>
+  </template>
+
+  <!-- Projects → Autonomous Color Following Vehicle -->
+  <template id="tmpl-proj-color-following">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">Junior Design Project · Tufts University · September 2025-Present</div>
+      <span style="background: #fbbf24; color: #92400e; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+    </div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> As part of my junior design project at Tufts University, I am developing an autonomous vehicle system that can navigate 
+      and follow colored objects using embedded systems and custom sensor arrays. The project challenges small teams to integrate 
+      hardware design, embedded programming, and control systems to create a fully autonomous robotic platform capable of 
+      real-time decision making and wireless coordination with other vehicles.</p>
+    </div>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The system is powered by an embedded ATMega MCU and incorporates custom hardware design, embedded C++ programming, 
+      and wireless communication systems for real-time control and telemetry applications. This junior design project 
+      emphasizes practical engineering skills including PCB design, sensor integration, and embedded software development.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Embedded Detection System</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      To enable color detection for line following, our team created a purpose-built photodiode array and algorithm to use embedded ADCs 
+      for course marker detection. The system processes analog sensor data in real-time to identify navigation targets and guide 
+      autonomous vehicle movement without relying on external computer vision processing, demonstrating embedded systems design principles.
+    </p>
+    
+    <!-- <figure class="figure" style="margin: 20px 0;">
+      <img src="photodiode-array.jpg" alt="Custom Photodiode Array Design" />
+      <figcaption>Purpose-built photodiode array system for embedded color detection and course marker identification.</figcaption>
+    </figure> -->
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">WebSocket Communication</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The project requirements include implementing WebSocket communication to enable real-time telemetry, remote control 
+      capabilities, and interaction with other student vehicles on the course. This wireless interface allows for dynamic control 
+      adjustments and coordination between multiple autonomous systems, simulating real-world multi-robot coordination scenarios.
+    </p>
+    
+    <!-- <figure class="figure" style="margin: 20px 0;">
+      <img src="websocket-interface.jpg" alt="WebSocket Control Interface" />
+      <figcaption>Real-time telemetry and control interface showing vehicle status, sensor data, and remote operation capabilities.</figcaption>
+    </figure> -->
+  </template>
+
+  <!-- Projects → Safety PCBs -->
+  <template id="tmpl-proj-pcbs">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">PCB Design · Tufts Electric Racing · 2024</div>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      As part of Tufts Electric Racing's commitment to safety and regulatory compliance, I designed and developed critical safety system PCBs 
+      that ensure safe operation of our high-voltage electric racing vehicle. These systems monitor, control, and protect both the vehicle 
+      and driver during competition and testing scenarios.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Fusebox PCB</h3>
+    </div>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="fuseboxPCB.jpg" alt="Fusebox PCB Design" />
+      <figcaption>Fusebox PCB design showing circuit layout and component placement for high-voltage protection systems.</figcaption>
+    </figure>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The fusebox PCB serves as a critical protection and distribution hub for the vehicle's electrical systems. This board incorporates 
+      multiple fuse circuits, all with visual indicators for blown fuses, and is designed to handle high-current loads while ensuring
+      safe operation under fault conditions. 
+    </p>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="fuseboxPCBpopulated.jpg" alt="Populated Fusebox PCB" />
+      <figcaption>Fully populated fusebox PCB showing mounted components, fuses, and final assembly ready for vehicle integration.</figcaption>
+    </figure>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Safety Interlocks PCB</h3>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin: 20px 0;">
+      <div>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+          Safety interlocks allowed the safety system to stay energized unless a fault was detected. Active high and active low 
+          latches were designed for deployment with various sensor types, including the motor controller, BMS, and high-voltage connection interlock fault signals.
+          The circuits were designed to always begin in the disconnected state on power-up, and only energize when all safety conditions were met. Furthermore, 
+          the latches were designed to fail-safe, meaning any loss of power or fault condition would immediately de-energize the system.
+        </p>
+      </div>
+      <figure class="figure" style="margin: 0;">
+        <img src="activeHighLatch.png" alt="Active High Latch Circuit Design" />
+        <figcaption>Active high latch circuit design showing PNP-based fault signal processing and safety interlock logic.</figcaption>
+      </figure>
+    </div>
+  </template>
+
   <!-- Projects → Vision System -->
   <template id="tmpl-proj-vision">
     <!-- OPENED CONTENT (shows inside the modal) -->
@@ -729,14 +1255,14 @@
     </div>
     
     <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
-    <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
       Previous to the 2022 season, our tank drive system limited maneuverability and prevented simultaneous movement and rotation, reducing game piece collection efficiency. 
       To address this, I spearheaded the integration of a swerve drive system, enabling omnidirectional movement and enhanced agility on the field.
     </p>
     <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
       <div>
         <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
-        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
           Given our team's limited prior experience with swerve drives, we decided to purchase a COTS swerve module system for rapid deployment.
           With this, we deployed a FIRST-robotics standard swerve kinematics library and dove into adjusting the control algorithms to suit our robot's dynamics.
           More specifically, we implemented field-centric control using a gyroscope for orientation feedback, allowing intuitive driver control. This 
@@ -763,13 +1289,19 @@
         </figure>
       </div>
       
-      <div>
-        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
-        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
-          The swerve drive system significantly improved our robot's maneuverability, allowing for complex movement patterns and rapid repositioning during matches. 
-          This upgrade contributed to a massive increase in team performance, culminating in our highest-ever regional placement at the time, and 
-          qualifying for the district championships.
-        </p>
+      <div style="display: grid; grid-template-columns: 1fr 200px; gap: 20px; align-items: start;">
+        <div>
+          <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+          <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+            The swerve drive system significantly improved our robot's maneuverability, allowing for complex movement patterns and rapid repositioning during matches. 
+            This upgrade contributed to a massive increase in team performance, culminating in our highest-ever regional placement at the time, and 
+            qualifying for the district championships.
+          </p>
+        </div>
+        <figure class="figure" style="margin: 0;">
+          <img src="activeHighLatch.png" alt="Active high latch circuit diagram" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Active high latch circuit used in robot control systems for maintaining state during autonomous operation.</figcaption>
+        </figure>
       </div>
     </div>
 
@@ -778,14 +1310,14 @@
     </div>
     
     <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
-    <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
       The endgame of the 2023 challenge required balancing on a dynamic "Charge Station" platform for bonus points, but unpredictable motion caused most robots to fall off. 
       I needed to develop an IMU-based control system for stable equilibrium while compensating for external disturbances from other robots.
     </p>
     <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
       <div>
         <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
-        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
           As described above, a IMU provided orientation feedback for field-centric driving and was already integrated into the robot. 
           With this, I collaborated on the development of a PID-based balancing algorithm that adjusted wheel speeds in real-time to maintain level orientation.
           This enabled the programming of a completely autonomous balancing routine that could be activated during the endgame period.
@@ -793,7 +1325,7 @@
         </p>
         
         <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
-        <p style="line-height: 1.6; margin: 0 0 12px 0; color: var(--muted); font-size: 0.95rem;">
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
           Achieved an estimated 95% success rate in autonomous balancing attempts during competition matches. 
           Consistent performance made our team a valuable alliance partner for endgame strategies.
         </p>
@@ -818,9 +1350,13 @@
     </div>
   </template>
 
-  
+  <!--Processor Project-->
   <template id="tmpl-proj-arm">
-    //opened content
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">5-Stage Pipelined ARM Processor · Computer Architecture Course · 2025</div>
+      <span style="background: #fbbf24; color: #92400e; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+    </div>
+    
     <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
       <p><strong>Project Mission:</strong> Engineer a complete 5-stage pipelined processor from scratch, implementing advanced concepts 
         like hazard detection and data forwarding entirely in VHDL.</p>
@@ -838,10 +1374,9 @@
       and data forwarding mechanisms.
     </p>
 
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/arm-architecture-diagram.jpg" alt="5-stage ARM processor architecture overview" />
-      <figcaption>Complete processor architecture showing the five pipeline stages: Instruction Fetch, Instruction Decode, 
-        Execute, Memory Access, and Write Back.</figcaption>
+    <figure class="figure" style="margin: 20px auto; width: 60%; text-align: center;">
+      <img src="singleCycleDiagram.png" alt="Single-cycle ARM processor architecture diagram" style="width: 100%; height: auto;" />
+      <figcaption>Single-cycle processor architecture.</figcaption>
     </figure>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
@@ -853,25 +1388,14 @@
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
       <figure class="figure">
-        <img src="images/arm-vhdl-code.jpg" alt="VHDL code implementation showing control unit logic" />
-        <figcaption>Control unit VHDL implementation managing instruction decoding and pipeline control signals.</figcaption>
+        <img src="scCPUEntity.png" alt="Single-cycle CPU entity declaration and top-level architecture" />
+        <figcaption>Single-cycle CPU entity declaration.</figcaption>
       </figure>
       <figure class="figure">
-        <img src="images/arm-alu-design.jpg" alt="Arithmetic Logic Unit design and implementation" />
-        <figcaption>Custom ALU design built from fundamental logic operations, supporting arithmetic and logical instructions.</figcaption>
+        <img src="cpuWaveform.png" alt="CPU simulation waveform analysis" />
+        <figcaption>GTKWave simulation waveform showing processor instruction execution.</figcaption>
       </figure>
     </div>
-
-    <p style="line-height: 1.7; margin-bottom: 20px;">
-      Hazard detection and data forwarding required implementing sophisticated control logic that could identify when instructions 
-      needed data not yet available and either forward results from later pipeline stages or insert pipeline stalls. 
-      This involved creating forwarding paths between the Execute and Write Back stages while maintaining timing integrity across the entire processor.
-    </p>
-
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/arm-gtkwave-simulation.jpg" alt="GTKWave simulation showing processor timing and signals" />
-      <figcaption>GTKWave simulation demonstrating pipeline operation, hazard detection, and data forwarding in action during instruction execution.</figcaption>
-    </figure>
 
     <p style="line-height: 1.7; margin-bottom: 16px;">
       Verification involved developing comprehensive testbenches that could automatically validate processor functionality across various 
@@ -882,70 +1406,86 @@
     <div class="image-credits">
       <h4>Image Credits</h4>
       <ul>
-        <li><strong>Architecture Diagram:</strong> Custom design - Processor pipeline architecture visualization</li>
-        <li><strong>VHDL Code:</strong> Custom screenshot - Control unit implementation in development environment</li>
-        <li><strong>ALU Design:</strong> Custom screenshot - Arithmetic logic unit VHDL implementation</li>
-        <li><strong>GTKWave Simulation:</strong> Custom screenshot - Processor timing analysis and waveform verification</li>
+        <li><strong>Single-Cycle Architecture Diagram:</strong> Patterson, David A., and John L. Hennessy. <em>Computer 
+          Organization and Design - The Hardware/Software Interface (Arm® Edition)</em>. ISBN: 978-0-12-801733-3.</li>
       </ul>
-      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original academic work from Computer Architecture coursework. Code screenshots and simulations are personal development work.</p>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Textbook diagram used for educational purposes under fair use. Code screenshots and simulations are personal development work.</p>
     </div>
   </template>
 
   <!-- Projects → FPGA 2048 Game -->
   <template id="tmpl-proj-fpga">
     <!-- OPENED CONTENT (shows inside the modal) -->
-    <div class="modal__meta">FPGA Game Development · VGA Graphics · Digital Design · 2024</div>
     
     <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
-      <p><strong>Project Mission:</strong> Recreate the complete 2048 gaming experience using only VHDL on an FPGA, including graphics rendering, game logic, and user input—no software allowed.</p>
+      <p><strong>Project Mission:</strong> Recreate the complete 2048 gaming experience using only VHDL on an FPGA, including graphics rendering, game logic, and user input.</p>
     </div>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      Creating a complete video game using only hardware description language presents unique challenges that blur the line between software and hardware engineering. Every algorithm, every pixel, and every user interaction must be implemented through carefully designed digital circuits. This project pushed the boundaries of what's possible with pure VHDL implementation on resource-constrained FPGA hardware.
+      For the final project of my Digital Logic Course, I collaborated with a small group to implement the popular 2048 game entirely in VHDL on an iCE40 FPGA development board.
+      The game features full VGA output for graphics display and supports user input via a classic NES controller, enabling a seamless gaming experience on custom hardware.
     </p>
 
     <figure class="figure" style="margin: 20px 0;">
-      <img src="images/arcade-game-screenshot.jpg" alt="2048 game running on FPGA with VGA output" />
-      <figcaption>Complete 2048 game implementation displaying on VGA monitor, showing tile animations and score tracking.</figcaption>
+      <img src="2048 Block Diagram.png" alt="FPGA 2048 game system block diagram" />
+      <figcaption>System architecture block diagram showing the interconnected VHDL modules for VGA controller, game logic, and input processing.</figcaption>
     </figure>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      The foundation required implementing VGA timing generation from scratch—creating the precise HSYNC and VSYNC signals needed for stable video output. This involved understanding the exact timing requirements of VGA standards and designing counters and state machines that could generate the necessary synchronization signals while maintaining pixel-perfect timing across the entire display area.
+      At the core of the project was the complex game logic, which required careful state management to handle tile movements, merging, and score updates. Additionally,
+      I developed a custom graphics pipeline to render the game board and tiles on a VGA display, adhering to strict timing requirements for synchronization signals.
+      Each tile was stored in its own ROM block, allowing for efficient fetching and rendering during gameplay. The graphics system also required 
+      tightly timed pixel clock generation and synchronization with horizontal and vertical sync signals to ensure a stable display.
     </p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
       <figure class="figure">
-        <img src="images/arcade-vga-timing.jpg" alt="VGA timing diagram and implementation" />
-        <figcaption>VGA timing implementation showing horizontal and vertical sync generation with pixel clock management.</figcaption>
+        <img src="vgaEntity.png" alt="VGA controller entity declaration in VHDL" />
+        <figcaption>VGA controller entity showing input/output ports for pixel clock generation and synchronization signals.</figcaption>
       </figure>
       <figure class="figure">
-        <img src="images/arcade-tile-renderer.jpg" alt="Tile rendering system architecture" />
-        <figcaption>Custom tile rendering system capable of displaying game board, numbers, and animations in real-time.</figcaption>
+        <img src="twoBlockROM.png" alt="Tile ROM block implementation" />
+        <figcaption>ROM block structure for storing and accessing tile graphics data during game rendering.</figcaption>
       </figure>
     </div>
 
     <p style="line-height: 1.7; margin-bottom: 20px;">
-      Game logic implementation required translating the mathematical concepts of 2048 into finite state machines and combinational logic. The challenge involved managing the 4x4 game grid, implementing tile movement algorithms, handling collision detection, and maintaining score calculations—all while operating within the strict resource constraints of the iCE40 FPGA platform.
+      Implementation of the game was not small feat, as we had to remain within the constraints of FPGA resources while ensuring smooth gameplay and responsive controls.
+      The final product successfully recreated the addictive 2048 experience, demonstrating the power of VHDL for complex system design on FPGA platforms.
     </p>
+    </div>
+  </template>
 
-    <figure class="figure" style="margin: 20px 0;">
-      <img src="images/arcade-controller-interface.jpg" alt="NES controller interface and input processing" />
-      <figcaption>NES controller interface with debouncing logic and input state management for responsive gameplay.</figcaption>
-    </figure>
-
-    <p style="line-height: 1.7; margin-bottom: 16px;">
-      Input handling through a classic NES controller required implementing serial communication protocols and robust debouncing algorithms. The system needed to provide responsive gameplay while filtering out mechanical switch bounce and handling the timing-sensitive serial protocol used by Nintendo controllers, all implemented entirely in VHDL logic.
-    </p>
-
-    <div class="image-credits">
-      <h4>Image Credits</h4>
-      <ul>
-        <li><strong>Game Screenshot:</strong> Custom photography - 2048 game running on VGA display via FPGA</li>
-        <li><strong>VGA Timing:</strong> Custom screenshot - VGA timing diagram and VHDL implementation</li>
-        <li><strong>Tile Renderer:</strong> Custom design - Graphics pipeline architecture visualization</li>
-        <li><strong>Controller Interface:</strong> Custom photography - NES controller hardware interface setup</li>
-      </ul>
-      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">All images are original academic work from Digital Logic Design coursework. Game screenshots and hardware photography are personal development work.</p>
+  <!-- Resume View Modal -->
+  <template id="tmpl-resume-view">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">Software Engineering Resume · Updated November 2025</div>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <p style="color: var(--muted); margin: 0 0 16px 0;">View my complete resume below or download the PDF for offline viewing.</p>
+      <a class="btn" href="Brunell_Kalan_Resume.pdf" download style="margin-right: 12px;">Download PDF</a>
+      <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" target="_blank">Open in New Tab</a>
+    </div>
+    
+    <div style="border: 2px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+      <iframe 
+        src="Brunell_Kalan_Resume.pdf" 
+        width="100%" 
+        height="800px" 
+        style="border: none; display: block;"
+        title="Resume PDF Viewer">
+        <p style="padding: 20px; text-align: center; color: var(--muted);">
+          Your browser doesn't support PDF viewing. 
+          <a href="Brunell_Kalan_Resume.pdf" download>Click here to download the resume</a>.
+        </p>
+      </iframe>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <small style="color: var(--muted);">
+        Having trouble viewing? Try <a href="Brunell_Kalan_Resume.pdf" target="_blank">opening in a new tab</a> or 
+        <a href="Brunell_Kalan_Resume.pdf" download>downloading the PDF</a>.
+      </small>
     </div>
   </template>
 
@@ -971,6 +1511,7 @@
     modalTitle.textContent = titleText || 'Details';
     modal.setAttribute('open','');
     modal.setAttribute('aria-hidden','false');
+    modalBody.scrollTop = 0; // Force scroll to top of modal content
     closeBtn.focus();
     document.body.style.overflow = 'hidden';
   }
@@ -982,8 +1523,9 @@
     if (lastFocused) lastFocused.focus();
   }
 
-  // Click/keyboard open for any card with data-open-modal
+  // Click/keyboard open for any element with data-open-modal
   function attachOpenHandlers(){
+    // Handle cards
     document.querySelectorAll('.card[data-open-modal]').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.getAttribute('data-open-modal');
@@ -992,6 +1534,15 @@
       });
       card.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); card.click(); }
+      });
+    });
+    
+    // Handle buttons and other elements
+    document.querySelectorAll('[data-open-modal]:not(.card)').forEach(element => {
+      element.addEventListener('click', () => {
+        const key = element.getAttribute('data-open-modal');
+        const title = element.getAttribute('aria-label') || element.textContent || 'Details';
+        openModal(key, title);
       });
     });
   }
@@ -1076,6 +1627,58 @@
   // Run masonry on load and resize
   window.addEventListener('load', masonryLayout);
   window.addEventListener('resize', masonryLayout);
+
+  // Skill bar animation on scroll
+  function animateSkillBars() {
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+          const targetWidth = entry.target.getAttribute('data-width');
+          entry.target.style.setProperty('--target-width', targetWidth);
+          entry.target.classList.add('animated');
+          
+          // Add a small delay to create staggered animation within each category
+          const categoryItems = entry.target.closest('.skill-category').querySelectorAll('.skill-fill');
+          const index = Array.from(categoryItems).indexOf(entry.target);
+          entry.target.style.transitionDelay = `${index * 0.1}s`;
+        }
+      });
+    }, {
+      threshold: 0.5,
+      rootMargin: '-10% 0px -10% 0px'
+    });
+
+    skillFills.forEach(fill => {
+      observer.observe(fill);
+    });
+  }
+
+  // Initialize skill bar animation
+  window.addEventListener('load', animateSkillBars);
+
+  // Project card animation on scroll
+  function animateProjectCards() {
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animate-in')) {
+          // Animate immediately without delay
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -5% 0px'
+    });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  }
+
+  // Initialize project card animation
+  window.addEventListener('load', animateProjectCards);
 </script>
 </body>
 </html>
