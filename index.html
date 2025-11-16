@@ -78,9 +78,9 @@
   .card:hover{ box-shadow:0 8px 22px rgba(0,0,0,.16); border-top-color:var(--accent-alt); }
 
   /* Layouts */
-  .hero{ display:grid; grid-template-columns: 1.4fr 360px; gap:24px; grid-auto-rows: 1fr; align-items:stretch; }
-  .hero-main{ grid-row: span 2; height:100%; align-self:stretch; }
-  .hero-side{ grid-column: 2; height:100%; align-self:stretch; }
+  .hero{ display:grid; grid-template-columns: 1.4fr 360px; gap:24px; grid-template-rows: 1.3fr 0.7fr; align-items:stretch; }
+  .hero-main{ grid-row: span 2; height:100%; align-self:stretch; padding-bottom: 16px; }
+  .hero-side{ grid-column: 2; height:100%; align-self:stretch; padding-bottom: 16px; }
   .section{ margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px; }
   .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
   .grid{ 
@@ -235,8 +235,8 @@
   .btn{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; background:var(--accent); color:#fff; text-decoration:none; transition:transform .05s ease, background .2s ease; }
   .btn:hover{ background:var(--accent-alt); }
   .btn:active{ transform:translateY(1px); }
-  .btn--ghost{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid var(--neutral); color:var(--accent); background:transparent; text-decoration:none; }
-  .btn--ghost:hover{ border-color:var(--accent); color:var(--accent-hover); }
+  .btn--ghost{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; border:2px solid var(--accent); color:var(--accent); background:transparent; text-decoration:none; transition: all 0.2s ease; }
+  .btn--ghost:hover{ border-color:var(--accent-hover); color:var(--accent-hover); background: rgba(59, 130, 246, 0.05); }
 
   /* Slightly smaller resume card variant */
   .resume-card{ padding:16px; border-radius:12px; border-top-width:3px; font-size:0.98rem; }
@@ -428,7 +428,7 @@
     <!-- HERO -->
     <section id="about" class="hero">
       <!-- Left column (spans two rows) -->
-      <div class="card hero-main">
+      <div class="card hero-main" style="padding: 24px 24px 12px 24px;">
         <div style="display:flex; align-items:center; gap:20px; min-height:160px;">
           <img src="headshot.jpg" alt="Headshot of Kalan Brunell" class="headshot" style="margin-left:12px;" />
           <span style="font-size:2.2rem; font-weight:700; color:var(--accent); font-family:'Playfair Display', serif; margin-left:48px;">Kalan Brunell</span>
@@ -439,28 +439,31 @@
           and engineering all-electric automotive systems from the ground up. I enjoy tackling complex problems that require expertise in both 
           hardware and software, and I aim to create solutions that are reliable, efficient, and practical.
         </p>
-        <p style="margin-top:16px; color:var(--muted); font-weight:600;">Tufts University | Bachelor of Science in Computer Engineering | Class of 2027</p>
+        <p style="margin-top:16px; margin-bottom:0; color:var(--muted); font-weight:600;">Tufts University | Bachelor of Science in Computer Engineering | Class of 2027</p>
       </div>
 
       <!-- Right column (row 1) -->
-      <div class="card hero-side" id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:kbrune06@gmail.com">kbrune06@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener">kalan-brunell-50b65b286</a></p>
-        <p>GitHub: <a href="https://github.com/kalanbrunell" target="_blank" rel="noopener">kalanbrunell</a></p>
+      <div class="card hero-side" id="contact" style="padding: 12px 24px 16px 24px;">
+        <h2 style="margin-bottom:0;">Contact</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+          <a href="mailto:kbrune06@gmail.com" class="btn--ghost" style="text-align: center;">
+            Email: kbrune06@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener" class="btn--ghost" style="text-align: center;">
+            LinkedIn: kalan-brunell-50b65b286
+          </a>
+          <a href="https://github.com/kalanbrunell" target="_blank" rel="noopener" class="btn--ghost" style="text-align: center;">
+            GitHub: kalanbrunell
+          </a>
+        </div>
       </div>
 
       <!-- Right column (row 2) — Resume card stacked under Contact -->
-      <div class="card hero-side resume-card">
-        <h2>Resume</h2>
-        <div class="resume-cta">
-          <div class="resume-cta__row">
-            <button class="btn openable" data-open-modal="resume-view" tabindex="0" role="button" aria-label="View Resume">View Resume</button>
-          </div>
-          <div class="resume-cta__row">
-            <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" download>Download PDF</a>
-          </div>
-          <small>Click to view online or download as PDF</small>
+      <div class="card hero-side resume-card" style="padding: 12px 24px 16px 24px;">
+        <h2 style="margin-bottom:0;">Resume</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; margin-bottom:0;">
+          <button class="btn--ghost openable" data-open-modal="resume-view" tabindex="0" role="button" aria-label="View Resume" style="text-align: center;">View Resume</button>
+          <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" download style="text-align: center;">Download PDF</a>
         </div>
       </div>
     </section>
@@ -1455,7 +1458,7 @@
     
     <div style="text-align: center; margin-bottom: 20px;">
       <p style="color: var(--muted); margin: 0 0 16px 0;">View my complete resume below or download the PDF for offline viewing.</p>
-      <a class="btn" href="Brunell_Kalan_Resume.pdf" download style="margin-right: 12px;">Download PDF</a>
+      <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" download style="margin-right: 12px;">Download PDF</a>
       <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" target="_blank">Open in New Tab</a>
     </div>
     
