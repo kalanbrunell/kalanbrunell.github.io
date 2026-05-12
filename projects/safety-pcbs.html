@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EV Safety-System PCBs — Kalan Brunell</title>
+<meta name="description" content="Fusebox and active-high / active-low latch boards for Tufts Electric Racing — fail-safe interlocks, fault detection, and high-current protection." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">04 / Electronics · PCB Design</p>
+    <h1 class="detail-title">EV Safety-System PCBs</h1>
+    <div class="detail-meta">
+      <span><strong>Team:</strong> Tufts Electric Racing</span>
+      <span><strong>Discipline:</strong> PCB design &amp; mixed-signal electronics</span>
+      <span><strong>Date:</strong> 2024</span>
+    </div>
+    <p class="detail-summary">
+      Two boards that keep a Formula-Hybrid Electric race car safe — a high-current fusebox with blown-fuse indication
+      and a fail-safe interlock latch system that keeps the safety circuit energized only when every condition checks out.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <section class="detail-section reveal">
+      <h2>Overview</h2>
+      <p>
+        As part of Tufts Electric Racing's commitment to safety and regulatory compliance, I designed and developed
+        critical safety-system PCBs for our high-voltage electric race car. These boards monitor, control, and protect
+        both the vehicle and driver across competition and testing.
+      </p>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Fusebox PCB</h2>
+
+      <figure class="detail-figure">
+        <img src="../images/projects/safety-pcbs/fuseboxPCB.jpg" alt="Fusebox PCB design" />
+        <figcaption>Fusebox PCB — circuit layout and component placement for high-voltage protection.</figcaption>
+      </figure>
+
+      <p>
+        The fusebox serves as a critical protection and distribution hub for the vehicle's electrical systems.
+        It incorporates multiple fuse circuits — each with a visual indicator for a blown fuse — and is designed to
+        handle high-current loads while staying safe under fault conditions.
+      </p>
+
+      <figure class="detail-figure">
+        <img src="../images/projects/safety-pcbs/fuseboxPCBpopulated.jpg" alt="Fully populated fusebox PCB" />
+        <figcaption>Fully populated fusebox PCB — components, fuses, and final assembly ready for vehicle integration.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Safety interlocks PCB</h2>
+
+      <div class="detail-grid-2">
+        <p>
+          The safety interlocks keep the safety system energized only when no faults are present. I designed
+          active-high and active-low latches for use with different sensor types — motor controller, BMS, and
+          high-voltage connection interlock fault signals. The circuits always start in the disconnected state at
+          power-up and only energize when every safety condition is met. They're fail-safe by construction: any
+          loss of power or fault condition immediately de-energizes the system.
+        </p>
+        <figure class="detail-figure">
+          <img src="../images/projects/safety-pcbs/activeHighLatch.png" alt="Active-high latch circuit design" />
+          <figcaption>Active-high latch — PNP-based fault signal processing &amp; interlock logic.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="detail-footer-nav">
+      <a href="color-following.html">← Previous: Color-Following Vehicle</a>
+      <a href="arm-processor.html">Next: ARM Processor →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

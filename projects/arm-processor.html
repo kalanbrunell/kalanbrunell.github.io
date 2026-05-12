@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>5-Stage Pipelined ARM Processor — Kalan Brunell</title>
+<meta name="description" content="A complete LEGv8 pipelined processor in VHDL — hazard detection, data forwarding, and full waveform verification." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">05 / Digital Design · VHDL</p>
+    <h1 class="detail-title">5-Stage Pipelined ARM Processor</h1>
+    <div class="detail-meta">
+      <span><strong>Course:</strong> Computer Architecture</span>
+      <span><strong>Discipline:</strong> Digital design in VHDL</span>
+      <span><strong>Date:</strong> 2025</span>
+      <span class="proj-status">In Progress</span>
+    </div>
+    <div class="detail-actions">
+      <a class="detail-github" href="https://github.com/kalanbrunell/5-Stage-Pipelined-Processor" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+    <p class="detail-summary" style="margin-top: 24px;">
+      A complete LEGv8-subset ARM-style processor in VHDL — built from the ground up as a single-cycle datapath,
+      then pipelined into five stages with hazard detection and data forwarding, and verified via waveform analysis.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <div class="detail-callout reveal">
+      <p><strong>Project mission:</strong> engineer a complete five-stage pipelined processor from scratch — implementing
+      hazard detection and data forwarding entirely in VHDL.</p>
+    </div>
+
+    <section class="detail-section reveal">
+      <h2>Overview</h2>
+      <p>
+        As the term project for my Computer Architecture course, I designed and implemented a simplified ARM-like
+        processor using VHDL. The processor supports a subset of ARM instructions (specifically LEGv8), including
+        arithmetic operations, memory access, and control flow.
+      </p>
+      <p>
+        The project began with the foundational components — PC, instruction and data memory, register file, and ALU.
+        I first wired these together into a single-cycle architecture to validate basic functionality before
+        transitioning to a pipelined design. That shift introduced challenges around instruction dependencies and
+        timing, which I addressed through hazard detection and data forwarding.
+      </p>
+
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/arm-processor/PipelinedCPU.png" alt="Single-cycle ARM processor architecture diagram" />
+        <figcaption>Single-cycle processor architecture.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Pipelining the datapath</h2>
+      <p>
+        The pipeline follows the classic five-stage approach: Instruction Fetch, Instruction Decode, Execute, Memory
+        Access, and Write Back. Each stage operates concurrently with the others, creating a processing pipeline that
+        can theoretically complete one instruction per clock cycle. The real complexity comes from data hazards —
+        situations where instructions depend on results from previous instructions still moving through the pipeline.
+      </p>
+
+      <div class="detail-grid-2">
+        <figure class="detail-figure">
+          <img src="../images/projects/arm-processor/scCPUEntity.png" alt="Single-cycle CPU entity declaration" />
+          <figcaption>Top-level CPU entity declaration.</figcaption>
+        </figure>
+        <figure class="detail-figure">
+          <img src="../images/projects/arm-processor/cpuWaveform.png" alt="CPU simulation waveform" />
+          <figcaption>GTKWave simulation waveform — instruction execution traced through the pipeline.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Verification</h2>
+      <p>
+        Verification involved developing comprehensive testbenches that could automatically validate processor
+        functionality across various instruction sequences. Using GTKWave for waveform analysis, I could observe
+        signal propagation through each pipeline stage, verify timing relationships, and debug the complex
+        interactions between hazard-detection logic and data forwarding.
+      </p>
+    </section>
+
+    <div class="detail-credits">
+      <h4>Image credits</h4>
+      <ul>
+        <li><strong>Single-cycle architecture diagram:</strong> Patterson, David A., and John L. Hennessy. <em>Computer Organization and Design — The Hardware/Software Interface (Arm® Edition)</em>. ISBN 978-0-12-801733-3.</li>
+      </ul>
+      <p class="detail-credits__note">Textbook diagram used for educational purposes under fair use. Code screenshots and simulations are personal development work.</p>
+    </div>
+
+    <div class="detail-footer-nav">
+      <a href="safety-pcbs.html">← Previous: EV Safety PCBs</a>
+      <a href="fpga-2048.html">Next: FPGA 2048 →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

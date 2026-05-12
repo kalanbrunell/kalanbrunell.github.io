@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git mv *)",
+      "WebFetch(domain:jamesbryant.engineer)",
+      "WebFetch(domain:www.davisryan.tech)",
+      "Bash(mkdir -p assets/css assets/js projects experience && ls assets projects experience)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\kalan\\Documents\\GitHub\\kalanbrunell.github.io\\assets"
+    ]
+  }
+}

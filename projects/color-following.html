@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Autonomous Color-Following Vehicle — Kalan Brunell</title>
+<meta name="description" content="Junior design project: ATmega-based autonomous vehicle with custom photodiode array, embedded C++, and WebSocket telemetry." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">03 / Junior Design · Embedded Systems</p>
+    <h1 class="detail-title">Autonomous Color-Following Vehicle</h1>
+    <div class="detail-meta">
+      <span><strong>Course:</strong> Junior Design Project</span>
+      <span><strong>Institution:</strong> Tufts University</span>
+      <span><strong>Dates:</strong> September 2025 — Present</span>
+      <span class="proj-status">In Progress</span>
+    </div>
+    <p class="detail-summary">
+      A small-team autonomous vehicle that integrates hardware design, embedded firmware, and control systems into
+      a robotic platform capable of real-time decision making and wireless coordination with other vehicles.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <div class="detail-callout reveal">
+      <p><strong>Project mission:</strong> develop an autonomous vehicle capable of navigating and following colored
+      objects using embedded systems and custom sensor arrays. The brief asks small teams to integrate hardware design,
+      embedded programming, and control systems into a fully autonomous platform with real-time decision making and
+      wireless coordination with other vehicles.</p>
+    </div>
+
+    <section class="detail-section reveal">
+      <h2>Overview</h2>
+      <p>
+        The system is powered by an embedded ATmega MCU and combines custom hardware design, embedded C++ firmware,
+        and wireless communications for real-time control and telemetry. The project emphasizes practical engineering
+        skills — PCB design, sensor integration, and embedded software development — applied to a tangible robotic
+        platform.
+      </p>
+
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/color-following/JuniorDesignRobot.png" alt="Autonomous color-following vehicle prototype" />
+        <figcaption>The vehicle platform under development.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Embedded detection system</h2>
+      <p>
+        To enable color detection for line following, the team designed a purpose-built photodiode array and the
+        algorithm that drives it — using the MCU's embedded ADCs to identify course markers. The system processes
+        analog sensor data in real time to find navigation targets and steer the vehicle without relying on external
+        computer-vision hardware. It's a clean demonstration of embedded systems design principles applied to a
+        constrained, time-sensitive sensing problem.
+      </p>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>WebSocket communication</h2>
+      <p>
+        The project also requires WebSocket communication for real-time telemetry, remote control, and interaction
+        with other student vehicles on the course. The wireless interface enables dynamic control adjustments and
+        coordination across multiple autonomous systems — a small-scale simulation of multi-robot coordination
+        scenarios.
+      </p>
+    </section>
+
+    <div class="detail-footer-nav">
+      <a href="vision-system.html">← Previous: Robotics Vision &amp; Control</a>
+      <a href="safety-pcbs.html">Next: EV Safety PCBs →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

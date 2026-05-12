@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Competitive Robotics Vision &amp; Control — Kalan Brunell</title>
+<meta name="description" content="Real-time vision-guided targeting, swerve-drive control, and IMU-based platform balancing for FIRST Robotics — 2022 & 2023 seasons." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">02 / FRC · Vision &amp; Controls</p>
+    <h1 class="detail-title">Competitive Robotics Vision &amp; Control</h1>
+    <div class="detail-meta">
+      <span><strong>Team:</strong> Lakerbots 8046</span>
+      <span><strong>Competition:</strong> FIRST Robotics Competition</span>
+      <span><strong>Role:</strong> Team Captain &amp; Lead Engineer</span>
+      <span><strong>Seasons:</strong> 2022 — 2023</span>
+    </div>
+    <p class="detail-summary">
+      Three interlocking systems across two FRC seasons — a real-time vision pipeline for autonomous targeting, a
+      field-centric swerve-drive control stack, and an IMU-based balancing routine for the 2023 Charge Station.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <section class="detail-section reveal">
+      <h2>FRC context</h2>
+      <p>
+        The FIRST Robotics Competition challenges high-school teams to design, build, and program 120-pound robots
+        in six weeks to compete in alliance-based matches. Teams engineer solutions for complex game objectives
+        within strict size, weight, and safety constraints — demanding expertise across mechanical design, electrical
+        systems, software, and real-time control.
+      </p>
+
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/vision-system/chargedUpRobot.png" alt="Lakerbots 8046 Charged-Up competition robot" />
+        <figcaption>Our 2023 Charged-Up competition robot.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Autonomous vision system</h2>
+
+      <h4>Challenge</h4>
+      <div class="detail-grid-2">
+        <p>
+          The 2022 season required collecting and scoring inflated game pieces through an elevated hoop. Effective
+          play meant autonomous scoring during the first 15 seconds of each match and precision manual control
+          thereafter — both of which depend on accurate target acquisition. The field included retroreflective tape
+          around scoring targets to support vision-based solutions.
+        </p>
+        <figure class="detail-figure">
+          <img src="../images/projects/vision-system/rapidReactField.png" alt="2022 Rapid React field layout showing the central scoring target" />
+          <figcaption>The 2022 Rapid React field — central scoring target.</figcaption>
+        </figure>
+      </div>
+
+      <h4>Technical approach</h4>
+      <div class="detail-grid-side">
+        <div>
+          <p>
+            I led the development of a real-time vision system using a Limelight vision processor to detect the
+            retroreflective tape on scoring targets. We tuned the camera's mounting angle for maximum target
+            visibility and programmed the Limelight to return 2D pixel coordinates for detected targets.
+          </p>
+          <p>
+            From that, we built a custom algorithm that used the target's vertical dimension to estimate distance
+            and its horizontal dimension to compute the rotation needed to align. The output drove our swerve-drive
+            autonomous control, letting the robot align itself and adjust launching parameters for efficient scoring.
+          </p>
+          <h4>Results</h4>
+          <p>This system enabled consistent autonomous scoring from up to 10 feet away — a significant lift in match performance.</p>
+        </div>
+        <figure class="detail-figure">
+          <img src="../images/projects/vision-system/limelightExample.png" alt="Limelight vision processor interface showing target detection" />
+          <figcaption>Limelight interface — real-time target detection on retroreflective tape.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Swerve-drive system</h2>
+      <h4>Challenge</h4>
+      <p>
+        Before 2022 our tank-drive system limited maneuverability and prevented simultaneous translation and rotation,
+        which hurt game-piece collection efficiency. I spearheaded the integration of a swerve drive, enabling
+        omnidirectional movement and much higher agility on the field.
+      </p>
+
+      <div class="detail-grid-side">
+        <div>
+          <h4>Technical approach</h4>
+          <p>
+            Given our team's limited prior experience with swerve drives, we purchased a COTS module system to
+            shorten the path to a working prototype. We then deployed a FIRST-standard swerve-kinematics library
+            and tuned the control algorithms to match our robot's dynamics.
+          </p>
+          <p>
+            We implemented field-centric control using a gyroscope for orientation feedback, so each joystick
+            direction always mapped to the field's frame relative to the driver — regardless of the robot's heading.
+            We then tuned the PID loops on each wheel module for precise speed and angle adjustments, sharpening
+            overall responsiveness.
+          </p>
+        </div>
+        <figure class="detail-figure">
+          <img src="../images/projects/vision-system/swerveDriveExample.webp" alt="MK4 swerve drive module" />
+          <figcaption>MK4 swerve module — independent steering &amp; drive motors.</figcaption>
+        </figure>
+      </div>
+
+      <div class="detail-grid-side detail-grid-side--flip">
+        <figure class="detail-figure">
+          <img src="../images/projects/vision-system/swerveDrivePrototypeFrame.png" alt="Swerve drive prototype frame" />
+          <figcaption>Our prototype swerve frame during development.</figcaption>
+        </figure>
+        <div>
+          <h4>Results</h4>
+          <p>
+            The swerve drive significantly improved maneuverability, enabled complex movement patterns, and made
+            rapid repositioning easy during matches. The upgrade drove a large jump in team performance — culminating
+            in our highest regional placement at the time and a district-championship qualification.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Dynamic platform balancing</h2>
+      <h4>Challenge</h4>
+      <p>
+        The 2023 endgame asked robots to balance on a dynamic "Charge Station" platform for bonus points, but
+        unpredictable motion caused most robots to slide off. I built an IMU-based control system for stable
+        equilibrium while compensating for disturbances from other robots.
+      </p>
+
+      <div class="detail-grid-side">
+        <div>
+          <h4>Technical approach</h4>
+          <p>
+            The IMU was already integrated on the robot for field-centric driving. I co-developed a PID-based
+            balancing algorithm that adjusted wheel speeds in real-time to maintain a level orientation, allowing
+            us to program a fully autonomous balancing routine for the endgame. Once balanced, two of the four
+            wheels would rotate 90° to mechanically lock the robot in place, preventing roll-off from external forces.
+          </p>
+          <h4>Results</h4>
+          <p>
+            We achieved an estimated 95% success rate on autonomous balancing attempts during competition matches —
+            consistent enough to make us a valuable alliance partner for endgame strategies.
+          </p>
+        </div>
+        <figure class="detail-figure">
+          <img src="../images/projects/vision-system/chargedUpBalance.png" alt="Robot autonomously balancing on the Charge Station" />
+          <figcaption>Autonomous balancing on the Charge Station — 2023 Charged Up.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="detail-credits">
+      <h4>Image credits</h4>
+      <ul>
+        <li><strong>Rapid React field layout:</strong> AutomationDirect — "2022 FIRST Robotics Rapid React 3D Printed Field." AutomationDirect Library, accessed Nov 6, 2025.</li>
+        <li><strong>MK4 swerve module:</strong> Swerve Drive Specialties — "MK4 Swerve Module." Accessed Nov 6, 2025.</li>
+        <li><strong>Limelight interface:</strong> Limelight Vision — "Getting Started with Pipelines." Limelight Documentation, accessed Nov 6, 2025.</li>
+      </ul>
+      <p class="detail-credits__note">Other images courtesy of Lakerbots 8046 FRC Team. Field layout, swerve module, and Limelight documentation images used for educational demonstration purposes.</p>
+    </div>
+
+    <div class="detail-footer-nav">
+      <a href="accumulator.html">← Previous: EV Accumulator</a>
+      <a href="color-following.html">Next: Color-Following Vehicle →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

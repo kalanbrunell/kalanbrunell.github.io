@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kalan Brunell — Engineering Portfolio</title>
+
+<!-- Meta / SEO -->
+<link rel="icon" href="/favicon.ico" />
+<meta name="description" content="Kalan Brunell — Engineering Portfolio" />
+<meta property="og:title" content="Kalan Brunell — Engineering Portfolio" />
+<meta property="og:description" content="Kalan Brunell's engineering portfolio showcasing projects in embedded systems and robotics." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kalanbrunell.site/" />
+<meta property="og:image" content="https://kalanbrunell.site/og-card.jpg" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1149WE8N1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-B1149WE8N1');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: linear-gradient(135deg,#f2f3f4 0%, #eaeaea 100%);
+    --text:#212121;
+    --muted:#5e6770;
+    --card:#ffffff;
+    --accent:#00447c;       /* navy (primary) */
+    --accent-hover:#002756; /* deep navy (hover) */
+    --accent-alt:#035b7a;   /* teal (secondary) */
+    --neutral:#c6c3b6;      /* divider/beige */
+  }
+
+  *{ box-sizing:border-box }
+  html{ scroll-behavior:smooth; }
+  :target{ scroll-margin-top:80px; }
+
+  body{
+    margin:0;
+    font:16px/1.6 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color:var(--text);
+    background:var(--bg);
+  }
+  h1,h2,h3{ font-family:"Playfair Display", serif; margin:0 0 10px; color:var(--accent); }
+  a{ color:var(--accent); text-decoration:none; transition:color .2s ease; }
+  a:hover{ color:var(--accent-alt); }
+  .container{ max-width:1100px; margin:0 auto; padding:32px 20px; }
+
+  /* Nav */
+  .nav{
+    position:sticky; top:0; z-index:10;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"Playfair Display", serif;
+    padding:16px 20px; margin-bottom:28px;
+    background:linear-gradient(135deg,#f2f3f4 0%, #eaeaea 100%);
+    border-bottom:1px solid var(--neutral);
+  }
+  .brand{ font-weight:800; font-size:24px; color:var(--accent); }
+  .nav a{ margin-left:16px; color:var(--muted); padding:6px 8px; border-radius:8px; }
+  .nav a:hover{ color:#fff; background:var(--accent); }
+  .nav a.active{ color:#fff; background:var(--accent-alt); }
+
+  /* Cards */
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:24px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    border-top:4px solid var(--accent);
+    transition:box-shadow .18s ease, border-color .18s ease;
+    display:flex; flex-direction:column;
+  }
+  .card:hover{ box-shadow:0 8px 22px rgba(0,0,0,.16); border-top-color:var(--accent-alt); }
+
+  /* Layouts */
+  .hero{ display:grid; grid-template-columns: 1.4fr 360px; gap:24px; grid-template-rows: 1.3fr 0.7fr; align-items:stretch; }
+  .hero-main{ grid-row: span 2; height:100%; align-self:stretch; padding-bottom: 16px; }
+  .hero-side{ grid-column: 2; height:100%; align-self:stretch; padding-bottom: 16px; }
+  .section{ margin-top:56px; border-top:2px solid var(--neutral); padding-top:40px; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .grid{ 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 24px; 
+    align-items: start;
+  }
+
+  /* Headshot */
+  .headshot{ width:160px; height:160px; border-radius:50%; object-fit:cover; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,.14); }
+
+  /* Skills progress bars */
+  .skill-category { margin-bottom: 40px; }
+  .skill-category h4 { 
+    margin: 0 0 20px 0; 
+    color: var(--text); 
+    font-weight: 600; 
+    letter-spacing: 0.02em; 
+    font-size: 16px; 
+    text-transform: uppercase;
+  }
+  .skill-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-left: 220px; /* Align with progress bars */
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 20px;
+  }
+  .skill-name {
+    min-width: 200px;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .skill-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6b7280, #374151);
+    border-radius: 4px;
+    transition: width 1.2s ease-in-out;
+    width: 0 !important; /* Start at 0, will be animated by JS */
+  }
+  .skill-fill.animated {
+    width: var(--target-width) !important; /* Will be set by JS */
+  }
+
+  /* Project card animations */
+  .card {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Education & Awards */
+  .education-awards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .education-item, .awards-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid var(--accent);
+  }
+  @media (max-width: 768px) {
+    .education-awards {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  .education-header, .award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 16px;
+  }
+  .education-header h3, .award-header h4 {
+    margin: 0;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .education-date, .award-date {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .education-item h4 {
+    margin: 0;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .education-item h5 {
+    margin: 8px 0 12px 0;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .education-details {
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text);
+  }
+  .awards-section h3 {
+    margin: 0 0 20px 0;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .award-item {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .award-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .award-item p {
+    margin: 4px 0 0 0;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* Buttons */
+  .btn{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; background:var(--accent); color:#fff; text-decoration:none; transition:transform .05s ease, background .2s ease; }
+  .btn:hover{ background:var(--accent-alt); }
+  .btn:active{ transform:translateY(1px); }
+  .btn--ghost{ display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; border:2px solid var(--accent); color:var(--accent); background:transparent; text-decoration:none; transition: all 0.2s ease; }
+  .btn--ghost:hover{ border-color:var(--accent-hover); color:var(--accent-hover); background: rgba(59, 130, 246, 0.05); }
+
+  /* Slightly smaller resume card variant */
+  .resume-card{ padding:16px; border-radius:12px; border-top-width:3px; font-size:0.98rem; }
+  .resume-cta{ display:flex; flex-direction:column; gap:12px; }
+  .resume-cta__row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .resume-cta small{ color:var(--muted); }
+  
+  /* Resume modal iframe styling */
+  .resume-iframe-container {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Clickable cards */
+  .openable{ cursor:pointer; user-select:none; }
+
+  /* Modal */
+  .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.60); padding:24px; z-index:1000; }
+  .modal[open]{ display:flex; }
+  .modal__panel{ background:#fff; color:#1f2937; width:min(1100px, 96vw); max-height:90vh; border-radius:16px; overflow:auto; box-shadow:0 20px 60px rgba(0,0,0,.35); border-top:6px solid var(--accent); }
+  .modal__head{ position:sticky; top:0; background:linear-gradient(#ffffff, #ffffffee); display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--neutral); z-index:1; }
+  .modal__title{ margin:0; font-family:"Playfair Display", serif; font-size:22px; color:var(--accent); }
+  .modal__close{ border:none; background:#f3f4f6; padding:8px 12px; border-radius:10px; cursor:pointer; }
+  .modal__close:hover{ background:var(--accent-alt); color:#fff; }
+  .modal__body{ padding:20px; display:grid; grid-template-columns: 1fr; gap:16px; }
+  .modal__meta{ color:var(--muted); font-size:14px; }
+  .figure{ background:#fafafa; border:1px solid var(--neutral); border-radius:12px; padding:10px; }
+  .figure img{ width:100%; height:auto; display:block; border-radius:8px; }
+  .figure figcaption{ font-size:13px; color:#64748b; margin-top:8px; }
+
+  pre{ background:#0b1020; color:#e5e7eb; padding:12px; border-radius:10px; overflow:auto; }
+
+  /* Image Credits */
+  .image-credits{ 
+    background:#f8f9fa; 
+    border:1px solid var(--neutral); 
+    border-radius:8px; 
+    padding:12px; 
+    margin-top:24px; 
+    font-size:12px; 
+    color:var(--muted); 
+  }
+  .image-credits h4{ 
+    margin:0 0 8px; 
+    font-size:13px; 
+    color:var(--accent); 
+    font-weight:600; 
+  }
+  .image-credits ul{ 
+    margin:0; 
+    padding-left:16px; 
+    list-style:none; 
+  }
+  .image-credits li{ 
+    margin:4px 0; 
+    position:relative; 
+  }
+  .credits-btn{ 
+    display:inline-block; 
+    padding:6px 10px; 
+    font-size:12px; 
+    color:var(--muted); 
+    background:#f3f4f6; 
+    border:1px solid var(--neutral); 
+    border-radius:6px; 
+    cursor:pointer; 
+    text-decoration:none; 
+    margin-top:16px; 
+  }
+  .credits-btn:hover{ 
+    background:var(--accent); 
+    color:#fff; 
+    border-color:var(--accent); 
+  }
+
+  @media (max-width: 900px){
+    .hero{ grid-template-columns:1fr; }
+    .hero-main{ grid-row:auto; }
+    .hero-side{ grid-column:auto; }
+    .two-col{ grid-template-columns:1fr; }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .nav { padding: 12px 16px; font-size: 14px; }
+    .nav > div:last-child { gap: 16px; }
+    
+    .hero { gap: 16px; }
+    .hero-main, .hero-side { padding: 16px; }
+    
+    .card { padding: 16px; }
+    .grid { gap: 16px; grid-template-columns: 1fr; }
+    .two-col { gap: 16px; }
+    
+    /* Force all inline grid layouts to single column on mobile */
+    div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+    
+    /* Adjust figure sizing for mobile */
+    .figure { margin: 0 auto 16px; max-width: 100%; }
+    .figure img { width: 100%; }
+    
+    /* Modal adjustments */
+    .modal__body { padding: 16px; }
+    .modal__meta { font-size: 13px; }
+    
+    /* Typography adjustments */
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    p { font-size: 14px; line-height: 1.6 !important; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 12px; }
+    .nav { flex-direction: column; gap: 12px; text-align: center; padding: 12px; }
+    .nav > div:last-child { 
+      justify-content: center; 
+      flex-wrap: wrap;
+      display: flex;
+    }
+    .nav a { 
+      margin: 4px 8px; 
+      padding: 8px 12px; 
+      min-height: 44px; /* Touch target size */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand { font-size: 20px; }
+    
+    .hero-main, .hero-side, .card { padding: 12px; }
+    
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 18px; }
+    p { font-size: 13px; }
+    
+    /* Stack all content vertically */
+    .hero { grid-template-columns: 1fr; gap: 12px; }
+    .grid { grid-template-columns: 1fr; gap: 12px; }
+    
+    /* Ensure buttons are touch-friendly */
+    .btn { 
+      padding: 12px 20px; 
+      font-size: 14px; 
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Make modals more mobile-friendly */
+    .modal {
+      padding: 8px;
+    }
+    .modal__content {
+      max-height: 90vh;
+      width: 95%;
+      margin: 5vh auto;
+    }
+  }
+  
+</style>
+</head>
+<body>
+  <div class="nav">
+    <div class="brand">
+      <div>Kalan Brunell</div>
+      <div style="font-size: 14px; font-weight: 400; color: var(--muted);">Computer Engineer</div>
+    </div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education & Awards</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- HERO -->
+    <section id="about" class="hero">
+      <!-- Left column (spans two rows) -->
+      <div class="card hero-main" style="padding: 24px 24px 12px 24px;">
+        <div style="display:flex; align-items:center; gap:20px; min-height:160px;">
+          <img src="headshot.jpg" alt="Headshot of Kalan Brunell" class="headshot" style="margin-left:12px;" />
+          <span style="font-size:2.2rem; font-weight:700; color:var(--accent); font-family:'Playfair Display', serif; margin-left:48px;">Kalan Brunell</span>
+        </div>
+        <p>
+          I'm a third-year Computer Engineering student at Tufts University, concentrating on embedded systems and digital design. 
+          My work has included developing vision pipelines for both competitive and industrial robotics, writing microcontroller firmware for real-time monitoring, 
+          engineering all-electric automotive systems, and designing processors in HDL. I enjoy tackling complex problems that require expertise in both 
+          hardware and software, and I aim to create solutions that are reliable, efficient, and practical.
+        </p>
+        <p style="margin-top:16px; margin-bottom:0; color:var(--muted); font-weight:600;">Tufts University | Bachelor of Science in Computer Engineering | Class of 2027</p>
+      </div>
+
+      <!-- Right column (row 1) -->
+      <div class="card hero-side" id="contact" style="padding: 12px 24px 16px 24px;">
+        <h2 style="margin-bottom:0;">Contact</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+          <a href="mailto:kbrunell06@gmail.com" class="btn--ghost" style="text-align: center;">
+            Email: kbrunell06@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener" class="btn--ghost" style="text-align: center;">
+            LinkedIn: kalan-brunell-50b65b286
+          </a>
+          <a href="https://github.com/kalanbrunell" target="_blank" rel="noopener" class="btn--ghost" style="text-align: center;">
+            GitHub: kalanbrunell
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column (row 2) — Resume card stacked under Contact -->
+      <div class="card hero-side resume-card" style="padding: 12px 24px 16px 24px;">
+        <h2 style="margin-bottom:0;">Resume</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; margin-bottom:0;">
+          <button class="btn--ghost openable" data-open-modal="resume-view" tabindex="0" role="button" aria-label="View Resume" style="text-align: center;">View Resume</button>
+          <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" download style="text-align: center;">Download PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Experience -->
+    <section id="experience" class="section">
+      <h2>Engineering Experience</h2>
+      <div class="two-col">
+        <!-- Expandable card: key matches template id below (tmpl-exp-gentex) -->
+        <div class="card openable" data-open-modal="exp-gentex" tabindex="0" role="button" aria-label="Open Gentex internship details">
+          <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 8px;">
+            <h3 style="margin: 0;">Manufacturing Engineering Intern</h3>
+            <img src="gentexlogo.png" alt="Gentex Logo" style="height: 24px; width: auto; opacity: 0.8; flex-shrink: 0;">
+          </div>
+          <h4 style="margin: 0.2em 0 0 0;">Gentex Corporation · Manchester, NH</h4>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          -Summer 2025-
+          <ul>
+            <li>Tasked with developing a 2D Computer Vision System capable of standalone product inspection and manufacturing automation integration.</li>
+            <li>Collaborated with the manufacturing engineering team to develop prototype automation cells for future deployment.</li>
+            <li>Responsible for product manufacturing and documentation sustainment.</li>
+          </ul>
+          <p style="color:var(--muted); font-size:14px; margin-top:8px;">View more details →</p>
+        </div>
+
+        <aside class="card">
+          <h3>At a Glance — Engineering Extracurriculars</h3>
+          <ul>
+            <li><strong>Formula Hybrid-Electric (FSAE) — Tufts Electric Racing</strong><br /></li>
+            <li>Accumulator Project Manager 2025 - Current</li>
+            <li>Electrical Engineer 2024 - 2025</li>
+            <p></p>
+            <li><strong>FIRST Robotics — Lakerbots 8046</strong><br /></li>
+            <li>Team Captain 2022 - 2023</li>
+            <li>Lead Engineer 2022 - 2023</li>
+          </ul>
+          
+          <div style="display: flex; justify-content: center; align-items: center; gap: 32px; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+            <img src="TERLogo.png" alt="Tufts Electric Racing Logo" style="height: 80px; width: auto; opacity: 0.8;">
+            <img src="lakerbotsLogo.png" alt="Lakerbots 8046 Logo" style="height: 80px; width: auto; opacity: 0.8; margin-left: 20px;">
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="grid">
+        <!-- Keys have NO spaces and match template ids (tmpl-proj-*) -->
+
+        <div class="card openable" data-open-modal="proj-accumulator" tabindex="0" role="button" aria-label="Open details">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Electric Vehicle Accumulator</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Tufts Electric Racing - Formula-Hybrid Electric</h4>
+            </div>
+            <img src="TERLogo.png" alt="Tufts Electric Racing" style="height: 32px; width: auto; opacity: 1; flex-shrink: 0; margin-left: 12px;">
+          </div>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <div style="margin: 12px 0;">
+            <img src="firstChargeCar.JPG" alt="EV Accumulator System" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">450V lithium-ion accumulator system with custom PCBs, safety circuits, and high-voltage integration for Formula-Hybrid electric racing.</p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="background: #fbbf24; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+            <p style="color:var(--muted); font-size:14px; margin: 0;">View details →</p>
+          </div>
+        </div>
+
+        <div class="card openable" data-open-modal="proj-vision" tabindex="0" role="button" aria-label="Open Vision System details">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Competitive Robotics Vision and Control</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Lakerbots 8046 - FIRST Robotics Competition</h4>
+            </div>
+            <img src="lakerbotsLogo.png" alt="Lakerbots 8046" style="height: 58px; width: auto; opacity: 1; flex-shrink: 0; margin-left: 12px;">
+          </div>
+          <!-- PREVIEW CONTENT -->
+          <div style="margin: 12px 0;">
+            <img src="chargedUpRobot.png" alt="Robotics Vision System" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Real-time 3D target localization system with swerve drive integration and autonomous control for competitive robotics.</p>
+          </div>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
+        </div>
+
+        <div class="card openable" data-open-modal="proj-arm" tabindex="0" role="button" aria-label="Open ARM Processor details">
+          <h3>5-Stage Pipelined Processor</h3>
+          <div style="margin: 12px 0;">
+            <img src="scCPUEntity.png" alt="Single-cycle CPU Entity Declaration" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 5-stage pipelined ARM processor designed in VHDL with hazard detection, data forwarding, and comprehensive simulation testing.</p>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <a href="https://github.com/kalanbrunell/5-Stage-Pipelined-Processor" target="_blank" rel="noopener" class="btn--ghost" style="font-size: 13px; padding: 6px 12px;">
+              View on GitHub
+            </a>
+          </div>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
+        </div>
+
+        <div class="card openable" data-open-modal="proj-fpga" tabindex="0" role="button" aria-label="Open FPGA Game details">
+          <h3>FPGA 2048 Game</h3>
+          <div style="margin: 12px 0;">
+            <img src="2048Game.jpeg" alt="FPGA 2048 Game Screenshot" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Complete 2048 game implemented in pure VHDL with custom VGA controller, graphics pipeline, and hardware-based game logic.</p>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <a href="https://github.com/kalanbrunell/VHDL_Arcade_Game" target="_blank" rel="noopener" class="btn--ghost" style="font-size: 13px; padding: 6px 12px;">
+              View on GitHub
+            </a>
+          </div>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
+        </div>
+
+        <div class="card openable" data-open-modal="proj-color-following" tabindex="0" role="button" aria-label="Open details">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Autonomous Color Following Vehicle</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Junior Design Project - Autonomous Systems</h4>
+            </div>
+          </div>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <div style="margin: 12px 0;">
+            <img src="JuniorDesignRobot.png" alt="Autonomous Color Following Vehicle" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;">Junior design project developing an autonomous vehicle system using embedded ATMega MCU for color detection and navigation.</p>
+          </div>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
+        </div>
+
+        <div class="card openable" data-open-modal="proj-pcbs" tabindex="0" role="button" aria-label="Open details">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px;">
+            <div style="flex: 1;">
+              <h3 style="margin: 0;">Electric Vehicle Safety PCB Design</h3>
+              <h4 style="margin: 0.2em 0 0 0;">Tufts Electric Racing - Formula-Hybrid Electric</h4>
+            </div>
+            <img src="TERLogo.png" alt="Tufts Electric Racing" style="height: 32px; width: auto; opacity: 1; flex-shrink: 0; margin-left: 12px;">
+          </div>
+          <!-- PREVIEW CONTENT (visible on the card before opening) -->
+          <div style="margin: 12px 0; text-align: center;">
+            <img src="activeHighLatch.png" alt="Latch PCB" style="width: 65%; height: auto; border-radius: 8px; margin-bottom: 8px;">
+            <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4;"></p>
+          </div>
+          <p style="color:var(--muted); font-size:14px;">View details →</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2>Skillset</h2>
+      <div class="skills">
+
+        <div class="skill-category">
+          <h4>Programming</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Advanced</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">C/C++</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="90%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="90%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">ARM Assembly</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60%"></div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="skill-category">
+          <h4>Digital Design</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Advanced</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">VHDL</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Digital Logic Design</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">FPGA Programming</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="50%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4>Embedded</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Advanced</span>
+          </div>
+
+          <div class="skill-item">
+            <span class="skill-name">RTOS</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="50%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">CMSIS</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="45%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">HAL</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="50%"></div>
+            </div>
+          </div>
+  
+        </div>
+
+        <div class="skill-category">
+          <h4>PCB DESIGN & ELECTRONICS</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Advanced</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Altium Designer</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="55%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">KiCad</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">LTspice</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Benchtop Electronics Equipment</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4>Other Engineering Tools</h4>
+          <div class="skill-progress-labels">
+            <span>Introduced</span>
+            <span>Proficient</span>
+            <span>Advanced</span>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Solidworks</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="65%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">Onshape</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span class="skill-name">3D Printing</span>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="95%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Awards -->
+    <section id="education" class="section">
+      <h2>Education & Awards</h2>
+      
+      <div class="education-awards">
+        <div class="education-column">
+          <div class="education-item">
+            <h3 style="margin: 0 0 20px 0; color: var(--text); font-size: 18px; font-weight: 600;">Education</h3>
+            <div class="education-header">
+              <h4>Bachelor of Science in Computer Engineering</h4>
+              <span class="education-date">Expected May 2027</span>
+            </div>
+            <h5>Tufts University - School of Engineering</h5>
+            <p class="education-details">
+              GPA: 3.6/4.0 · Dean's List</p>
+              
+            <div style="margin: 16px 0;"></div>
+              
+            <p class="education-details">
+              Relevant Coursework: Adv. Computer Organization, Digital Logic, Real-Time Embedded Systems, General Embedded Systems, 
+                Data Structures, Circuits and Electronics, MITRE Embedded Capture the Flag Competition.
+            </p>
+          </div>
+          
+          <div class="education-item" style="margin-top: 24px;">
+            <div class="education-header">
+              <h4>High School Diploma</h4>
+              <span class="education-date">Graduated June 2023</span>
+            </div>
+            <h5>Inter-Lakes High School</h5>
+            <p class="education-details">
+              GPA: 4.7/4.0</p>
+              
+            <div style="margin: 16px 0;"></div>
+              
+            <p class="education-details">
+              Relevant Activities: Robotics Team Captain, National Honor Society VP, 
+              AP Scholar with Distinction, Future Business Leaders of America, Varsity Soccer.
+            </p>
+          </div>
+        </div>
+
+        <div class="awards-column">
+          <div class="awards-section">
+            <h3>Awards & Recognition</h3>
+
+            <div class="award-item">
+              <div class="award-header">
+                <h4>Dean's List</h4>
+                <span class="award-date">2023, 2024, 2025</span>
+              </div>
+              <p>Awarded for maintaining a GPA above 3.2</p>
+            </div>
+
+            <div class="award-item">
+              <div class="award-header">
+                <h4>FIRST Robotics Competition - World Championship Qualifiers</h4>
+                <span class="award-date">2023</span>
+              </div>
+              <p>Led team to the World Championship as Team Captain and Lead Engineer</p>
+            </div>
+
+            <div class="award-item">
+              <div class="award-header">
+                <h4>Xerox Award for Innovation and Information Technology</h4>
+                <span class="award-date">2023</span>
+              </div>
+              <p>Recognized for outstanding contributions to technology and innovation in robotics</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL DIALOG -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
+    <div class="modal__panel" role="document">
+      <div class="modal__head">
+        <h3 class="modal__title" id="modal-title">Details</h3>
+        <button class="modal__close" id="modal-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal__body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- CONTENT TEMPLATES (OPENED) -->
+  <!-- Add/edit the content that shows INSIDE the modal after a card is opened. -->
+  <!-- ========================= -->
+
+  <!-- Engineering Experience → Gentex -->
+  <template id="tmpl-exp-gentex">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">Manufacturing Engineering Intern · Summer 2025 · Gentex Corporation, Manchester NH</div>
+      <img src="gentexlogo.png" alt="Gentex Logo" style="height: 32px; width: auto; opacity: 0.9;">
+    </div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Primary Objective:</strong> Develop and deploy a standalone 2D Computer Vision System capable of production-level product inspection and seamless integration with existing manufacturing automation infrastructure.</p>
+    </div>
+
+    <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 12px;">Day-to-Day Responsibilities</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
+      <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Vision System Design</h4>
+        <p style="margin: 0; font-size: 14px;">Program Python-based vision system with OpenCV to serve as a proof of concept before diving into industrial solutions.</p>
+      </div>
+      <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Automation Cell Development</h4>
+        <p style="margin: 0; font-size: 14px;">Develop necessary robot control sequences, design end-effectors and fixtures, and integrate vision systems into prototype automation cells.
+      </div>
+      <div style="background: #fafafa; padding: 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <h4 style="color: var(--accent-alt); margin-top: 0;">Manufacturing Support</h4>
+        <p style="margin: 0; font-size: 14px;">Sustain product manufacturing processes and maintain comprehensive technical documentation for production teams.</p>
+      </div>
+    </div>
+
+    <h3 style="color: var(--accent); margin-top: 24px; margin-bottom: 16px;">Project Development Journey</h3>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      At Gentex, I developed an automated vision inspection system to enhance existing manual inspection processes. 
+      Collaborating with manufacturing engineers, I identified key inspection points where computer vision could 
+      improve both accuracy and throughput. Designed for eventual integration into production, 
+      the system was engineered to operate robustly in a manufacturing environment with minimal human intervention. 
+      The prototype, built in Python using OpenCV and deployed on a Raspberry Pi 5, 
+      served as a proof of concept for evaluation in a controlled environment. Under the hood, it employed contour detection and template 
+      matching to compare captured images against predefined quality tolerances. The relevant outputs were displayed via a custom GUI which enabled 
+      real-time monitoring, logging of inspection results, and operator control. 
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="contourExample.jpg" alt="Contour Example" />
+        <figcaption>An example of the OpenCV contour creation functionality.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="templateMatchingImage.webp" alt="Template Matching Example" />
+        <figcaption>A conceptual example of template matching.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Upon successful validation of the prototype, we planned to transition the system to an industrial-grade platform. This involved selecting hardware and software platform which balanced perforance, ease of integration,
+      and budget constraints which were ideal for Gentex's manufacturing environment. The vision system was designed to interface with existing PLCs and robotic controllers via Ethernet/IP and industrial I/O modules.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; align-items: start;">
+      <figure class="figure">
+        <img src="visionInspectionSystemExample.png" alt="Inspection System Example" />
+        <figcaption>Vision-Based Inspection Example</figcaption>
+      </figure>
+      
+      <div>
+        <p style="line-height: 1.7; margin: 0 0 16px 0;">
+          The chosen solution incorporated advanced image processing techniques such as adaptive thresholding and morphological operations to enhance feature detection accuracy. 
+          Camera calibration routines were implemented to correct for lens distortion and ensure precise measurements.
+        </p>
+
+        <p style="line-height: 1.7; margin: 0;">
+          With a standalone vision inspection system in place, I collaborated with the manufacturing engineering team to design and prototype automation cells.
+          This involved programming Fanuc robots to handle parts, integrating the vision system for real-time inspection, and designing custom end-effectors to facilitate reliable part manipulation.
+          The end result was a flexible automation cell prototype capable of performing complex inspection tasks with minimal human intervention, ready for future deployment on the production floor.
+          Due to project limitations, "plug and play" communication between the vision system and robot controller was not accessible during the internship period. However, to facilitate continuous development,
+          I created Python firmware for a microcontroller capable of translating Ethernet/IP data into discrete I/O signals compatible with the Fanuc robot controller. This enabled real-time inspection interaction and
+          object location feedback during cell testing and development.
+        </p>
+      </div>
+    </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Contour Example:</strong> Image credit: PyImageSearch – “Finding extreme points in contours with OpenCV” (April 11 2016).</li>
+        <li><strong>Template Matching Example:</strong> Image credit: ren482, “Fast Shape-based Template Matching,” DEV Community (Dec 22 2024)</li>
+        <li><strong>Vision-Based Inspection System Example</strong> Image credit: ifm electronic gmbh, “Area calculator illustration” (accessed online at https://www.ifm.com/binaries/content/assets/html5animationen/bildfeldrechner/o2d/area.png
+, © ifm)</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images used for portfolio demonstration purposes only. Gentex logo used for identification purposes only. Gentex Corporation is not affiliated with this site.</p>
+    </div>
+  
+  </template>
+
+  <!-- Projects → EV Accumulator -->
+  <template id="tmpl-proj-accumulator">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">High-Voltage Accumulator Design · FSAE Competition · 2024–Present</div>
+      <span style="background: #fbbf24; color: #92400e; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+    </div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Engineer a competition-grade EV accumulator system that prioritizes safety, performance, 
+                                            and serviceability while meeting strict FSAE regulatory requirements.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Designing a high-voltage accumulator for the Formula-Hybrid Electric competition presents unique challenges that blend electrical engineering precision with 
+      motorsport durability requirements. As Accumulator Project Manager, I lead the development of a system capable of delivering 
+      consistent power to our electric race car while maintaining the highest safety standards for both competition and testing environments.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 20px 0; align-items: start;">
+      <div>
+        <p style="line-height: 1.7; margin-bottom: 16px;">
+          Our designs integrate hundreds of lithium-ion cells into modular segments that can be easily serviced and monitored. 
+      Each segment includes custom-designed PCBs for thermistor and voltage sensing, along with a dedicated battery management system (BMS)
+      that interfaces with the vehicle's safety and shutdown systems. On last year's accumulator (right), I led the design of the low-voltage safety circuitry, 
+      fusebox layout, and high-current path, ensuring reliable isolation, fault detection, and compliance with FSAE electrical regulations.
+        </p>
+        <p style="line-height: 1.7; margin-bottom: 15px;">
+          The image to the right shows the first successful assembly of our accumulator module after months of design, assembly, and testing. 
+          This milestone validated our electrical architecture and safety systems, paving the way for further performance tuning and competition readiness.
+        </p>
+        <p style="line-height: 1.7; margin-bottom: 15px;">
+          The image below right showcases the prototype deployment of a single accumulator module in our car's sidepod. This installation verified mechanical packaging, and 
+          high-voltage connectivity, allowing us to energize the system and perform charge and discharge tests under load conditions.
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <figure class="figure" style="margin: 0 auto; display: block; width: 60%;">
+          <img src="firstChargeAccumulator.JPG" alt="Accumulator Module Assembly" style="width: 100% !important; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Accumulator Module Assembly</figcaption>
+        </figure>
+        <figure class="figure" style="margin: 0;">
+          <img src="accumulatorDeployed.jpg" alt="Prototype Accumulator Deployment" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Prototype Accumulator Deployment</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div style="margin-top: -55px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+        <h3 style="color: var(--accent); margin: 0; font-size: 1.4rem;">New Accumulator Design</h3>
+        <span style="background: #fbbf24; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+      </div>
+      <p style="line-height: 1.6; margin: 0 0 16px 0; color: var(--muted); font-size: 0.95rem;">
+        Building on lessons learned from the previous system, our in-developement accumulator focuses on modularity, improved thermal management,
+        and enhanced reliability in a form factor of 50% smaller than before.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0;">
+        <figure class="figure" style="margin: 0;">
+          <img src="newAccumulatorLayout.png" alt="New accumulator design layout" style="width: 100% !important; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Prototype Accumulator Arrangement</figcaption>
+        </figure>
+        <div>
+          <p style="line-height: 1.7; margin-bottom: 15px;">
+          This new design, built from the ground up with Molicel P42A cells is optimized to match the needs of our chosen motor/inverter 
+          during events like acceleration and autocross. The entire accumulator is designed to be removed from the car as a single unit.
+          </p>
+          <p style="line-height: 1.7; margin-bottom: 15px;">
+          Key design areas of my focus include the high-voltage interconnect architecture, low-voltage BMS integration, and thermal management strategy to ensure consistent performance
+          </p>
+        </div>
+      </div>
+      
+      <!-- Cell Testing Section -->
+      <div style="margin-top: 32px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Cell Testing & Validation</h3>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 450px; gap: 20px; margin: 16px 0; align-items: start;">
+          <div>
+            <p style="line-height: 1.7; margin-bottom: 15px;">
+              During the design of our new pack, rigorous cell testing is essential to ensure our Molicel P42A cells can meet performance requirements under the demanding 
+              conditions of Formula-Hybrid competition. Our testing protocol evaluates discharge performance across varying temperature 
+              ranges, load conditions, and cycle counts to validate cell reliability and safety margins, while examining voltage sag and capacity retention.
+            </p>
+            <p style="line-height: 1.7; margin-bottom: 15px;">
+              This data directly informs our accumulator architecture, cooling system design, and BMS configuration to ensure reliable 
+              performance throughout competition events while maintaining compliance with FSAE safety regulations.
+            </p>
+          </div>
+          <div>
+            <figure class="figure" style="margin: 0;">
+              <img src="cellTestingGraph.png" alt="Cell Testing and Discharge Analysis" style="width: 100%; height: auto; border-radius: 8px;" />
+              <figcaption style="margin-top: 8px; font-size: 12px;">Preliminary Cell Testing Results</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Projects → Autonomous Color Following Vehicle -->
+  <template id="tmpl-proj-color-following">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="modal__meta">Junior Design Project · Tufts University · September 2025-Present</div>
+      <span style="background: #fbbf24; color: #92400e; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+    </div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> As part of my junior design project at Tufts University, I am developing an autonomous vehicle system that can navigate 
+      and follow colored objects using embedded systems and custom sensor arrays. The project challenges small teams to integrate 
+      hardware design, embedded programming, and control systems to create a fully autonomous robotic platform capable of 
+      real-time decision making and wireless coordination with other vehicles.</p>
+    </div>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The system is powered by an embedded ATMega MCU and incorporates custom hardware design, embedded C++ programming, 
+      and wireless communication systems for real-time control and telemetry applications. This junior design project 
+      emphasizes practical engineering skills including PCB design, sensor integration, and embedded software development.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Embedded Detection System</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      To enable color detection for line following, our team created a purpose-built photodiode array and algorithm to use embedded ADCs 
+      for course marker detection. The system processes analog sensor data in real-time to identify navigation targets and guide 
+      autonomous vehicle movement without relying on external computer vision processing, demonstrating embedded systems design principles.
+    </p>
+    
+    <!-- <figure class="figure" style="margin: 20px 0;">
+      <img src="photodiode-array.jpg" alt="Custom Photodiode Array Design" />
+      <figcaption>Purpose-built photodiode array system for embedded color detection and course marker identification.</figcaption>
+    </figure> -->
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">WebSocket Communication</h3>
+    </div>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The project requirements include implementing WebSocket communication to enable real-time telemetry, remote control 
+      capabilities, and interaction with other student vehicles on the course. This wireless interface allows for dynamic control 
+      adjustments and coordination between multiple autonomous systems, simulating real-world multi-robot coordination scenarios.
+    </p>
+    
+    <!-- <figure class="figure" style="margin: 20px 0;">
+      <img src="websocket-interface.jpg" alt="WebSocket Control Interface" />
+      <figcaption>Real-time telemetry and control interface showing vehicle status, sensor data, and remote operation capabilities.</figcaption>
+    </figure> -->
+  </template>
+
+  <!-- Projects → Safety PCBs -->
+  <template id="tmpl-proj-pcbs">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">PCB Design · Tufts Electric Racing · 2024</div>
+    
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      As part of Tufts Electric Racing's commitment to safety and regulatory compliance, I designed and developed critical safety system PCBs 
+      that ensure safe operation of our high-voltage electric racing vehicle. These systems monitor, control, and protect both the vehicle 
+      and driver during competition and testing scenarios.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Fusebox PCB</h3>
+    </div>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="fuseboxPCB.jpg" alt="Fusebox PCB Design" />
+      <figcaption>Fusebox PCB design showing circuit layout and component placement for high-voltage protection systems.</figcaption>
+    </figure>
+    
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The fusebox PCB serves as a critical protection and distribution hub for the vehicle's electrical systems. This board incorporates 
+      multiple fuse circuits, all with visual indicators for blown fuses, and is designed to handle high-current loads while ensuring
+      safe operation under fault conditions. 
+    </p>
+    
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="fuseboxPCBpopulated.jpg" alt="Populated Fusebox PCB" />
+      <figcaption>Fully populated fusebox PCB showing mounted components, fuses, and final assembly ready for vehicle integration.</figcaption>
+    </figure>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Safety Interlocks PCB</h3>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin: 20px 0;">
+      <div>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+          Safety interlocks allowed the safety system to stay energized unless a fault was detected. Active high and active low 
+          latches were designed for deployment with various sensor types, including the motor controller, BMS, and high-voltage connection interlock fault signals.
+          The circuits were designed to always begin in the disconnected state on power-up, and only energize when all safety conditions were met. Furthermore, 
+          the latches were designed to fail-safe, meaning any loss of power or fault condition would immediately de-energize the system.
+        </p>
+      </div>
+      <figure class="figure" style="margin: 0;">
+        <img src="activeHighLatch.png" alt="Active High Latch Circuit Design" />
+        <figcaption>Active high latch circuit design showing PNP-based fault signal processing and safety interlock logic.</figcaption>
+      </figure>
+    </div>
+  </template>
+
+  <!-- Projects → Vision System -->
+  <template id="tmpl-proj-vision">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">FIRST Robotics Competition · Team Captain & Lead Engineer · 2022-2023</div>
+
+    <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">FIRST Robotics Competition Context</h3>
+    <p style="line-height: 1.5; margin: 0 0 12px 0;">
+      FIRST Robotics Competition challenges high school teams to design, build, and program 120-pound robots within six weeks to compete in alliance-based matches. 
+      Teams must engineer solutions for complex game objectives while adhering to strict size, weight, and safety constraints. The competition demands expertise 
+      across mechanical design, electrical systems, software development, and real-time control.
+    </p>
+
+    <figure class="figure" style="margin: 12px auto; width: 70%; text-align: center;">
+      <img src="chargedUpRobot.png" alt="Charged-Up Robot" style="width: 100%; height: auto;" />
+      <figcaption>Our 2023 Charged-Up competition robot.</figcaption>
+    </figure> 
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Autonomous Vision System Development</h3>
+    </div>
+    
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 12px 0;">
+      <p style="line-height: 1.5; margin: 0 0 12px 0;">
+        During the 2022 Season, the challenge included collecting and scoring inflated game pieces through an elevated hoop. To compete effectively, which
+        includes autonomous scoring during the first 15 seconds of each match, and precision manual control thereafter, accurate target acquisition was essential.
+        To aid in this task, and promote innovation, the field featured retroreflective tape around scoring targets.
+      </p>
+      <figure class="figure" style="margin: 0;">
+        <img src="rapidReactField.png" alt="Rapid React game field layout" style="width: 100%; height: auto; border-radius: 8px;" />
+        <figcaption style="margin-top: 8px; font-size: 12px;">2022 Rapid React field showing central scoring target.</figcaption>
+      </figure>
+    </div>
+
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
+    
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
+      <div>
+        <p style="line-height: 1.5; margin: 0 0 12px 0;">
+          For this engineering challenge, I led the development of a real-time vision system using a Limelight vision processor to detect 
+          retroreflective tape on scoring targets. Using the a COTS Limelight option, we optimized the camera's mounting angle to 
+          maximize target visibility, and programmed it to return the 2D pixel coordinates of detected targets.
+        </p>
+        <p style="line-height: 1.5; margin: 0 0 12px 0;">
+          With this data, we developed a custom algorithm to use the vertical dimension to estimate the distance to the target, and the
+          horizontal dimension to calculate the required robot rotation angle. This information was fed into our swerve drive's autonomous control system,
+          allowing the robot to align itself with the target and adjust launching parameters for efficient scoring.
+        </p>
+        
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+        <p style="line-height: 1.5; margin: 0 0 12px 0;">
+          This system enabled consistent autonomous scoring from up to 10 feet away, significantly improving our match performance.
+        </p>
+      </div>
+      <figure class="figure" style="margin: 0;">
+        <img src="limelightExample.png" alt="Limelight vision processor interface showing target detection" style="width: 100%; height: auto; border-radius: 8px;" />
+        <figcaption style="margin-top: 8px; font-size: 12px;">Limelight interface displaying real-time target detection with retroreflective tape highlighting.</figcaption>
+      </figure>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 20px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Swerve Drive System Implementation</h3>
+    </div>
+    
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      Previous to the 2022 season, our tank drive system limited maneuverability and prevented simultaneous movement and rotation, reducing game piece collection efficiency. 
+      To address this, I spearheaded the integration of a swerve drive system, enabling omnidirectional movement and enhanced agility on the field.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
+      <div>
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+          Given our team's limited prior experience with swerve drives, we decided to purchase a COTS swerve module system for rapid deployment.
+          With this, we deployed a FIRST-robotics standard swerve kinematics library and dove into adjusting the control algorithms to suit our robot's dynamics.
+          More specifically, we implemented field-centric control using a gyroscope for orientation feedback, allowing intuitive driver control. This 
+          enabled each direction on the joystick to always correspond to the field's direction relative to the driver, regardless of the robot's heading.
+          Furthermore, we fine-tuned the PID control loops for each wheel module to ensure precise speed and angle adjustments, enhancing overall responsiveness.
+        </p>
+        
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <figure class="figure" style="margin: 0;">
+          <img src="swerveDriveExample.webp" alt="MK4 Swerve Drive Module" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: -10px; font-size: 12px;">MK4 swerve module showing independent steering and drive motor configuration.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Second row with swapped layout: prototype frame left, results text right -->
+    <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px; margin: 4px 0 12px 0; align-items: start;">
+      <div>
+        <figure class="figure" style="margin: 0;">
+          <img src="swerveDrivePrototypeFrame.png" alt="Swerve Drive Prototype Frame" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 0px; font-size: 12px;">Our team's prototype swerve drive frame during development and testing.</figcaption>
+        </figure>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 200px; gap: 20px; align-items: start;">
+        <div>
+          <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+          <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+            The swerve drive system significantly improved our robot's maneuverability, allowing for complex movement patterns and rapid repositioning during matches. 
+            This upgrade contributed to a massive increase in team performance, culminating in our highest-ever regional placement at the time, and 
+            qualifying for the district championships.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0 8px 0;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.3rem;">Dynamic Platform Balancing System</h3>
+    </div>
+    
+    <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Challenge</h4>
+    <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+      The endgame of the 2023 challenge required balancing on a dynamic "Charge Station" platform for bonus points, but unpredictable motion caused most robots to fall off. 
+      I needed to develop an IMU-based control system for stable equilibrium while compensating for external disturbances from other robots.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px; margin: 12px 0; align-items: start;">
+      <div>
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Technical Approach</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+          As described above, a IMU provided orientation feedback for field-centric driving and was already integrated into the robot. 
+          With this, I collaborated on the development of a PID-based balancing algorithm that adjusted wheel speeds in real-time to maintain level orientation.
+          This enabled the programming of a completely autonomous balancing routine that could be activated during the endgame period.
+          Once balanced, the 2 of the 4 wheels would rotate 90 degrees to lock the robot in place, preventing the robot from rolling off due to external forces.
+        </p>
+        
+        <h4 style="color: var(--accent-alt); margin: 8px 0 4px 0; font-size: 1.1rem;">Results</h4>
+        <p style="line-height: 1.6; margin: 0 0 12px 0; font-size: 0.95rem;">
+          Achieved an estimated 95% success rate in autonomous balancing attempts during competition matches. 
+          Consistent performance made our team a valuable alliance partner for endgame strategies.
+        </p>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <figure class="figure" style="margin: 0;">
+          <img src="chargedUpBalance.png" alt="Charged Up Balancing Challenge" style="width: 100%; height: auto; border-radius: 8px;" />
+          <figcaption style="margin-top: 8px; font-size: 12px;">Robot demonstrating autonomous balancing on the Charge Station during the 2023 Charged Up challenge.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Rapid React Field Layout:</strong> AutomationDirect. "2022 FIRST Robotics Rapid React 3D Printed Field." AutomationDirect Library, accessed November 6, 2025, https://library.automationdirect.com/2022-first-robotics-rapid-react-3d-printed-field/</li>
+        <li><strong>MK4 Swerve Module:</strong> Swerve Drive Specialties. "MK4 Swerve Module." Swerve Drive Specialties Products, accessed November 6, 2025, https://www.swervedrivespecialties.com/products/mk4-swerve-module</li>
+        <li><strong>Limelight Example Interface:</strong> Limelight Vision. "Getting Started with Pipelines." Limelight Documentation, accessed November 6, 2025, https://docs.limelightvision.io/docs/docs-limelight/getting-started/pipelines</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Images courtesy of Lakerbots 8046 FRC Team. Field layout, swerve module, and Limelight documentation images used for educational demonstration purposes.</p>
+    </div>
+  </template>
+
+  <!--Processor Project-->
+  <template id="tmpl-proj-arm">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="modal__meta">5-Stage Pipelined ARM Processor · Computer Architecture Course · 2025</div>
+        <a href="https://github.com/kalanbrunell/5-Stage-Pipelined-Processor" target="_blank" rel="noopener" class="btn" style="font-size: 13px; padding: 6px 12px;">
+          View on GitHub
+        </a>
+      </div>
+      <span style="background: #fbbf24; color: #92400e; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">In Progress</span>
+    </div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Engineer a complete 5-stage pipelined processor from scratch, implementing advanced concepts 
+        like hazard detection and data forwarding entirely in VHDL.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      As the term project for my Computer Architecture course, I designed and implemented a simplified ARM-like processor using VHDL.
+      The processor supports a subset of ARM instructions (specifically LEGv8), including arithmetic operations, memory access, and control flow.
+    </p>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The project began with designing foundational components like the PC, instruction and data memory, register file, and ALU.
+      I first wired it together into a single-cycle architecture to validate basic functionality before transitioning to a pipelined design.
+      This shift to pipelining introduced challenges around instruction dependencies and timing, which I addressed through hazard detection 
+      and data forwarding mechanisms.
+    </p>
+
+    <figure class="figure" style="margin: 20px auto; width: 60%; text-align: center;">
+      <img src="PipelinedCPU.png" alt="Single-cycle ARM processor architecture diagram" style="width: 100%; height: auto;" />
+      <figcaption>Single-cycle processor architecture.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      The pipelining implementation follows the classic five-stage approach: Instruction Fetch, Instruction Decode, 
+      Execute, Memory Access, and Write Back. Each stage operates concurrently with others, creating a processing pipeline that can 
+      theoretically complete one instruction per clock cycle. However, the real complexity emerges when handling data hazards—situations 
+      where instructions depend on results from previous instructions still moving through the pipeline.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="scCPUEntity.png" alt="Single-cycle CPU entity declaration and top-level architecture" />
+        <figcaption>Single-cycle CPU entity declaration.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="cpuWaveform.png" alt="CPU simulation waveform analysis" />
+        <figcaption>GTKWave simulation waveform showing processor instruction execution.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 16px;">
+      Verification involved developing comprehensive testbenches that could automatically validate processor functionality across various 
+      instruction sequences. Using GTKWave for waveform analysis, I could observe signal propagation through each pipeline stage, verify 
+      timing relationships, and debug complex interactions between hazard detection logic and data forwarding mechanisms.
+    </p>
+
+    <div class="image-credits">
+      <h4>Image Credits</h4>
+      <ul>
+        <li><strong>Single-Cycle Architecture Diagram:</strong> Patterson, David A., and John L. Hennessy. <em>Computer 
+          Organization and Design - The Hardware/Software Interface (Arm® Edition)</em>. ISBN: 978-0-12-801733-3.</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:11px; font-style:italic;">Textbook diagram used for educational purposes under fair use. Code screenshots and simulations are personal development work.</p>
+    </div>
+  </template>
+
+  <!-- Projects → FPGA 2048 Game -->
+  <template id="tmpl-proj-fpga">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="modal__meta">FPGA 2048 Game · Digital Logic Course · 2024</div>
+        <a href="https://github.com/kalanbrunell/VHDL_Arcade_Game" target="_blank" rel="noopener" class="btn" style="font-size: 13px; padding: 6px 12px;">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+    
+    <div style="background: #f8f9fa; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Project Mission:</strong> Recreate the complete 2048 gaming experience using only VHDL on an FPGA, including graphics rendering, game logic, and user input.</p>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      For the final project of my Digital Logic Course, I collaborated with a small group to implement the popular 2048 game entirely in VHDL on an iCE40 FPGA development board.
+      The game features full VGA output for graphics display and supports user input via a classic NES controller, enabling a seamless gaming experience on custom hardware.
+    </p>
+
+    <figure class="figure" style="margin: 20px 0;">
+      <img src="2048 Block Diagram.png" alt="FPGA 2048 game system block diagram" />
+      <figcaption>System architecture block diagram showing the interconnected VHDL modules for VGA controller, game logic, and input processing.</figcaption>
+    </figure>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      At the core of the project was the complex game logic, which required careful state management to handle tile movements, merging, and score updates. Additionally,
+      I developed a custom graphics pipeline to render the game board and tiles on a VGA display, adhering to strict timing requirements for synchronization signals.
+      Each tile was stored in its own ROM block, allowing for efficient fetching and rendering during gameplay. The graphics system also required 
+      tightly timed pixel clock generation and synchronization with horizontal and vertical sync signals to ensure a stable display.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <figure class="figure">
+        <img src="vgaEntity.png" alt="VGA controller entity declaration in VHDL" />
+        <figcaption>VGA controller entity showing input/output ports for pixel clock generation and synchronization signals.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="twoBlockROM.png" alt="Tile ROM block implementation" />
+        <figcaption>ROM block structure for storing and accessing tile graphics data during game rendering.</figcaption>
+      </figure>
+    </div>
+
+    <p style="line-height: 1.7; margin-bottom: 20px;">
+      Implementation of the game was not small feat, as we had to remain within the constraints of FPGA resources while ensuring smooth gameplay and responsive controls.
+      The final product successfully recreated the addictive 2048 experience, demonstrating the power of VHDL for complex system design on FPGA platforms.
+    </p>
+    </div>
+  </template>
+
+  <!-- Resume View Modal -->
+  <template id="tmpl-resume-view">
+    <!-- OPENED CONTENT (shows inside the modal) -->
+    <div class="modal__meta">Software Engineering Resume · Updated November 2025</div>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <p style="color: var(--muted); margin: 0 0 16px 0;">View my complete resume below or download the PDF for offline viewing.</p>
+      <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" download style="margin-right: 12px;">Download PDF</a>
+      <a class="btn--ghost" href="Brunell_Kalan_Resume.pdf" target="_blank">Open in New Tab</a>
+    </div>
+    
+    <div style="border: 2px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+      <iframe 
+        src="Brunell_Kalan_Resume.pdf" 
+        width="100%" 
+        height="800px" 
+        style="border: none; display: block;"
+        title="Resume PDF Viewer">
+        <p style="padding: 20px; text-align: center; color: var(--muted);">
+          Your browser doesn't support PDF viewing. 
+          <a href="Brunell_Kalan_Resume.pdf" download>Click here to download the resume</a>.
+        </p>
+      </iframe>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <small style="color: var(--muted);">
+        Having trouble viewing? Try <a href="Brunell_Kalan_Resume.pdf" target="_blank">opening in a new tab</a> or 
+        <a href="Brunell_Kalan_Resume.pdf" download>downloading the PDF</a>.
+      </small>
+    </div>
+  </template>
+
+  <!-- ========================= -->
+  <!-- OPTIONAL: On-card PREVIEW -->
+  <!-- The bullet lists inside each .card are the PREVIEW content (what users see BEFORE opening). -->
+  <!-- Update those bullets directly in the card markup above. -->
+  <!-- ========================= -->
+
+<script>
+  // Modal logic + focus management
+  const modal = document.getElementById('modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalTitle = document.getElementById('modal-title');
+  const closeBtn = document.getElementById('modal-close');
+  let lastFocused = null;
+
+  function openModal(templateKey, titleText){
+    const tmpl = document.getElementById('tmpl-' + templateKey);
+    if(!tmpl){ return; }
+    lastFocused = document.activeElement;
+    modalBody.innerHTML = tmpl.innerHTML;
+    modalTitle.textContent = titleText || 'Details';
+    modal.setAttribute('open','');
+    modal.setAttribute('aria-hidden','false');
+    
+    // Force scroll to top after content is loaded
+    setTimeout(() => {
+      modalBody.scrollTop = 0;
+      modal.scrollTop = 0;
+    }, 0);
+    
+    closeBtn.focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.removeAttribute('open');
+    modal.setAttribute('aria-hidden','true');
+    modalBody.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  // Click/keyboard open for any element with data-open-modal
+  function attachOpenHandlers(){
+    // Handle cards
+    document.querySelectorAll('.card[data-open-modal]').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-open-modal');
+        const title = card.querySelector('h3')?.textContent || 'Details';
+        openModal(key, title);
+      });
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); card.click(); }
+      });
+    });
+    
+    // Handle buttons and other elements
+    document.querySelectorAll('[data-open-modal]:not(.card)').forEach(element => {
+      element.addEventListener('click', () => {
+        const key = element.getAttribute('data-open-modal');
+        const title = element.getAttribute('aria-label') || element.textContent || 'Details';
+        openModal(key, title);
+      });
+    });
+  }
+  attachOpenHandlers();
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.hasAttribute('open')) closeModal(); });
+
+  // Light focus trap inside modal
+  function trapFocus(e){
+    if(!modal.hasAttribute('open')) return;
+    const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if(!focusables.length) return;
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if(e.key === 'Tab'){
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  document.addEventListener('keydown', trapFocus);
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = Array.from(document.querySelectorAll('.nav a'));
+  const linkFor = id => navLinks.find(a => a.getAttribute('href') === '#' + id);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const link = linkFor(id);
+      if(!link) return;
+      if(entry.isIntersecting){
+        navLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+
+  sections.forEach(s => io.observe(s));
+
+  // Simple masonry layout for project cards
+  function masonryLayout() {
+    const grid = document.querySelector('.grid');
+    if (!grid) return;
+    
+    const cards = Array.from(grid.children);
+    const gap = 24;
+    
+    // Reset positioning
+    grid.style.position = 'relative';
+    cards.forEach(card => {
+      card.style.position = 'absolute';
+      card.style.width = `calc(50% - ${gap/2}px)`;
+    });
+    
+    // Simple two-column heights tracking
+    let leftHeight = 0;
+    let rightHeight = 0;
+    
+    cards.forEach((card, index) => {
+      const cardHeight = card.offsetHeight;
+      
+      // Place in shorter column
+      if (leftHeight <= rightHeight) {
+        // Left column
+        card.style.left = '0';
+        card.style.top = `${leftHeight}px`;
+        leftHeight += cardHeight + gap;
+      } else {
+        // Right column  
+        card.style.left = `calc(50% + ${gap/2}px)`;
+        card.style.top = `${rightHeight}px`;
+        rightHeight += cardHeight + gap;
+      }
+    });
+    
+    // Set container height
+    grid.style.height = `${Math.max(leftHeight, rightHeight)}px`;
+  }
+  
+  // Run masonry on load and resize
+  window.addEventListener('load', masonryLayout);
+  window.addEventListener('resize', masonryLayout);
+
+  // Skill bar animation on scroll
+  function animateSkillBars() {
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+          const targetWidth = entry.target.getAttribute('data-width');
+          entry.target.style.setProperty('--target-width', targetWidth);
+          entry.target.classList.add('animated');
+          
+          // Add a small delay to create staggered animation within each category
+          const categoryItems = entry.target.closest('.skill-category').querySelectorAll('.skill-fill');
+          const index = Array.from(categoryItems).indexOf(entry.target);
+          entry.target.style.transitionDelay = `${index * 0.1}s`;
+        }
+      });
+    }, {
+      threshold: 0.5,
+      rootMargin: '-10% 0px -10% 0px'
+    });
+
+    skillFills.forEach(fill => {
+      observer.observe(fill);
+    });
+  }
+
+  // Initialize skill bar animation
+  window.addEventListener('load', animateSkillBars);
+
+  // Project card animation on scroll
+  function animateProjectCards() {
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animate-in')) {
+          // Animate immediately without delay
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -5% 0px'
+    });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  }
+
+  // Initialize project card animation
+  window.addEventListener('load', animateProjectCards);
+</script>
+</body>
+</html>

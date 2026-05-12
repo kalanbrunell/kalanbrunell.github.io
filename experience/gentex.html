@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manufacturing Engineering Intern at Gentex — Kalan Brunell</title>
+<meta name="description" content="Summer 2025 internship at Gentex Corporation — vision-system development, prototype automation cells, and manufacturing engineering support." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#experience">Back to experience</a>
+    <p class="detail-eyebrow">Experience · Manufacturing Engineering</p>
+    <h1 class="detail-title">Manufacturing Engineering Intern, Gentex Corporation</h1>
+    <div class="detail-meta">
+      <span><strong>Role:</strong> Manufacturing Engineering Intern</span>
+      <span><strong>Location:</strong> Manchester, NH</span>
+      <span><strong>Dates:</strong> Summer 2025</span>
+    </div>
+    <p class="detail-summary">
+      A summer building a standalone 2D computer vision system for production-line inspection, integrating it with
+      Fanuc robots and existing PLC infrastructure, and supporting day-to-day manufacturing engineering across
+      multiple product lines.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <div class="detail-callout reveal">
+      <p><strong>Primary objective:</strong> develop and deploy a standalone 2D computer vision system capable of
+      production-level product inspection, with seamless integration into Gentex's existing manufacturing
+      automation infrastructure.</p>
+    </div>
+
+    <section class="detail-section reveal">
+      <h2>Day-to-day responsibilities</h2>
+      <div class="detail-pillrow">
+        <div class="detail-pill">
+          <h4>Vision System Design</h4>
+          <p>Programmed a Python / OpenCV vision system as a proof of concept before transitioning to an industrial platform.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Automation Cell Development</h4>
+          <p>Developed robot control sequences, designed end-effectors and fixtures, and integrated vision into prototype cells.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Manufacturing Support</h4>
+          <p>Sustained product manufacturing processes and maintained technical documentation for production teams.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>The project</h2>
+      <p>
+        At Gentex, I developed an automated vision inspection system designed to enhance an existing manual inspection
+        process. Working with manufacturing engineers, I identified the inspection points where computer vision could
+        improve accuracy and throughput, then engineered the system to operate robustly in a real manufacturing environment
+        with minimal human intervention.
+      </p>
+      <p>
+        The prototype was built in Python using OpenCV and deployed on a Raspberry Pi 5 as a controlled-environment
+        proof of concept. Under the hood it combined contour detection and template matching to compare captured images
+        against predefined quality tolerances. A custom GUI surfaced real-time monitoring, inspection logs, and operator
+        controls — making the prototype usable as a self-contained station for evaluation.
+      </p>
+
+      <div class="detail-grid-2">
+        <figure class="detail-figure">
+          <img src="../images/experience/gentex/contourExample.jpg" alt="Example of OpenCV contour creation" />
+          <figcaption>OpenCV contour creation — used for feature isolation in the inspection pipeline.</figcaption>
+        </figure>
+        <figure class="detail-figure">
+          <img src="../images/experience/gentex/templateMatchingImage.webp" alt="Template matching example" />
+          <figcaption>Template matching — comparing live captures against a stored reference.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Moving to an industrial platform</h2>
+      <p>
+        After validating the prototype, the next step was transitioning to an industrial-grade vision platform. The
+        selection process balanced performance, ease of integration, and budget against Gentex's manufacturing
+        environment. The chosen system was designed to interface with existing PLCs and robotic controllers over
+        Ethernet/IP and industrial I/O modules.
+      </p>
+
+      <div class="detail-grid-side">
+        <div>
+          <p>
+            The industrial solution layered in advanced techniques — adaptive thresholding, morphological operations
+            for feature enhancement, and lens-distortion correction via camera calibration — so the system could
+            measure parts precisely under real production lighting.
+          </p>
+          <p>
+            With the standalone vision system in place, I worked with the manufacturing engineering team to design and
+            prototype automation cells: programming Fanuc robots to handle parts, integrating the vision system for
+            real-time inspection, and designing custom end-effectors for reliable part manipulation. The result was a
+            flexible cell prototype capable of complex inspection tasks with minimal human intervention.
+          </p>
+          <p>
+            "Plug-and-play" communication between the vision system and the Fanuc controller wasn't available within
+            the internship's timeframe. To unblock continued development, I wrote Python firmware for a microcontroller
+            that translated Ethernet/IP traffic into discrete I/O the Fanuc could consume — enabling real-time
+            inspection interaction and object-location feedback during cell testing.
+          </p>
+        </div>
+        <figure class="detail-figure">
+          <img src="../images/experience/gentex/visionInspectionSystemExample.png" alt="Vision-based inspection system example" />
+          <figcaption>Vision-based inspection example — the kind of in-line measurement the system was designed for.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="detail-credits">
+      <h4>Image credits</h4>
+      <ul>
+        <li><strong>Contour example:</strong> PyImageSearch — "Finding extreme points in contours with OpenCV" (Apr 11, 2016).</li>
+        <li><strong>Template matching example:</strong> ren482, "Fast Shape-based Template Matching," DEV Community (Dec 22, 2024).</li>
+        <li><strong>Vision-based inspection example:</strong> ifm electronic gmbh, "Area calculator illustration" (© ifm).</li>
+      </ul>
+      <p class="detail-credits__note">Images used for portfolio demonstration purposes only. Gentex logo used for identification only — Gentex Corporation is not affiliated with this site.</p>
+    </div>
+
+    <div class="detail-footer-nav">
+      <a href="../index.html#experience">← Back to experience</a>
+      <a href="../index.html#projects">See projects →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

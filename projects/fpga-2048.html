@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FPGA 2048 — Kalan Brunell</title>
+<meta name="description" content="The 2048 game implemented entirely in VHDL on an iCE40 FPGA — custom VGA controller, tile-ROM graphics pipeline, and NES-controller input." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">06 / FPGA · VHDL</p>
+    <h1 class="detail-title">FPGA 2048</h1>
+    <div class="detail-meta">
+      <span><strong>Course:</strong> Digital Logic</span>
+      <span><strong>Discipline:</strong> FPGA design in VHDL</span>
+      <span><strong>Date:</strong> 2024</span>
+    </div>
+    <div class="detail-actions">
+      <a class="detail-github" href="https://github.com/kalanbrunell/VHDL_Arcade_Game" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+    <p class="detail-summary" style="margin-top: 24px;">
+      The complete 2048 game implemented entirely in VHDL on an iCE40 FPGA — with a custom VGA controller, a
+      tile-ROM graphics pipeline, and a classic NES-controller input.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <div class="detail-callout reveal">
+      <p><strong>Project mission:</strong> recreate the full 2048 gaming experience using only VHDL on an FPGA —
+      graphics rendering, game logic, and user input, all in hardware.</p>
+    </div>
+
+    <section class="detail-section reveal">
+      <h2>Overview</h2>
+      <p>
+        For the final project of my Digital Logic course, I collaborated with a small group to implement the popular
+        2048 game entirely in VHDL on an iCE40 FPGA development board. The game outputs full VGA graphics and supports
+        user input via a classic NES controller, enabling a complete gaming experience on custom hardware.
+      </p>
+
+      <figure class="detail-figure">
+        <img src="../images/projects/fpga-2048/2048-block-diagram.png" alt="FPGA 2048 game system block diagram" />
+        <figcaption>System block diagram — VGA controller, game logic, and input processing modules.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Game logic &amp; graphics pipeline</h2>
+      <p>
+        At the core of the project was the game logic, which required careful state management to handle tile
+        movement, merging, and score updates. On top of that, I developed a custom graphics pipeline to render the
+        board and tiles on a VGA display under strict timing requirements for synchronization signals. Each tile
+        was stored in its own ROM block for efficient fetch and rendering during gameplay. The graphics system also
+        required tightly timed pixel-clock generation, horizontal-sync, and vertical-sync signals to maintain a
+        stable display.
+      </p>
+
+      <div class="detail-grid-2">
+        <figure class="detail-figure">
+          <img src="../images/projects/fpga-2048/vgaEntity.png" alt="VGA controller entity declaration in VHDL" />
+          <figcaption>VGA controller entity — I/O ports for pixel clock generation and sync.</figcaption>
+        </figure>
+        <figure class="detail-figure">
+          <img src="../images/projects/fpga-2048/twoBlockROM.png" alt="Tile-ROM block implementation" />
+          <figcaption>ROM block structure for storing and fetching tile graphics during rendering.</figcaption>
+        </figure>
+      </div>
+
+      <p>
+        Implementation wasn't trivial — we had to fit within the FPGA's resource constraints while keeping gameplay
+        smooth and the controls responsive. The final product successfully recreated the addictive 2048 experience
+        and showed off what VHDL can do for complex hardware-only system design.
+      </p>
+
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/fpga-2048/2048Game.jpeg" alt="2048 game running on the FPGA hardware" />
+        <figcaption>The final result — 2048 running on the FPGA.</figcaption>
+      </figure>
+    </section>
+
+    <div class="detail-footer-nav">
+      <a href="arm-processor.html">← Previous: ARM Processor</a>
+      <a href="../index.html#projects">Back to projects</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
