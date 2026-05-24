@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Custom Mechanical Keyboard — Kalan Brunell</title>
+<meta name="description" content="A bespoke mechanical keyboard built from scratch — custom PCB designed in KiCad and a purpose-built case and plate." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">03 / Hardware · PCB Design</p>
+    <h1 class="detail-title">Custom Mechanical Keyboard</h1>
+    <div class="detail-meta">
+      <span><strong>Scope:</strong> Custom PCB &amp; Case</span>
+      <span><strong>Tools:</strong> KiCad, CAD</span>
+      <!-- TODO: add date once finalized -->
+      <span><strong>Date:</strong> 2025 — Present</span>
+      <span class="proj-status">In Progress</span>
+    </div>
+    <p class="detail-summary">
+      A fully bespoke mechanical keyboard designed from the ground up — custom PCB laid out in KiCad,
+      custom case and plate designed for the build, and a hand-picked switch and keycap set to match.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <div class="detail-callout reveal">
+      <p><strong>Project mission:</strong> build a mechanical keyboard where every layer — PCB, case,
+      plate, and layout — is designed rather than purchased. A hardware project in its own right,
+      not just an assembly job.</p>
+    </div>
+
+    <section class="detail-section reveal">
+      <h2>Overview</h2>
+      <p>
+        Off-the-shelf keyboards make tradeoffs that most builders don't control — layout compromises,
+        generic cases, and PCBs you can't modify. This project starts from a blank canvas: a completely
+        custom layout designed around how I actually type, a PCB designed in KiCad from scratch,
+        and an enclosure built to exactly the dimensions and feel I want.
+      </p>
+      <p>
+        <!-- TODO: describe layout — e.g. "a compact 65-key ortholinear layout", "a columnar-stagger split", etc. -->
+        The layout prioritizes [describe your layout goals here]. Every design decision on the PCB,
+        from the key matrix to the controller selection, follows from that goal.
+      </p>
+
+      <!-- TODO: add render/CAD screenshot
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/keyboard/render.png" alt="Custom keyboard PCB render" />
+        <figcaption>KiCad PCB render — top layer.</figcaption>
+      </figure>
+      -->
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>PCB design</h2>
+      <p>
+        The PCB was designed entirely in KiCad. The key matrix is wired for <!-- TODO: N-key rollover / QMK compatibility / etc. -->
+        with a <!-- TODO: MCU, e.g. RP2040, ATmega32U4, STM32 --> at the center.
+        Each key position was placed to match the physical layout exactly, then routed with care
+        for signal integrity and a clean final board.
+      </p>
+      <p>
+        <!-- TODO: add any interesting PCB design choices — RGB underglow, per-key LEDs, USB-C,
+        ESD protection, rotary encoder, etc. -->
+      </p>
+
+      <!-- TODO: add PCB layout screenshot
+      <div class="detail-grid-2">
+        <figure class="detail-figure">
+          <img src="../images/projects/keyboard/pcb-layout.png" alt="PCB layout in KiCad" />
+          <figcaption>PCB layout — KiCad routing view.</figcaption>
+        </figure>
+        <figure class="detail-figure">
+          <img src="../images/projects/keyboard/pcb-schematic.png" alt="Keyboard schematic" />
+          <figcaption>Schematic — key matrix and controller wiring.</figcaption>
+        </figure>
+      </div>
+      -->
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Case &amp; plate</h2>
+      <p>
+        The case and plate were designed in <!-- TODO: CAD tool, e.g. Onshape / SolidWorks / Fusion 360 -->
+        to match the PCB footprint exactly. The plate material is <!-- TODO: material, e.g. polycarbonate, aluminum, FR4 -->
+        and the case is <!-- TODO: manufacturing method and material, e.g. 3D-printed PLA, CNC aluminum, etc. -->.
+      </p>
+      <p>
+        <!-- TODO: add any case design details — sound dampening, mounting style (top-mount, tray, gasket), etc. -->
+      </p>
+
+      <!-- TODO: add case CAD render
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/keyboard/case-render.png" alt="Case CAD render" />
+        <figcaption>Case design — CAD render.</figcaption>
+      </figure>
+      -->
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Build status</h2>
+      <p>
+        <!-- TODO: update with current progress — e.g. PCB ordered, waiting on parts, assembled, etc. -->
+        Currently in active development. PCB design is [status], and case design is [status].
+      </p>
+    </section>
+
+    <div class="detail-footer-nav">
+      <a href="arm-processor.html">← Previous: ARM Processor</a>
+      <a href="fpga-2048.html">Next: FPGA 2048 →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

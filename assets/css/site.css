@@ -402,18 +402,18 @@ a:hover { color: var(--accent-hover); }
    Experience
    ---------------------------------- */
 .experience {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-@media (max-width: 820px) {
-  .experience { grid-template-columns: 1fr; }
-}
-.experience__main {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.experience__cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 820px) {
+  .experience__cards { grid-template-columns: 1fr; }
 }
 .exp-card {
   display: block;
@@ -474,45 +474,6 @@ a:hover { color: var(--accent-hover); }
   font-weight: 500;
 }
 
-.exp-extras {
-  border-radius: var(--radius);
-  padding: 32px;
-  background: transparent;
-  border: 1px dashed var(--line);
-}
-.exp-extras h3 { margin-top: 0; font-size: 1.15rem; }
-.exp-extras__group { margin-bottom: 20px; }
-.exp-extras__group:last-child { margin-bottom: 0; }
-.exp-extras__group h4 {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 8px;
-}
-.exp-extras__role {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  padding: 4px 0;
-}
-.exp-extras__role strong { color: var(--text); font-weight: 500; }
-.exp-extras__logos {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding-top: 24px;
-  margin-top: 20px;
-  border-top: 1px solid var(--line);
-}
-.exp-extras__logos img {
-  height: 52px;
-  width: auto;
-  opacity: 0.85;
-}
 
 /* ----------------------------------
    Project list — magazine style
@@ -634,6 +595,57 @@ a:hover { color: var(--accent-hover); }
   border-radius: 999px;
   background: var(--surface);
 }
+/* "Coming Soon" badge — used on draft project entries whose write-up isn't ready.
+   Paired with .proj-item--draft / .proj-card--draft to suppress interactivity. */
+.proj-coming-soon {
+  display: inline-block;
+  background: var(--bg-deep);
+  color: var(--muted-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+}
+
+/* Draft project items — non-clickable, visually muted, no hover effects.
+   Applied to both .proj-item and .proj-card variants. */
+.proj-item--draft,
+.proj-card--draft {
+  cursor: default;
+  opacity: 0.6;
+}
+.proj-item--draft:hover {
+  background: transparent;
+  border-color: var(--line);
+  transform: none;
+  box-shadow: none;
+  color: var(--text);
+}
+.proj-item--draft:hover .proj-item__title { color: var(--text); }
+.proj-item--draft:hover .proj-item__media img { transform: none; }
+.proj-item--draft:hover .proj-item__media::after { opacity: 1; }
+.proj-card--draft:hover {
+  border-color: var(--line);
+  transform: none;
+  box-shadow: none;
+  color: var(--text);
+}
+.proj-card--draft:hover .proj-card__title { color: var(--text); }
+.proj-card--draft:hover .proj-card__media img { transform: none; }
+.proj-card--draft:hover .proj-card__media::after { opacity: 1; }
+
+/* Muted CTA text on draft items — replaces the normal arrow link */
+.proj-item__cta--muted,
+.proj-card__cta--muted {
+  color: var(--muted-soft);
+  font-style: italic;
+}
+.proj-item__cta--muted::after,
+.proj-card__cta--muted::after { content: ""; }
+
 .proj-status {
   display: inline-block;
   background: var(--warm-soft);
@@ -673,6 +685,111 @@ a:hover { color: var(--accent-hover); }
   }
   .proj-item:nth-child(even) .proj-item__media { order: 0; }
   .proj-item:nth-child(even) .proj-item__body  { order: 0; }
+}
+
+/* Project card grid — compact grid below the featured rows */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.proj-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  overflow: hidden;
+  transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.proj-card:hover {
+  border-color: var(--warm);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+  color: var(--text);
+}
+
+.proj-card__media {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--bg-deep);
+  position: relative;
+  flex-shrink: 0;
+}
+.proj-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--ease);
+  display: block;
+}
+.proj-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(184, 90, 48, 0.10), rgba(31, 72, 104, 0.10));
+  mix-blend-mode: multiply;
+  opacity: 1;
+  transition: opacity .35s var(--ease);
+  pointer-events: none;
+}
+.proj-card:hover .proj-card__media img { transform: scale(1.04); }
+.proj-card:hover .proj-card__media::after { opacity: 0; }
+
+.proj-card__body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.proj-card__num {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--warm);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.proj-card__title {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  transition: color .2s var(--ease);
+}
+.proj-card:hover .proj-card__title { color: var(--accent); }
+
+.proj-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.proj-card__cta {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .25s var(--ease);
+}
+.proj-card__cta::after {
+  content: "→";
+  transition: transform .25s var(--ease);
+}
+.proj-card:hover .proj-card__cta { color: var(--warm); }
+.proj-card:hover .proj-card__cta::after { transform: translateX(4px); }
+
+@media (max-width: 820px) {
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .proj-grid { grid-template-columns: 1fr; }
 }
 
 /* ----------------------------------

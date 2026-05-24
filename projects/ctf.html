@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MITRE Embedded CTF — Kalan Brunell</title>
+<meta name="description" content="2026 MITRE eCTF — designing a secure Hardware Security Module in firmware for the MSP-LITO-L2228, then attacking other teams' implementations." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/site.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../index.html#top">Kalan Brunell</a>
+    <div class="nav__links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container">
+    <a class="detail-back" href="../index.html#projects">Back to projects</a>
+    <p class="detail-eyebrow">08 / Embedded Security</p>
+    <h1 class="detail-title">MITRE Embedded CTF</h1>
+    <div class="detail-meta">
+      <span><strong>Organizer:</strong> MITRE Corporation</span>
+      <span><strong>Institution:</strong> Tufts University</span>
+      <span><strong>Hardware:</strong> MSP-LITO-L2228</span>
+      <span><strong>Season:</strong> 2025 — 2026</span>
+    </div>
+    <p class="detail-summary">
+      A two-phase embedded security competition: design a cryptographically secure Hardware Security
+      Module in firmware, then turn around and attack every other team's implementation.
+    </p>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="container">
+
+    <section class="detail-section reveal">
+      <h2>The scenario</h2>
+      <p>
+        The 2026 eCTF challenge tasks each team with building a <strong>Hardware Security Module
+        (HSM)</strong> — a dedicated embedded device for secure file storage and encrypted
+        device-to-device file transfer. The HSM runs as firmware on the MSP-LITO-L2228
+        microcontroller board and exposes two distinct interfaces to the outside world.
+      </p>
+
+      <div class="detail-pillrow">
+        <div class="detail-pill">
+          <h4>Management Interface</h4>
+          <p>PIN-protected channel for user interactions — creating files, managing permissions, and retrieving status.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Transfer Interface</h4>
+          <p>Device-to-device channel for secure file exchange between HSMs over a direct UART connection.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Host Interface</h4>
+          <p>Serial connection to a host computer running organizer-provided tools to initiate operations and read results.</p>
+        </div>
+      </div>
+
+      <p>
+        The security model is built around <strong>permission groups</strong>. Every file stored on
+        an HSM belongs to a group, and each HSM holds differentiated permissions per group —
+        receive (request files from other devices), write (create new files), and read (return file
+        contents to an authorized user). Crucially, an HSM can store files it has no read permission
+        for, deliberately separating <em>data possession</em> from <em>data access</em>.
+      </p>
+      <p>
+        The competition runs in two phases. During the <strong>design phase</strong>, teams
+        implement and harden their HSM firmware — earning flags through an automated testing service
+        that validates both functional correctness and security properties. In the
+        <strong>attack phase</strong>, teams receive three provisioned boards running every other
+        team's firmware and attempt to break their security implementations to capture flags.
+        Each team therefore defends its own design while actively attacking everyone else's.
+      </p>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Our design</h2>
+      <div class="detail-callout">
+        <p>Design details to follow — check back once the competition wraps.</p>
+      </div>
+      <!-- TODO: fill in once ready
+      <p>
+        Describe the overall architecture: crypto primitives chosen, key storage strategy,
+        how the permission system was implemented, any hardening techniques (memory protection,
+        secure boot, anti-debug measures, etc.).
+      </p>
+      -->
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>My contributions</h2>
+      <div class="detail-callout">
+        <p>Contribution breakdown to follow — check back once the competition wraps.</p>
+      </div>
+      <!-- TODO: fill in once ready
+      <p>
+        Describe your specific role: which subsystems you owned, any attacks you executed
+        during the attack phase, flags captured, etc.
+      </p>
+      -->
+    </section>
+
+    <div class="detail-footer-nav">
+      <a href="../index.html#projects">← Back to projects</a>
+      <a href="fpga-2048.html">Next: FPGA 2048 →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Kalan Brunell · Built with care, hand-coded.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
