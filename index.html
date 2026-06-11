@@ -6,6 +6,10 @@
 <title>Kalan Brunell — Engineering Portfolio</title>
 
 <meta name="description" content="Kalan Brunell — Computer Engineering student at Tufts University. Hardware, firmware, and systems engineering." />
+<link rel="canonical" href="https://kalanbrunell.site/" />
+<meta name="theme-color" content="#1f4868" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" as="image" href="images/hero/TER26.JPG" fetchpriority="high" />
 <meta property="og:title" content="Kalan Brunell — Engineering Portfolio" />
 <meta property="og:description" content="Engineering portfolio — hardware, firmware, PCB design, and systems work across FSAE, robotics, security, and more." />
 <meta property="og:type" content="website" />
@@ -28,10 +32,12 @@
 </head>
 <body>
 
+<a class="skip-link" href="#top">Skip to content</a>
+
 <!-- ============================
      Nav
      ============================ -->
-<nav class="nav">
+<nav class="nav" aria-label="Primary">
   <div class="nav__inner">
     <a class="nav__brand" href="#top">Kalan Brunell</a>
     <div class="nav__links">
@@ -47,7 +53,7 @@
 <!-- ============================
      Hero
      ============================ -->
-<header id="top" class="container">
+<header id="top" class="container" tabindex="-1">
   <section class="hero">
     <div class="hero__text">
       <p class="hero__eyebrow reveal">Engineering Portfolio</p>
@@ -65,12 +71,13 @@
         <a href="mailto:kbrunell06@gmail.com">Email</a>
         <a href="https://github.com/kalanbrunell" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/kalan-brunell-50b65b286/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="Brunell_Kalan_Resume.pdf" download>Resume</a>
       </div>
     </div>
 
     <aside class="hero__visual reveal delay-2">
       <figure class="hero__figure">
-        <img src="images/hero/TER26.JPG" alt="Tufts Electric Racing car" />
+        <img src="images/hero/TER26.JPG" alt="Tufts Electric Racing car" width="1700" height="1133" fetchpriority="high" decoding="async" />
       </figure>
     </aside>
 
@@ -89,7 +96,7 @@
     </div>
 
     <div class="about">
-      <img class="about__photo reveal" src="images/about/headshot.jpg" alt="Headshot of Kalan Brunell" />
+      <img class="about__photo reveal" src="images/about/headshot.jpg" alt="Headshot of Kalan Brunell" width="220" height="220" loading="lazy" decoding="async" />
       <div class="about__body reveal delay-1">
         <p>
           I'm a third-year Computer Engineering student at Tufts University. My work has spanned
@@ -218,9 +225,9 @@
       <!-- DRAFT: project page not yet written; rendered as a non-clickable div until
            content is ready. Swap back to <a href="projects/keyboard.html"> to re-enable. -->
       <div class="proj-item proj-item--draft reveal">
-        <div class="proj-item__media">
-          <!-- Drop your PCB render at images/projects/keyboard/render.png -->
-          <img src="images/projects/keyboard/render.png" alt="Custom mechanical keyboard PCB render" loading="lazy" />
+        <div class="proj-item__media proj-item__media--placeholder">
+          <!-- Drop a PCB render at images/projects/keyboard/render.png, then restore the <img>. -->
+          <span class="media-placeholder">Render coming soon</span>
         </div>
         <div class="proj-item__body">
           <div class="proj-item__num">03 / Hardware</div>
@@ -241,8 +248,9 @@
       <!-- DRAFT: design + contributions sections not yet written; non-clickable until complete.
            Swap back to <a href="projects/ctf.html"> to re-enable. -->
       <div class="proj-card proj-card--draft reveal">
-        <div class="proj-card__media">
+        <div class="proj-card__media proj-card__media--placeholder">
           <!-- TODO: add an image at images/projects/ctf/ (board photo, logic analyzer, etc.) -->
+          <span class="media-placeholder">Image coming soon</span>
         </div>
         <div class="proj-card__body">
           <div class="proj-card__num">04 / Embedded Security</div>
@@ -291,7 +299,7 @@
 
       <a class="proj-card reveal delay-3" href="projects/color-following.html">
         <div class="proj-card__media">
-          <img src="images/projects/color-following/JuniorDesignRobot.png" alt="Autonomous color-following vehicle prototype" loading="lazy" />
+          <img src="images/projects/color-following/JuniorDesignRobot.jpg" alt="Autonomous color-following vehicle prototype" loading="lazy" />
         </div>
         <div class="proj-card__body">
           <div class="proj-card__num">07 / Junior Design</div>
@@ -308,7 +316,7 @@
 
       <a class="proj-card reveal" href="projects/vision-system.html">
         <div class="proj-card__media">
-          <img src="images/projects/vision-system/chargedUpRobot.png" alt="Lakerbots 8046 Charged-Up competition robot" loading="lazy" />
+          <img src="images/projects/vision-system/chargedUpRobot.jpg" alt="Lakerbots 8046 Charged-Up competition robot" loading="lazy" />
         </div>
         <div class="proj-card__body">
           <div class="proj-card__num">08 / FRC</div>
