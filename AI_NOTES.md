@@ -40,6 +40,11 @@
    ("I led…", "I wrote…"), concrete about hardware/tools. No fluff, no
    buzzwords. (Resume is no-pronoun; the *site* uses first person — that's an
    intentional difference.)
+   - **Avoid em dashes (`—`) in prose.** Kalan flags them as an AI tell that
+     doesn't fit his voice. Rewrite with commas, colons, "such as", or two
+     sentences instead. The ONLY allowed em dashes are structural and site-wide:
+     the page-title suffix `Title — Kalan Brunell` and date ranges like
+     `January — April 2026`. Same goes for the resume.
 
 When in doubt, ask Kalan before guessing.
 

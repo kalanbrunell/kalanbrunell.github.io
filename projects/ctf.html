@@ -4,12 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MITRE Embedded CTF — Kalan Brunell</title>
-<meta name="description" content="2026 MITRE eCTF — Tufts' secure Hardware Security Module in firmware for the TI MSPM0L2228, plus attack-phase work: UART man-in-the-middle and voltage fault injection." />
+<meta name="description" content="2026 MITRE eCTF: Tufts' secure Hardware Security Module in firmware for the TI MSPM0L2228, plus attack-phase work on UART man-in-the-middle and voltage fault injection." />
 <link rel="canonical" href="https://kalanbrunell.site/projects/ctf.html" />
 <meta name="theme-color" content="#1f4868" />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 <meta property="og:title" content="MITRE Embedded CTF — Kalan Brunell" />
-<meta property="og:description" content="2026 MITRE eCTF — designing a secure Hardware Security Module in firmware for the TI MSPM0L2228, then attacking other teams' implementations." />
+<meta property="og:description" content="2026 MITRE eCTF: designing a secure Hardware Security Module in firmware for the TI MSPM0L2228, then attacking other teams' implementations." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kalanbrunell.site/projects/ctf.html" />
 <!-- TODO: add og:image once a board photo / diagram is available, e.g.
@@ -70,7 +70,7 @@
       <h2>The scenario</h2>
       <p>
         The 2026 eCTF challenge tasks each team with building a <strong>Hardware Security Module
-        (HSM)</strong> — a dedicated embedded device for secure file storage and encrypted
+        (HSM)</strong>, a dedicated embedded device for secure file storage and encrypted
         device-to-device file transfer. The HSM runs as firmware on the TI MSPM0L2228
         microcontroller and exposes two distinct interfaces to the outside world.
       </p>
@@ -78,7 +78,7 @@
       <div class="detail-pillrow">
         <div class="detail-pill">
           <h4>Management Interface</h4>
-          <p>PIN-protected channel for user interactions — creating files, managing permissions, and retrieving status.</p>
+          <p>PIN-protected channel for user interactions such as creating files, managing permissions, and retrieving status.</p>
         </div>
         <div class="detail-pill">
           <h4>Transfer Interface</h4>
@@ -92,14 +92,14 @@
 
       <p>
         The security model is built around <strong>permission groups</strong>. Every file stored on
-        an HSM belongs to a group, and each HSM holds differentiated permissions per group —
+        an HSM belongs to a group, and each HSM holds differentiated permissions per group:
         receive (request files from other devices), write (create new files), and read (return file
         contents to an authorized user). Crucially, an HSM can store files it has no read permission
         for, deliberately separating <em>data possession</em> from <em>data access</em>.
       </p>
       <p>
         The competition runs in two phases. During the <strong>design phase</strong>, teams
-        implement and harden their HSM firmware — earning flags through an automated testing service
+        implement and harden their HSM firmware, earning flags through an automated testing service
         that validates both functional correctness and security properties. In the
         <strong>attack phase</strong>, teams receive boards provisioned with every other
         team's firmware and attempt to break their security implementations to capture flags.
@@ -130,7 +130,7 @@
         and IV (AES-CBC); that AES key was then wrapped with the file group's ECC <em>write</em>
         (public) key and prepended to the ciphertext before being committed to flash. Only an HSM
         holding the group's ECC <em>read</em> (private) key can unwrap the AES key and recover the
-        file — so a device can physically store a file it is cryptographically unable to read. A
+        file. As a result, a device can physically store a file it is cryptographically unable to read. A
         second ECC key pair per group (<em>verify</em> / <em>check</em>) is used to prove an HSM
         actually holds receive permission for a group before any transfer occurs.
       </p>
@@ -148,8 +148,8 @@
       <p>
         PINs are stored only as SHA-256 hashes and verified with a <strong>constant-time
         comparison</strong>, so a flash leak never exposes the PIN and timing analysis can't leak it
-        byte by byte. A brute-force lockout with a cooldown — designed to persist across power
-        cycles — blocks power-cycling attacks. UART read/write paths are bounded by explicit maximum
+        byte by byte. A brute-force lockout with a cooldown, designed to persist across power
+        cycles, blocks power-cycling attacks. UART read/write paths are bounded by explicit maximum
         lengths and slot indices are range-checked to prevent buffer and file-table overflows, and
         channel selection was made explicit so data is never leaked to the wrong interface.
       </p>
@@ -159,7 +159,7 @@
       <h2>My contributions</h2>
       <p>
         I joined the team this season, so my work centered on contributing to the collaborative
-        design and hardening effort while taking the lead on a few specific explorations — one
+        design and hardening effort while taking the lead on a few specific explorations: one
         defensive, two offensive.
       </p>
 
@@ -167,8 +167,8 @@
       <p>
         On the defensive side, I explored <strong>randomizing the order of functions in the
         compiled binary</strong> so the firmware's memory layout is less predictable. Because the
-        device runs a fixed image, runtime address randomization (ASLR) isn't available — but
-        shuffling function placement at build time is a static analogue: it makes it far harder for
+        device runs a fixed image, runtime address randomization (ASLR) isn't available, but
+        shuffling function placement at build time is a static analogue that makes it far harder for
         an attacker to reliably overflow a buffer into a known, useful location.
       </p>
 
@@ -176,7 +176,7 @@
       <p>
         During the attack phase I targeted teams that left their Transfer Interface unencrypted. By
         sitting in the middle of the UART link between two HSMs, I could intercept and relay traffic
-        to capture sensitive data in transit — a direct exploitation of the missing confidentiality
+        to capture sensitive data in transit, directly exploiting the missing confidentiality
         our own design was built to provide.
       </p>
 
@@ -185,7 +185,7 @@
         I also built a <strong>voltage fault-injection (glitching) rig</strong> aimed at the PIN
         check, using an external light source as a precision trigger to time the glitch. The goal
         was to corrupt execution at exactly the right moment and skip the instructions guarding the
-        PIN comparison. I got close — landing glitches that skipped instructions around the check —
+        PIN comparison. I got close, landing glitches that skipped instructions around the check,
         but ran out of competition time before achieving a full bypass.
       </p>
 
