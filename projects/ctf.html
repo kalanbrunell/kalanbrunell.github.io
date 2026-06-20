@@ -4,10 +4,24 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MITRE Embedded CTF — Kalan Brunell</title>
-<meta name="description" content="2026 MITRE eCTF — designing a secure Hardware Security Module in firmware for the MSP-LITO-L2228, then attacking other teams' implementations." />
-<meta name="robots" content="noindex" />
+<meta name="description" content="2026 MITRE eCTF — Tufts' secure Hardware Security Module in firmware for the TI MSPM0L2228, plus attack-phase work: UART man-in-the-middle and voltage fault injection." />
+<link rel="canonical" href="https://kalanbrunell.site/projects/ctf.html" />
 <meta name="theme-color" content="#1f4868" />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="MITRE Embedded CTF — Kalan Brunell" />
+<meta property="og:description" content="2026 MITRE eCTF — designing a secure Hardware Security Module in firmware for the TI MSPM0L2228, then attacking other teams' implementations." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kalanbrunell.site/projects/ctf.html" />
+<!-- TODO: add og:image once a board photo / diagram is available, e.g.
+<meta property="og:image" content="https://kalanbrunell.site/images/projects/ctf/<image>" /> -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1149WE8N1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-B1149WE8N1');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -33,13 +47,14 @@
 <header class="detail-hero">
   <div class="container">
     <a class="detail-back" href="../index.html#projects">Back to projects</a>
-    <p class="detail-eyebrow">08 / Embedded Security</p>
+    <p class="detail-eyebrow">04 / Embedded Security</p>
     <h1 class="detail-title">MITRE Embedded CTF</h1>
     <div class="detail-meta">
       <span><strong>Organizer:</strong> MITRE Corporation</span>
-      <span><strong>Institution:</strong> Tufts University</span>
-      <span><strong>Hardware:</strong> MSP-LITO-L2228</span>
-      <span><strong>Season:</strong> 2025 — 2026</span>
+      <span><strong>Team:</strong> Tufts University</span>
+      <span><strong>Hardware:</strong> TI MSPM0L2228 (Arm Cortex-M0+)</span>
+      <span><strong>Dates:</strong> January — April 2026</span>
+      <span><strong>Result:</strong> 19th place</span>
     </div>
     <p class="detail-summary">
       A two-phase embedded security competition: design a cryptographically secure Hardware Security
@@ -56,8 +71,8 @@
       <p>
         The 2026 eCTF challenge tasks each team with building a <strong>Hardware Security Module
         (HSM)</strong> — a dedicated embedded device for secure file storage and encrypted
-        device-to-device file transfer. The HSM runs as firmware on the MSP-LITO-L2228
-        microcontroller board and exposes two distinct interfaces to the outside world.
+        device-to-device file transfer. The HSM runs as firmware on the TI MSPM0L2228
+        microcontroller and exposes two distinct interfaces to the outside world.
       </p>
 
       <div class="detail-pillrow">
@@ -86,7 +101,7 @@
         The competition runs in two phases. During the <strong>design phase</strong>, teams
         implement and harden their HSM firmware — earning flags through an automated testing service
         that validates both functional correctness and security properties. In the
-        <strong>attack phase</strong>, teams receive three provisioned boards running every other
+        <strong>attack phase</strong>, teams receive boards provisioned with every other
         team's firmware and attempt to break their security implementations to capture flags.
         Each team therefore defends its own design while actively attacking everyone else's.
       </p>
@@ -95,32 +110,92 @@
     <section class="detail-section reveal">
       <h2>Our design</h2>
       <div class="detail-callout">
-        <p>Design details to follow — check back once the competition wraps.</p>
+        <p><strong>Approach:</strong> a multi-layer security model built on
+        <strong>wolfSSL / wolfCrypt</strong> hardware-optimized cryptography, pairing AES and
+        elliptic-curve cryptography (ECC) with per-group key management and forward secrecy.</p>
       </div>
-      <!-- TODO: fill in once ready
+
       <p>
-        Describe the overall architecture: crypto primitives chosen, key storage strategy,
-        how the permission system was implemented, any hardening techniques (memory protection,
-        secure boot, anti-debug measures, etc.).
+        The team's HSM enforced three core principles. <strong>Confidentiality:</strong> every file
+        stored on a device, and all sensitive HSM-to-HSM traffic, is AES encrypted.
+        <strong>Authentication:</strong> no sensitive action succeeds without passing both PIN and
+        permission checks <em>and</em> possessing the correct group-specific key.
+        <strong>Forward secrecy:</strong> ephemeral keys per group and permission type limit the
+        blast radius of any single compromised key.
       </p>
-      -->
+
+      <h3>Hybrid encryption &amp; per-group keys</h3>
+      <p>
+        File storage used a hybrid scheme. Each file was encrypted with a freshly generated AES key
+        and IV (AES-CBC); that AES key was then wrapped with the file group's ECC <em>write</em>
+        (public) key and prepended to the ciphertext before being committed to flash. Only an HSM
+        holding the group's ECC <em>read</em> (private) key can unwrap the AES key and recover the
+        file — so a device can physically store a file it is cryptographically unable to read. A
+        second ECC key pair per group (<em>verify</em> / <em>check</em>) is used to prove an HSM
+        actually holds receive permission for a group before any transfer occurs.
+      </p>
+
+      <h3>Authenticated transfer handshake</h3>
+      <p>
+        The receive operation used a two-step challenge–response handshake to stop a device from
+        pulling files it isn't authorized for. The listening HSM answers a request with a struct
+        binding the slot, file-group ID, and a runtime <strong>nonce</strong>, signed with AES-CMAC;
+        the receiver must counter-sign with the group's ECC receive key before any data is sent.
+        The nonce and signatures defeat replay attacks and block permission changes mid-transfer.
+      </p>
+
+      <h3>PIN protection &amp; defenses</h3>
+      <p>
+        PINs are stored only as SHA-256 hashes and verified with a <strong>constant-time
+        comparison</strong>, so a flash leak never exposes the PIN and timing analysis can't leak it
+        byte by byte. A brute-force lockout with a cooldown — designed to persist across power
+        cycles — blocks power-cycling attacks. UART read/write paths are bounded by explicit maximum
+        lengths and slot indices are range-checked to prevent buffer and file-table overflows, and
+        channel selection was made explicit so data is never leaked to the wrong interface.
+      </p>
     </section>
 
     <section class="detail-section reveal">
       <h2>My contributions</h2>
-      <div class="detail-callout">
-        <p>Contribution breakdown to follow — check back once the competition wraps.</p>
-      </div>
-      <!-- TODO: fill in once ready
       <p>
-        Describe your specific role: which subsystems you owned, any attacks you executed
-        during the attack phase, flags captured, etc.
+        I joined the team this season, so my work centered on contributing to the collaborative
+        design and hardening effort while taking the lead on a few specific explorations — one
+        defensive, two offensive.
       </p>
-      -->
+
+      <h3>Hardening: unpredictable memory layout</h3>
+      <p>
+        On the defensive side, I explored <strong>randomizing the order of functions in the
+        compiled binary</strong> so the firmware's memory layout is less predictable. Because the
+        device runs a fixed image, runtime address randomization (ASLR) isn't available — but
+        shuffling function placement at build time is a static analogue: it makes it far harder for
+        an attacker to reliably overflow a buffer into a known, useful location.
+      </p>
+
+      <h3>Attack phase: UART man-in-the-middle</h3>
+      <p>
+        During the attack phase I targeted teams that left their Transfer Interface unencrypted. By
+        sitting in the middle of the UART link between two HSMs, I could intercept and relay traffic
+        to capture sensitive data in transit — a direct exploitation of the missing confidentiality
+        our own design was built to provide.
+      </p>
+
+      <h3>Attack phase: voltage fault injection</h3>
+      <p>
+        I also built a <strong>voltage fault-injection (glitching) rig</strong> aimed at the PIN
+        check, using an external light source as a precision trigger to time the glitch. The goal
+        was to corrupt execution at exactly the right moment and skip the instructions guarding the
+        PIN comparison. I got close — landing glitches that skipped instructions around the check —
+        but ran out of competition time before achieving a full bypass.
+      </p>
+
+      <p>
+        Tufts finished <strong>19th</strong> in the 2026 competition.
+      </p>
     </section>
 
     <div class="detail-footer-nav">
-      <a href="../index.html#projects">← Back to projects</a>
+      <a href="arm-processor.html">← Previous: 5-Stage ARM Processor</a>
       <a href="fpga-2048.html">Next: FPGA 2048 →</a>
     </div>
 

@@ -21,6 +21,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://kalanbrunell.site/projects/ctf.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kalanbrunell.site/projects/safety-pcbs.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
