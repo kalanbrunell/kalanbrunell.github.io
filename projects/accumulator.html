@@ -51,8 +51,7 @@
     <div class="detail-meta">
       <span><strong>Team:</strong> Tufts Electric Racing</span>
       <span><strong>Competition:</strong> Formula-Hybrid Electric</span>
-      <span><strong>Role:</strong> Accumulator Project Manager</span>
-      <span><strong>Dates:</strong> 2024 — Present</span>
+      <span><strong>Role:</strong> Accumulator Project Manager (2025 — Present), prev. Electrical Engineer (2024 — 2025)</span>
       <span class="proj-status">In Progress</span>
     </div>
     <p class="detail-summary">
@@ -70,31 +69,93 @@
       performance, and serviceability while meeting strict FSAE regulatory requirements.</p>
     </div>
 
+    <!-- ============================
+         Current accumulator (Project Manager, May 2025 – Present)
+         ============================ -->
     <section class="detail-section reveal">
-      <h2>Overview</h2>
+      <h2>Current accumulator <span style="font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-left:8px;">May 2025 — Present</span></h2>
       <p>
-        Designing a high-voltage accumulator for the Formula-Hybrid Electric competition is a problem at the
-        intersection of electrical-engineering precision and motorsport durability. As Accumulator Project Manager,
-        I lead the development of a system that delivers consistent power to our electric race car while maintaining
-        the highest safety standards across competition and testing.
+        As Accumulator Project Manager, I'm leading the design of a fully removable <strong>440-cell, 450 V</strong>
+        accumulator for our Formula SAE Electric racecar. The new pack is a clean-sheet redesign aimed at
+        outperforming our off-the-shelf options on size, weight, and power efficiency — and at giving the team an
+        accumulator that can be pulled from the car as a single serviceable unit.
       </p>
+
+      <div class="detail-pillrow">
+        <div class="detail-pill">
+          <h4>Pack</h4>
+          <p>Removable 440-cell, 450 V architecture built around Molicel P42A cells.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Custom BMS</h4>
+          <p>STM32-based board handling cell monitoring, balancing, charge control, and CAN telemetry.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Thermal Network</h4>
+          <p>Custom RS-485 protocol for real-time temperature mapping &amp; fault reporting across 4 distributed thermistor boards.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>vs. OTS</h4>
+          <p>Notable improvements in size, weight, and power efficiency over off-the-shelf BMS / pack solutions.</p>
+        </div>
+      </div>
+
+      <div class="detail-grid-2">
+        <figure class="detail-figure">
+          <img src="../images/projects/accumulator/newAccumulatorLayout.png" alt="Current accumulator arrangement" />
+          <figcaption>Current pack arrangement — packaging for full-unit removability and serviceable segments.</figcaption>
+        </figure>
+        <div>
+          <p>
+            The custom STM32 BMS replaces a chain of off-the-shelf modules with a single integrated board that
+            handles cell monitoring, passive balancing, charger sequencing, and CAN telemetry to the rest of the
+            vehicle.
+          </p>
+          <p>
+            Rather than wiring every thermistor back to a central controller, four distributed thermistor boards
+            communicate over a custom RS-485 protocol I engineered for the pack — giving us continuous temperature
+            mapping and fault reporting without flooding the main loom.
+          </p>
+        </div>
+      </div>
+
+      <h3>Cell testing &amp; validation</h3>
+      <div class="detail-grid-side detail-grid-side--flip">
+        <figure class="detail-figure">
+          <img src="../images/projects/accumulator/cellTestingGraph.png" alt="Preliminary cell-testing results" />
+          <figcaption>Preliminary cell-testing results.</figcaption>
+        </figure>
+        <div>
+          <p>
+            Validating the Molicel P42A under realistic Formula-Hybrid load profiles is essential before the pack
+            architecture is locked. Our test protocol evaluates discharge performance across temperature ranges, load
+            conditions, and cycle counts — examining voltage sag and capacity retention.
+          </p>
+          <p>
+            The data feeds directly into pack architecture, cooling, and BMS configuration decisions, keeping the
+            pack reliable through an event while staying compliant with FSAE safety regulations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Previous accumulator (Electrical Engineer, 2024 – 2025)
+         ============================ -->
+    <section class="detail-section reveal">
+      <h2>Previous accumulator <span style="font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-left:8px;">2024 — 2025</span></h2>
       <p>
-        The packs integrate hundreds of lithium-ion cells into modular segments that can be serviced and monitored.
-        Each segment carries custom PCBs for thermistor and voltage sensing, alongside a dedicated battery management
-        system (BMS) that interfaces with the vehicle's safety and shutdown circuits.
+        On the prior generation of the accumulator, I joined the team as an Electrical Engineer. My focus was
+        the low-voltage safety circuitry, fusebox layout, and high-current path — ensuring reliable isolation,
+        fault detection, and compliance with FSAE electrical regulations.
       </p>
 
       <div class="detail-grid-side">
         <div>
           <p>
-            On last year's accumulator (right), I led the design of the low-voltage safety circuitry, the fusebox
-            layout, and the high-current path — ensuring reliable isolation, fault detection, and compliance with
-            FSAE electrical regulations.
-          </p>
-          <p>
-            The first image shows the first successful assembly of a module after months of design, build, and test.
-            That milestone validated our electrical architecture and safety systems and opened the door to performance
-            tuning and competition readiness.
+            The first image (right) is the first successful assembly of a module after months of design, build,
+            and test. That milestone validated the electrical architecture and safety systems and opened the door
+            to performance tuning and competition readiness.
           </p>
           <p>
             The second image is the prototype deployment of a single accumulator module in the car's sidepod —
@@ -111,55 +172,6 @@
             <img src="../images/projects/accumulator/accumulatorDeployed.jpg" alt="Prototype accumulator deployment in the car's sidepod" />
             <figcaption>Prototype accumulator deployed in the sidepod.</figcaption>
           </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="detail-section reveal">
-      <h2>New accumulator design <span class="proj-status">In Progress</span></h2>
-      <p>
-        Building on what we learned, the current accumulator is being redesigned from the ground up. It targets
-        roughly 50% of the previous form factor and focuses on modularity, improved thermal management, and higher
-        reliability.
-      </p>
-
-      <div class="detail-grid-2">
-        <figure class="detail-figure">
-          <img src="../images/projects/accumulator/newAccumulatorLayout.png" alt="New accumulator arrangement" />
-          <figcaption>Prototype arrangement for the new pack.</figcaption>
-        </figure>
-        <div>
-          <p>
-            Built around Molicel P42A cells, the new design is matched to the demands of our chosen motor / inverter
-            during events like acceleration and autocross. The entire accumulator can be removed from the car as a
-            single unit for service.
-          </p>
-          <p>
-            My focus areas on this iteration: the high-voltage interconnect architecture, low-voltage BMS integration,
-            and the thermal-management strategy needed to keep performance consistent across an event.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="detail-section reveal">
-      <h2>Cell testing &amp; validation</h2>
-      <div class="detail-grid-side detail-grid-side--flip">
-        <figure class="detail-figure">
-          <img src="../images/projects/accumulator/cellTestingGraph.png" alt="Preliminary cell-testing results" />
-          <figcaption>Preliminary cell-testing results.</figcaption>
-        </figure>
-        <div>
-          <p>
-            Rigorous cell testing is essential to confirm the Molicel P42A can meet the performance and safety
-            margins we need in Formula-Hybrid competition. Our protocol evaluates discharge performance across
-            temperature ranges, load conditions, and cycle counts — examining voltage sag and capacity retention.
-          </p>
-          <p>
-            The data feeds directly into the accumulator architecture, the cooling-system design, and the BMS
-            configuration, ensuring reliable performance throughout the event while staying compliant with FSAE
-            safety regulations.
-          </p>
         </div>
       </div>
     </section>
