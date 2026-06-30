@@ -1162,6 +1162,15 @@ a:hover { color: var(--accent-hover); }
   margin: 0 0 16px;
 }
 .detail-section p:last-child { margin-bottom: 0; }
+.detail-section code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.86em;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--accent);
+}
 
 .detail-figure { margin: 28px 0; }
 .detail-figure img {
@@ -1180,6 +1189,31 @@ a:hover { color: var(--accent-hover); }
 }
 .detail-figure--narrow { max-width: 640px; margin-left: auto; margin-right: auto; }
 .detail-figure--tight img { box-shadow: 0 4px 16px rgba(40, 30, 15, 0.06); }
+
+/* Placeholder slot for a figure whose image isn't ready yet (e.g. a CAD
+   render still in progress) — labelled tile instead of a missing img. */
+.detail-figure__placeholder {
+  aspect-ratio: 3 / 2;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(40, 30, 15, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  color: var(--muted-soft);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--bg-deep),
+    var(--bg-deep) 10px,
+    var(--surface) 10px,
+    var(--surface) 20px
+  );
+}
 
 .detail-grid-2 {
   display: grid;

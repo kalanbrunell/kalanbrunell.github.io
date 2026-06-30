@@ -4,12 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>High-Voltage EV Accumulator — Kalan Brunell</title>
-<meta name="description" content="450 V lithium-ion accumulator for Tufts Electric Racing's Formula-Hybrid car — cell architecture, BMS integration, fusebox & safety interlocks." />
+<meta name="description" content="450 V lithium-ion accumulator for Tufts Electric Racing's Formula-Hybrid car: custom STM32 BMS control board, isolated RS-485 sensor network, and cell-voltage monitoring chain." />
 <link rel="canonical" href="https://kalanbrunell.site/projects/accumulator.html" />
 <meta name="theme-color" content="#1f4868" />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 <meta property="og:title" content="High-Voltage EV Accumulator — Kalan Brunell" />
-<meta property="og:description" content="A 450 V lithium-ion accumulator for Tufts Electric Racing — cell architecture, BMS integration, fusebox and safety interlocks." />
+<meta property="og:description" content="A 450 V lithium-ion accumulator for Tufts Electric Racing: custom STM32 BMS control board, isolated RS-485 sensor network, and cell-voltage monitoring chain." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kalanbrunell.site/projects/accumulator.html" />
 <meta property="og:image" content="https://kalanbrunell.site/images/projects/accumulator/firstChargeCar.JPG" />
@@ -46,7 +46,7 @@
 <header class="detail-hero">
   <div class="container">
     <a class="detail-back" href="../index.html#projects">Back to projects</a>
-    <p class="detail-eyebrow">01 / FSAE · High Voltage</p>
+    <p class="detail-eyebrow">01 / FSAE · BMS &amp; Embedded Systems</p>
     <h1 class="detail-title">High-Voltage EV Accumulator</h1>
     <div class="detail-meta">
       <span><strong>Team:</strong> Tufts Electric Racing</span>
@@ -55,8 +55,9 @@
       <span class="proj-status">In Progress</span>
     </div>
     <p class="detail-summary">
-      Designing a competition-grade EV accumulator that prioritizes safety, performance, and serviceability under
-      FSAE regulations — from cell architecture and BMS integration to fusebox layout and high-voltage interlocks.
+      Designing the safety-critical electronics for a competition-grade EV accumulator: a custom STM32 BMS control
+      board, an isolated RS-485 sensor network, and the cell-voltage monitoring chain that keep a 450 V pack safe,
+      serviceable, and FSAE-compliant.
     </p>
   </div>
 </header>
@@ -65,8 +66,9 @@
   <div class="container">
 
     <div class="detail-callout reveal">
-      <p><strong>Project mission:</strong> engineer a competition-grade EV accumulator that prioritizes safety,
-      performance, and serviceability while meeting strict FSAE regulatory requirements.</p>
+      <p><strong>Project mission:</strong> engineer the BMS control board, sensor network, and safety logic for a
+      removable 440-cell, 450 V accumulator, replacing the chain of off-the-shelf modules our previous pack relied
+      on with electronics built in-house.</p>
     </div>
 
     <!-- ============================
@@ -75,49 +77,115 @@
     <section class="detail-section reveal">
       <h2>Current accumulator <span style="font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-left:8px;">May 2025 — Present</span></h2>
       <p>
-        As Accumulator Project Manager, I'm leading the design of a fully removable <strong>440-cell, 450 V</strong>
-        accumulator for our Formula SAE Electric racecar. The new pack is a clean-sheet redesign aimed at
-        outperforming our off-the-shelf options on size, weight, and power efficiency — and at giving the team an
-        accumulator that can be pulled from the car as a single serviceable unit.
+        As Accumulator Project Manager, I lead the electrical and embedded design for our Formula-Hybrid Electric
+        accumulator: a fully removable <strong>440-cell, 450 V</strong> pack built around Molicel P42A cells. My
+        focus is the pack's electronics, a custom STM32 BMS control board, an isolated RS-485 network to four
+        distributed thermistor modules, and the cell-voltage sensing chain, replacing the chain of off-the-shelf
+        BMS modules our previous pack relied on. It's still in progress, with the full system targeting competition
+        readiness by the end of 2026: the architecture, protocol, and board layouts are designed, and the active
+        work right now is firmware bring-up.
       </p>
 
       <div class="detail-pillrow">
         <div class="detail-pill">
-          <h4>Pack</h4>
-          <p>Removable 440-cell, 450 V architecture built around Molicel P42A cells.</p>
+          <h4>Pack &amp; Topology</h4>
+          <p>440-cell, 450 V pack split into 4 segments, each with local sensing, built around Molicel P42A cells.</p>
         </div>
         <div class="detail-pill">
-          <h4>Custom BMS</h4>
-          <p>STM32-based board handling cell monitoring, balancing, charge control, and CAN telemetry.</p>
+          <h4>BMS Control Board</h4>
+          <p>STM32G474 master board that aggregates sensor data, runs the AMS fault state machine, and reports telemetry over vehicle CAN.</p>
         </div>
         <div class="detail-pill">
-          <h4>Thermal Network</h4>
-          <p>Custom RS-485 protocol for real-time temperature mapping &amp; fault reporting across 4 distributed thermistor boards.</p>
+          <h4>RS-485 Thermal Network</h4>
+          <p>Custom master-polled protocol over isolated RS-485, linking 4 distributed thermistor modules for real-time temperature mapping.</p>
         </div>
         <div class="detail-pill">
-          <h4>vs. OTS</h4>
-          <p>Notable improvements in size, weight, and power efficiency over off-the-shelf BMS / pack solutions.</p>
+          <h4>Cell-Voltage Chain</h4>
+          <p>8 Enepaq tinyAFEs (2 per segment) daisy-chained over isolated UART, feeding per-cell voltage into the same fault logic.</p>
         </div>
       </div>
 
       <div class="detail-grid-2">
         <figure class="detail-figure">
           <img src="../images/projects/accumulator/newAccumulatorLayout.png" alt="Current accumulator arrangement" />
-          <figcaption>Current pack arrangement — packaging for full-unit removability and serviceable segments.</figcaption>
+          <figcaption>Current pack arrangement, packaged for full-unit removability and serviceable segments.</figcaption>
         </figure>
         <div>
           <p>
-            The custom STM32 BMS replaces a chain of off-the-shelf modules with a single integrated board that
-            handles cell monitoring, passive balancing, charger sequencing, and CAN telemetry to the rest of the
-            vehicle.
+            The pack itself stays focused on serviceability: segments are removable as a unit, and the harnessing
+            is laid out to keep the control board and sensor network accessible without breaking down the whole
+            accumulator.
           </p>
           <p>
-            Rather than wiring every thermistor back to a central controller, four distributed thermistor boards
-            communicate over a custom RS-485 protocol I engineered for the pack — giving us continuous temperature
-            mapping and fault reporting without flooding the main loom.
+            The sections below go deeper on the electronics I own directly: the control board, the RS-485 sensor
+            network, and the cell-voltage chain.
           </p>
         </div>
       </div>
+
+      <h3>BMS control board</h3>
+      <div class="detail-grid-side detail-grid-side--flip">
+        <figure class="detail-figure">
+          <div class="detail-figure__placeholder">CAD render coming soon</div>
+          <figcaption>BMS control board (STM32G474), Altium schematic + PCB layout.</figcaption>
+        </figure>
+        <div>
+          <p>
+            The control board is built around an STM32G474, sitting between the sensor network and the rest of the
+            car. It owns the RS-485 bus to the thermistor modules and the isolated UART link to the cell-voltage
+            AFE chain, evaluates both against configured thresholds, and drives <code>BMS_OK</code> (the latched
+            safety output) and <code>Charge_Safety</code> (the charge interlock). It also reports telemetry to the
+            vehicle over a dedicated CAN bus.
+          </p>
+          <p>
+            For diagnostics, the board has USB-C and SWD for laptop config and flashing, a 7-segment display for an
+            at-a-glance fault code without a laptop attached, and a microSD card for local telemetry logging.
+            Logging is designed to run asynchronously at low priority so a slow write can never stall the safety
+            loop.
+          </p>
+        </div>
+      </div>
+
+      <h3>Custom RS-485 thermistor network</h3>
+      <div class="detail-grid-side">
+        <div>
+          <p>
+            Rather than home-running every thermistor back to the control board, four distributed thermistor
+            modules, one per segment, sit on a shared isolated RS-485 bus, a multi-drop daisy chain over a single
+            differential pair. I designed the wire protocol myself: half-duplex and master-polled, so the control
+            board always owns the bus and the remote modules never have to arbitrate. Each frame carries a sync
+            byte, module address, command, payload length, and a hardware-computed CRC-16/CCITT trailer, running
+            at 115200 bps over isolated transceivers.
+          </p>
+          <p>
+            The command set covers polling for a temperature summary, a ping/health check, pushing threshold
+            configuration to a module, and a broadcast command to clear latched faults across all four modules at
+            once. Each module reports back its min, max, and average temperature plus a fault bit field (over-temp,
+            under-temp, sensor fault, stale data), so the control board's fault logic sees per-segment context
+            instead of a single aggregate flag. If a module misses three consecutive polls it's marked
+            <code>COMMS_LOST</code> and treated as a hard fault, but the control board keeps polling the rest of
+            the chain so one dead node can't stall the bus for everyone else.
+          </p>
+          <p>
+            On the firmware side, the plan splits the work into FreeRTOS tasks: a polling task and a fault-evaluation
+            task on the control board, and a command-dispatch task plus a sensor-scan task on each module. The
+            protocol and board layouts are done; bringing that firmware up end to end is the next milestone.
+          </p>
+        </div>
+        <figure class="detail-figure">
+          <div class="detail-figure__placeholder">CAD render coming soon</div>
+          <figcaption>Thermistor module (STM32G474), one per segment.</figcaption>
+        </figure>
+      </div>
+
+      <h3>Cell-voltage chain</h3>
+      <p>
+        Cell voltage comes from 8 Enepaq tinyAFEs, two per segment, on their own isolated UART daisy chain, separate
+        from the thermistor bus. Each AFE is referenced to the lowest cell it monitors, and the head AFE in the
+        chain talks to the control board through Enepaq's proprietary-to-UART converter. That voltage data feeds
+        into the same fault logic as the thermal data, so over-temperature and over-voltage conditions are
+        evaluated together rather than as two separate systems bolted side by side.
+      </p>
 
       <h3>Cell testing &amp; validation</h3>
       <div class="detail-grid-side detail-grid-side--flip">
