@@ -4,10 +4,23 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Custom Mechanical Keyboard — Kalan Brunell</title>
-<meta name="description" content="A bespoke mechanical keyboard built from scratch — custom PCB designed in KiCad and a purpose-built case and plate." />
-<meta name="robots" content="noindex" />
+<meta name="description" content="A fully custom 65% mechanical keyboard: STM32G0B1 PCB designed in KiCad with USB-C, hot-swap sockets, ESD protection, and a diode matrix for N-key rollover, running QMK." />
+<link rel="canonical" href="https://kalanbrunell.site/projects/keyboard.html" />
 <meta name="theme-color" content="#1f4868" />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Custom Mechanical Keyboard — Kalan Brunell" />
+<meta property="og:description" content="A fully custom 65% mechanical keyboard: STM32G0B1 PCB designed in KiCad with USB-C, hot-swap sockets, and N-key rollover via QMK." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kalanbrunell.site/projects/keyboard.html" />
+<meta property="og:image" content="https://kalanbrunell.site/images/projects/keyboard/3dfront.png" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1149WE8N1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-B1149WE8N1');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -36,15 +49,16 @@
     <p class="detail-eyebrow">03 / Hardware · PCB Design</p>
     <h1 class="detail-title">Custom Mechanical Keyboard</h1>
     <div class="detail-meta">
-      <span><strong>Scope:</strong> Custom PCB &amp; Case</span>
-      <span><strong>Tools:</strong> KiCad, CAD</span>
-      <!-- TODO: add date once finalized -->
+      <span><strong>MCU:</strong> STM32G0B1CEUx</span>
+      <span><strong>Firmware:</strong> QMK</span>
+      <span><strong>PCB tool:</strong> KiCad</span>
       <span><strong>Date:</strong> 2025 — Present</span>
       <span class="proj-status">In Progress</span>
     </div>
     <p class="detail-summary">
-      A fully bespoke mechanical keyboard designed from the ground up — custom PCB laid out in KiCad,
-      custom case and plate designed for the build, and a hand-picked switch and keycap set to match.
+      A fully custom 65% mechanical keyboard designed from the ground up: a KiCad PCB around an STM32G0B1
+      running QMK, hot-swap sockets, USB-C with ESD protection, and a diode matrix for true N-key rollover.
+      Case design is underway in Onshape, targeting CNC aluminum.
     </p>
   </div>
 </header>
@@ -53,85 +67,145 @@
   <div class="container">
 
     <div class="detail-callout reveal">
-      <p><strong>Project mission:</strong> build a mechanical keyboard where every layer — PCB, case,
-      plate, and layout — is designed rather than purchased. A hardware project in its own right,
-      not just an assembly job.</p>
+      <p><strong>Project mission:</strong> design a keyboard where every layer is a deliberate choice, not
+      a factory compromise. Build the KiCad and STM32 skills, and end up with exactly the board I want
+      to use.</p>
     </div>
 
     <section class="detail-section reveal">
-      <h2>Overview</h2>
+      <h2>Why build it.</h2>
       <p>
-        Off-the-shelf keyboards make tradeoffs that most builders don't control — layout compromises,
-        generic cases, and PCBs you can't modify. This project starts from a blank canvas: a completely
-        custom layout designed around how I actually type, a PCB designed in KiCad from scratch,
-        and an enclosure built to exactly the dimensions and feel I want.
+        Off-the-shelf keyboards make tradeoffs I don't control: a layout that's close but not quite right,
+        a PCB I can't modify, a case that fits the mold but not my desk. Building from scratch means I pick
+        the layout, choose every feature on the PCB, and design the enclosure around the board rather than
+        the other way around.
       </p>
       <p>
-        <!-- TODO: describe layout — e.g. "a compact 65-key ortholinear layout", "a columnar-stagger split", etc. -->
-        The layout prioritizes [describe your layout goals here]. Every design decision on the PCB,
-        from the key matrix to the controller selection, follows from that goal.
+        It's also a genuine learning project. Laying out a PCB in KiCad, placing an STM32, routing USB-C with
+        ESD protection, and generating gerbers for fabrication covers the full PCB workflow in a way that's
+        immediately verifiable: either the keyboard works or it doesn't. The 65% layout keeps the build
+        compact while holding onto the arrow cluster, which is the one thing I'm not willing to drop.
       </p>
-
-      <!-- TODO: add render/CAD screenshot
-      <figure class="detail-figure detail-figure--narrow">
-        <img src="../images/projects/keyboard/render.png" alt="Custom keyboard PCB render" />
-        <figcaption>KiCad PCB render — top layer.</figcaption>
-      </figure>
-      -->
     </section>
 
     <section class="detail-section reveal">
-      <h2>PCB design</h2>
-      <p>
-        The PCB was designed entirely in KiCad. The key matrix is wired for <!-- TODO: N-key rollover / QMK compatibility / etc. -->
-        with a <!-- TODO: MCU, e.g. RP2040, ATmega32U4, STM32 --> at the center.
-        Each key position was placed to match the physical layout exactly, then routed with care
-        for signal integrity and a clean final board.
-      </p>
-      <p>
-        <!-- TODO: add any interesting PCB design choices — RGB underglow, per-key LEDs, USB-C,
-        ESD protection, rotary encoder, etc. -->
-      </p>
+      <h2>PCB design.</h2>
 
-      <!-- TODO: add PCB layout screenshot
       <div class="detail-grid-2">
         <figure class="detail-figure">
-          <img src="../images/projects/keyboard/pcb-layout.png" alt="PCB layout in KiCad" />
-          <figcaption>PCB layout — KiCad routing view.</figcaption>
+          <img src="../images/projects/keyboard/3dfront.png" alt="KiCad 3D render of the keyboard PCB — front side showing switch and hot-swap socket holes" loading="lazy" />
+          <figcaption>3D render — front side. The USB-C connector sits centered at the top edge.</figcaption>
         </figure>
         <figure class="detail-figure">
-          <img src="../images/projects/keyboard/pcb-schematic.png" alt="Keyboard schematic" />
-          <figcaption>Schematic — key matrix and controller wiring.</figcaption>
+          <img src="../images/projects/keyboard/3dback.png" alt="KiCad 3D render of the keyboard PCB — back side showing STM32G0B1 MCU, diodes, and programming header" loading="lazy" />
+          <figcaption>3D render — back side. STM32G0B1 is center-bottom; diodes and STLink header are visible.</figcaption>
         </figure>
       </div>
-      -->
-    </section>
 
-    <section class="detail-section reveal">
-      <h2>Case &amp; plate</h2>
+      <h3>Controller</h3>
       <p>
-        The case and plate were designed in <!-- TODO: CAD tool, e.g. Onshape / SolidWorks / Fusion 360 -->
-        to match the PCB footprint exactly. The plate material is <!-- TODO: material, e.g. polycarbonate, aluminum, FR4 -->
-        and the case is <!-- TODO: manufacturing method and material, e.g. 3D-printed PLA, CNC aluminum, etc. -->.
-      </p>
-      <p>
-        <!-- TODO: add any case design details — sound dampening, mounting style (top-mount, tray, gasket), etc. -->
+        The board is centered on an <strong>STM32G0B1CEUx</strong>, an ARM Cortex-M0+ with native USB
+        2.0 full-speed built in. Native USB matters here: the MCU enumerates directly as a USB HID device
+        without a USB-to-serial bridge, keeping the hardware simple and giving QMK full control over the
+        USB descriptor. I'm familiar with the STM32G-family from other projects, so reaching for the G0
+        here made sense — it has everything a keyboard needs without the cost or complexity of a larger part.
+        QMK supports it via ChibiOS, which handles the low-level RTOS and USB stack.
       </p>
 
-      <!-- TODO: add case CAD render
-      <figure class="detail-figure detail-figure--narrow">
-        <img src="../images/projects/keyboard/case-render.png" alt="Case CAD render" />
-        <figcaption>Case design — CAD render.</figcaption>
+      <figure class="detail-figure">
+        <img src="../images/projects/keyboard/board-layout.png" alt="KiCad PCB routing view showing the complete 65% key layout with traces and component placement" loading="lazy" />
+        <figcaption>KiCad routing view — traces, pads, and component placement across the full 65% layout.</figcaption>
       </figure>
-      -->
+
+      <h3>USB-C and ESD protection</h3>
+      <p>
+        The USB connector is USB-C with ESD protection on the data lines via a PRTR5V0U2X TVS array.
+        Keyboard connectors take a lot of plug cycles and get exposed to whatever static charge walks up
+        to the desk, so protecting the USB differential pair is straightforward insurance. The TVS device
+        clamps transients before they reach the MCU's USB pins.
+      </p>
+
+      <h3>Hot-swap sockets</h3>
+      <p>
+        Rather than soldering switches directly, the PCB uses hot-swap sockets. Switches snap in and pull
+        out without heat, so I can swap between switch feels without reflowing the board. From a layout
+        standpoint this means placing socket footprints precisely, keeping the underside of the board clear
+        of traces in the socket area, and orienting each socket consistently so the seating force goes the
+        right direction.
+      </p>
+
+      <h3>Diode matrix and N-key rollover</h3>
+      <p>
+        Keys in a keyboard matrix are arranged in rows and columns: scanning firmware pulses each row and
+        checks which columns respond. Without per-key diodes, pressing three keys that form three corners
+        of a rectangle in the grid creates a reverse current path through the fourth corner, registering a
+        phantom keypress — a failure mode called ghosting. Adding a diode in series with each switch blocks
+        that backpath. Any combination of keys can be held at once without interference, which QMK exposes
+        as N-key rollover over USB HID.
+      </p>
+
+      <figure class="detail-figure detail-figure--narrow">
+        <img src="../images/projects/keyboard/matrix-schematic.png" alt="Key matrix schematic showing each switch paired with a series diode across 5 rows and 15 columns" loading="lazy" />
+        <figcaption>Matrix schematic (sheet 2/2) — each switch is paired with a diode in series, preventing ghost inputs across the 5&times;15 grid.</figcaption>
+      </figure>
+
+      <h3>Programming header</h3>
+      <p>
+        The PCB includes an STLink SWD header and a dedicated boot-mode button. During development, that
+        means I can flash firmware and step through code with a debugger attached rather than relying purely
+        on the USB DFU bootloader — a convenience that pays for itself the first time something doesn't
+        behave as expected.
+      </p>
+
+      <figure class="detail-figure">
+        <img src="../images/projects/keyboard/schematic.png" alt="Keyboard schematic showing USB-C connector, PRTR5V0U2X ESD protection, AP2112K-3.3 LDO, STLink header, and STM32G0B1 MCU" loading="lazy" />
+        <figcaption>Main schematic (sheet 1/2) — USB-C, ESD protection, 3.3 V LDO, STLink header, and STM32G0B1 with matrix pin assignments.</figcaption>
+      </figure>
     </section>
 
     <section class="detail-section reveal">
-      <h2>Build status</h2>
+      <h2>Case and plate.</h2>
       <p>
-        <!-- TODO: update with current progress — e.g. PCB ordered, waiting on parts, assembled, etc. -->
-        Currently in active development. PCB design is [status], and case design is [status].
+        The case is being designed in Onshape to fit the PCB footprint exactly. The target is CNC-machined
+        aluminum: solid, resonant in the right ways, and built to last. Aluminum cases also give better
+        acoustic control than printed plastic — the weight and rigidity damp the higher-frequency ping that
+        cheaper cases emphasize.
       </p>
+      <p>
+        Getting a case machined is a stretch goal after the PCB is verified. For the first functional build
+        I'll use a printed case to confirm fit and feel, then move to aluminum once the layout and PCB are
+        locked in. The Onshape model is parametric, so adjustments from the prototype carry forward without
+        a full redraw.
+      </p>
+
+      <figure class="detail-figure detail-figure--narrow">
+        <div class="detail-figure__placeholder">Case CAD render coming soon</div>
+        <figcaption>Case design — Onshape render (in progress).</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-section reveal">
+      <h2>Where it stands.</h2>
+      <p>
+        The PCB design is complete and ready to send to fabrication. Case design is actively in progress
+        in Onshape. Switch and keycap selection is still open — both will be picked once the board is
+        in hand and the layout is confirmed to feel right.
+      </p>
+
+      <div class="detail-pillrow">
+        <div class="detail-pill">
+          <h4>PCB</h4>
+          <p>Design complete in KiCad. Ready for fabrication.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Case</h4>
+          <p>In progress in Onshape. CNC aluminum is the target; printed prototype first.</p>
+        </div>
+        <div class="detail-pill">
+          <h4>Switches &amp; Keycaps</h4>
+          <p>TBD — selecting after the board is in hand and the layout is confirmed.</p>
+        </div>
+      </div>
     </section>
 
     <div class="detail-footer-nav">
